@@ -1,0 +1,26 @@
+Sur canvas
+http://python.physique.free.fr/animations.html
+https://courspython.com/animation-matplotlib.html
+http://effbot.org/tkinterbook/canvas.htm
+
+
+		Sur la rotation dans tkInter et canvas
+	Cours très bien avec l'étoile rouge:
+https://infoforall.fr/python/python-act130.html
+	cours très bien de github
+https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/index.html
+
+https://stackoverflow.com/questions/49269755/how-to-rotate-ellipse-in-tkinter-canvas
+		rotate with complexe
+https://effbot.org/zone/tkinter-complex-canvas.htm
+		Rotate image
+https://www.daniweb.com/programming/software-development/threads/358903/rotating-canvas-item-tkinter#
+
+sur la rotation en général, pb de géométrie de base
+https://homeomath2.imingo.net/rotation.htm
+
+
+site que le prof avait conseillé
+https://machinelearnia.com/matplotlib/
+
+

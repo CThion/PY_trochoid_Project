@@ -39,20 +39,6 @@ def movator():
     #win.after(t, movator(d, t))
 
 
-
-
-
-
-
-
-
-def drawLine():
-    #initialisation
-    xa, ya, xb, yb = win.canvas.coords(win.item[-1])#coords du dernier oval
-    xa, ya, xb, yb = xa+8*cos(xa+3), ya+8*sin(ya+3), xb+8*cos(xb+3), yb+8*sin(yb+3) #new coords
-    win.item.append([win.canvas.create_oval(xa, ya, xb, yb)])#new oval               
-    win.canvas.after(10, drawLine)
-
 def arret():
 
     if win.start.state == 1: win.after(10, arret)

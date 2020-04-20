@@ -49,8 +49,8 @@ def main():
     win.start=Button(frameLeftBand_1, text=("Start drawing",'Stop drawing'),command=on_start)
     Button(frameLeftBand_1, text="Clear drawing")
     win.start2=Button(frameLeftBand_1, text=('Choose the form'),command=on_state)
-    win.start2=Button(frameLeftBand_1, text=('carré','rond','fonction'))
-    win.start3=Button(frameLeftBand_1, text=('Côté','Rayon','f(x)='))
+    win.start2=Button(frameLeftBand_1, text=('carré','rond','fonction')) #Bouton qui se modifie en fonction du state
+    win.start3=Button(frameLeftBand_1, text=('Côté','Rayon','f(x)='))#Idem qui ci-dessus
     Button(frameLeftBand_1, text="Couelur du trait ")
     Button(frameLeftBand_1, text="Epaisseur du trait ")
     Entry(frameLeftBand_1, width=10)

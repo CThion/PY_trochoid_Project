@@ -1,0 +1,105 @@
+			COMMANDES GIT
+
+	git status ->
+pour choper info sur le repo où on se trouve (quelle branche on est, si il y a des commit à faire...)
+
+	git log ->
+affiche la liste des commits
+appuyer sur Q pour en sortir.
+
+	git init -> 
+dans un dossier, pour le déclarer comme repository
+
+	git add nomFichier.extension ->
+pour ajouter le fichier à la liste des fichier dont git doit faire le suivi
+git add . pour ajouter tous les changements faits.
+
+	git commit -m "description de mon changement"->
+pour enregistrer les modif faites dans un repo, avec description de la modif /!\ obligé de faire un git add pour que la modif prenne en charge.
+
+	git commit -am "description change"
+L'option   -a demande à Git de mettre à jour les fichiers déjà existants dans son index (permet d'éviter d'avoir à faire gir add tt le temps)
+
+	git blame nomDeFichier -> 
+permet de voir la liste des commites concernant ce fichier uniquements
+
+	git show débutDeCHAd'unCommit->
+permet de voir les changements exactes faits pour un commit donné 
+
+=======
+
+	git checkout SHADuCommit
+pour se repositionner temporelle au niveau de ce commit
+
+	git revert SHADuCommit
+pour créer un commit qui sera l'inverse du commit visé pas le SHADuCommit (sorte de controle z)
+
+======
+
+	git commit --amend -m "votre nouveau message"
+pour changer le message du dernier commit fait (seulement si pas encore pushé)
+
+	git reset --hard
+j'ai changé des choses mais au final je ne veux pas commit et annuler tout ce que je viens de faire.
+
+
+=====
+
+	git clone adresseDuRemote
+pour cloner un remote (depuis gitHub par exemple).
+
+	git push origin master ->
+pour envoyer les commits fait sur notre remote (donc sur gitHub)
+
+	git pull origin master ->
+pour récupérer les derniers commit faits et donc avoir la dernière version du projet.
+
+
+=================================================Les branches
+
+	git branch ->
+permet d'afficher les branches existantes
+
+	git branch nomDeNouvelleBranche -> 
+permet de créer une nouvelle branche
+
+	git checkout nomDeLaBrancheVisee ->
+permet de naviguer entre les différentes branches (master compris)
+
+	git merge nomDeBrancheDonOnVeutRecupLeCod -> 
+permet de fusionner une branche avec une autre. Si je suis dans master et que je veux récupérer le cod d'une autre branche nommée branche8, je fais git merge branche8. Si je veux le faire dans l'autre sens, donc récup les modifs de masters dans branche8, il faut d'abbord que je me place dans branche8 avec git checkout branche8, et ensuite que je fasse git merge master. 
+
+	git branch -d nomDeLaBranche
+permet de supprimer la branche visée (après une merge)
+
+
+
+	
+
+	git stash  -> 
+permet de sauver ses modif sans faire de commit (dans le cas où on n'a pas fini son taf et que faire un commit serait un peu prématuré, mais que l'on doit quand même en faire un absolument sur le même fichier mais sur une zone différente, qui elle a déjà été commité au par avant... on fait git stash, du coup du point de vu de git on n'a plus rien à commit (ça met de côté toutes les modifs qu'on a fait depuis de dernier commit). On peut faire des modifs, faire un commit, puis...
+
+	git stash pop ->
+... faire git stash pop pour récuper les modif que l'on avait fait hors commit avant. Stash permet donc de faire des sorte de branches temporaire de l'ensemble de nos modifs.
+
+
+
+			COMMANDE CONSOLE
+pwd -> 
+connaitre repertoire courant
+
+ls -> 
+liste fichier présent (mettre "ls -l", pour avoir une liste, et "-a" pour avoir le max d'info)
+
+cd -> 
+entrer dans un doc
+
+touch -> 
+créer un fichier (genre "touch nomDeFichier.extension)
+
+mkdir -> 
+créer un dossier
+
+
+
+

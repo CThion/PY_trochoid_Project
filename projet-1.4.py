@@ -1,4 +1,3 @@
-
 # ==============================================================================
 """CANVAS : demo program for the Canvas widget"""
 # ==============================================================================
@@ -28,7 +27,7 @@ def on_start():
 #===========================================  
 
 def on_state():
-    
+    """permet de changer les états des boutons de choix de forme"""
     win.start2.state=win.start2.state+1
     win.start3.state=win.start2.state
     print(win.start2.state)

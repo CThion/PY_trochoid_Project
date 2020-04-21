@@ -18,35 +18,35 @@ def main():
     win = Win(title='trochoïde', grow=True, flow='SE', op=2)
 #=======================================(parent: win)=======================================================
     #frame for general options (language...)
-    win.frameTop= Frame(win, bg='red', width=width, height=height//40, grow=False)  
+    win.top_band= Frame(win, bg='red', width=width, height=height//40, grow=False)  
     #principal frame
     win.frameprince= Frame(win, width=width, height=height, bg='black', flow='W')#frame principale 
 
 #=======================================(parent: win.frameprince)===============================================
-    win.BigBand = Frame(win.frameprince, bg='yellow', width=width, height=height, flow='S', grow=False)
-    win.Left_Band = Frame(win.frameprince, bg='white', width=width, height=height, flow='S', border=5, grow=False)
+    win.big_band = Frame(win.frameprince, bg='yellow', width=width, height=height, flow='S', grow=False)
+    win.left_band = Frame(win.frameprince, bg='white', width=width, height=height, flow='S', border=5, grow=False)
 
-#=======================================(parent: win.BigBand)===================================================
-    win.midframe= Frame(win.BigBand, bg='red', width=width/2, height=0.7*height, border=4,flow='W', grow=False)
-    win.botframe=Frame(win.BigBand,bg='blue', width=width, height=height, border=4, grow=False)
+#=======================================(parent: win.big_band)===================================================
+    win.play_band= Frame(win.big_band, bg='red', width=width/2, height=0.7*height, border=4,flow='W', grow=False)
+    win.bot_band=Frame(win.big_band,bg='blue', width=width, height=height, border=4, grow=False)
 
-#=======================================(parent: win.midframe)==================================================
+#=======================================(parent: win.play_band)==================================================
     #frame at right containing button for starting and drawing control while playing 
-    win.play_ctr=Frame(win.midframe, bg='green', width=0.1*width, height=0.7*height, border=4, grow=False)
+    win.play_ctr=Frame(win.play_band, bg='green', width=0.1*width, height=0.7*height, border=4, grow=False)
     #canvas to display the trocho
-    win.canvas=Canvas(win.midframe, bg='purple', width=width, height=0.7*height, border=5, grow=False)
+    win.canvas=Canvas(win.play_band, bg='purple', width=width, height=0.7*height, border=5, grow=False)
 
-#=======================================(parent: win.Left_Band)===============================================
+#=======================================(parent: win.left_band)===============================================
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
-    win.frBt_fixe= Frame(win.Left_Band, bg='gray', width=width, height=0.3*height, grow=True)
-    Button(win.frBt_fixe,text='Choix de la forme fixe')
+    win.frButt_fixe= Frame(win.left_band, bg='gray', width=width, height=0.3*height, grow=True)
+    Button(win.frButt_fixe,text='Choix de la forme fixe')
   #-----------------
-    win.frBt_rond= Frame(win.Left_Band, bg='yellow', width=width, height=0.3*height, grow=True)
-    Button(win.frBt_rond, text='Choix du rond mobile')
+    win.frButt_rond= Frame(win.left_band, bg='yellow', width=width, height=0.3*height, grow=True)
+    Button(win.frButt_rond, text='Choix du rond mobile')
   #-----------------
-    win.frBt_trocho= Frame(win.Left_Band, bg='red', width=width, height=0.3*height, grow=True)
-    Button(win.frBt_trocho,text='Paramétres trochoides')
+    win.frButt_trocho= Frame(win.left_band, bg='red', width=width, height=0.3*height, grow=True)
+    Button(win.frButt_trocho,text='Paramétres trochoides')
   #-----------------
     Button(win.play_ctr,text='Lets play')
 #=======================================()===============================================

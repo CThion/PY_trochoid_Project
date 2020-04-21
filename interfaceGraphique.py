@@ -60,6 +60,7 @@ def main():
     win.after(1000, drawLine) # start animation after 1000ms
   #-----------------------------------------------------------------------------
     #win.width, win.height = width, height 
+    win.loop()
 
 if __name__ == '__main__':
   main()

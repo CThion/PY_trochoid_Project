@@ -31,27 +31,27 @@ def left_band_display_change(key_butt):
 def main():
     """our graphic interface"""
     global win
-    width, height = 500, 500
+    width, height = 1200, 1000
     win = Win(title='trochoïde', grow=True, flow='SE', op=2)
 #=======================================(parent: win)=======================================================
     #frame for general options (language...)
     win.top_band= Frame(win, bg='red', width=width, height=height//40, grow=False)  
     #principal frame
-    win.frameprince= Frame(win, width=width, height=height, bg='black', flow='W')#frame principale 
+    win.frameking= Frame(win, width=1200, height=1000, bg='black', flow='W')#frame principale 
 
-#=======================================(parent: win.frameprince)===============================================
-    win.big_band = Frame(win.frameprince, bg='yellow', width=width, height=height, flow='S', grow=True)
-    win.left_band = Frame(win.frameprince, bg='white', width=width, height=height, flow='S', border=5, grow=True)
+#=======================================(parent: win.frameking)===============================================
+    win.big_band = Frame(win.frameking, bg='yellow', width=900, height=1000, flow='S', grow=True) #La largeur est égale à 1200 en sommant les deux largeurs
+    win.left_band = Frame(win.frameking, bg='white', width=300, height=1000, flow='S', border=5, grow=True)#On garde la même hauteur
 
 #=======================================(parent: win.big_band)===================================================
-    win.play_band= Frame(win.big_band, bg='red', width=width/2, height=0.7*height, border=4,flow='W', grow=True)
+    win.prince_band= Frame(win.big_band, bg='red', width=width/2, height=0.7*height, border=4,flow='W', grow=True)
     win.bot_band=Frame(win.big_band,bg='blue', width=width, height=height, border=4, grow=True)
 
-#=======================================(parent: win.play_band)==================================================
+#=======================================(parent: win.prince_band)==================================================
     #frame at right containing button for starting and drawing control while playing 
-    win.play_ctr=Frame(win.play_band, bg='green', width=0.1*width, height=0.7*height, border=4, grow=True)
+    win.right_band=Frame(win.prince_band, bg='green', width=0.1*width, height=0.7*height, border=4, grow=True)
     #canvas to display the trocho
-    win.canvas=Canvas(win.play_band, bg='purple', width=width, height=0.7*height, border=5, grow=True)
+    win.canvas=Canvas(win.prince_band, bg='purple', width=width, height=0.7*height, border=5, grow=True)
 
 #=======================================(parent: win.left_band)=============================================== 
     #confining buttons into individul frame to better control their dimentions

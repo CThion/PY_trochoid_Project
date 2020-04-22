@@ -9,21 +9,16 @@ from ezTK import *
 from math import *
 # ==============================================================================
 
-def left_band_display_change(key_butt):
+def right_band_display():
     """callback fuction for buttons in left_band <forme fixe> <cercle mobile> <trait trocho>
     When called it does the switch from the parameting display to the drawing diplay, in
     the left_band
     The key_butt identify each of the three buttons"""
     #about <forme fixe> button
-    if key_butt == 1:
-          win.butt_forme_fixe['text']=("je suis le 1")
-          #win.butt_forme_fixe.config(text="je suis le 1")
-    elif key_butt == 2:
-          win.play_band.config(width=10)
-          # win.butt_rond_mob.config(text="je suis le 2")
-    else:
-          win.butt_troco.config(text="je suis le 3") 
-
+    win.right_band = Frame(win.prince_band, bg='green', width=100, height=700, border=4, flow='S', grow=True)
+    win.speed_scale = Scale(win.right_band, scale=(0,99))
+    win.start_butt = Button(win.right_band, text="START")
+    #win.butt_forme_fixe.state=tk.DISABLED
 
 
 #==============================================================================  
@@ -49,21 +44,27 @@ def main():
 
 #=======================================(parent: win.prince_band)==================================================
     #frame at right containing button for starting and drawing control while playing 
-    win.right_band=Frame(win.prince_band, bg='green', width=100, height=700, border=4, grow=True)
+    
+    
+    
+    right_band_display()
+
+
+
     #canvas to display the trocho
     win.canvas=Canvas(win.prince_band, bg='purple', width=800, height=700, border=5, grow=True)
-
+    
 #=======================================(parent: win.left_band)=============================================== 
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
     win.frButt_fixe= Frame(win.left_band, bg='gray', width=300, height=333, grow=True)
-    Button(win.frButt_fixe, text='Choix de la forme fixe', command=lambda: left_band_display_change(1))
+    Button(win.frButt_fixe, text='afficher right_band', command=right_band_display)
   #-----------------
     win.frButt_rond= Frame(win.left_band, bg='yellow', width=300, height=333, grow=True)
-    Button(win.frButt_rond, text='Choix du rond mobile', command=lambda: left_band_display_change(2))
+    Button(win.frButt_rond, text='masquer right_band', command=lambda: win.right_band.destroy())
   #-----------------
     win.frButt_trocho= Frame(win.left_band, bg='red', width=300, height=333, grow=True)
-    Button(win.frButt_trocho, text='Paramétres trochoides', command=lambda: left_band_display_change(3))
+    Button(win.frButt_trocho, text='Paramétres trochoides', command=right_band_display)
   #-----------------
     win.butt_forme_fixe = win.left_band[0]
     win.butt_rond_mob = win.left_band[1]

@@ -16,8 +16,13 @@ def left_band_display_change(key_butt):
     The key_butt identify each of the three buttons"""
     #about <forme fixe> button
     if key_butt == 1:
-          return
-    return
+          win.butt_forme_fixe['text']=("je suis le 1")
+          #win.butt_forme_fixe.config(text="je suis le 1")
+    elif key_butt == 2:
+          win.play_band.config(width=10)
+          # win.butt_rond_mob.config(text="je suis le 2")
+    else:
+          win.butt_troco.config(text="je suis le 3") 
 
 
 
@@ -35,40 +40,42 @@ def main():
     win.frameprince= Frame(win, width=width, height=height, bg='black', flow='W')#frame principale 
 
 #=======================================(parent: win.frameprince)===============================================
-    win.big_band = Frame(win.frameprince, bg='yellow', width=width, height=height, flow='S', grow=False)
-    win.left_band = Frame(win.frameprince, bg='white', width=width, height=height, flow='S', border=5, grow=False)
+    win.big_band = Frame(win.frameprince, bg='yellow', width=width, height=height, flow='S', grow=True)
+    win.left_band = Frame(win.frameprince, bg='white', width=width, height=height, flow='S', border=5, grow=True)
 
 #=======================================(parent: win.big_band)===================================================
-    win.play_band= Frame(win.big_band, bg='red', width=width/2, height=0.7*height, border=4,flow='W', grow=False)
-    win.bot_band=Frame(win.big_band,bg='blue', width=width, height=height, border=4, grow=False)
+    win.play_band= Frame(win.big_band, bg='red', width=width/2, height=0.7*height, border=4,flow='W', grow=True)
+    win.bot_band=Frame(win.big_band,bg='blue', width=width, height=height, border=4, grow=True)
 
 #=======================================(parent: win.play_band)==================================================
     #frame at right containing button for starting and drawing control while playing 
-    win.play_ctr=Frame(win.play_band, bg='green', width=0.1*width, height=0.7*height, border=4, grow=False)
+    win.play_ctr=Frame(win.play_band, bg='green', width=0.1*width, height=0.7*height, border=4, grow=True)
     #canvas to display the trocho
-    win.canvas=Canvas(win.play_band, bg='purple', width=width, height=0.7*height, border=5, grow=False)
+    win.canvas=Canvas(win.play_band, bg='purple', width=width, height=0.7*height, border=5, grow=True)
 
 #=======================================(parent: win.left_band)=============================================== 
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
     win.frButt_fixe= Frame(win.left_band, bg='gray', width=width, height=0.3*height, grow=True)
-    win.butt_forme_fixe = Button(win.frButt_fixe,text='Choix de la forme fixe', command=left_band_display_change(1))
+    Button(win.frButt_fixe, text='Choix de la forme fixe', command=lambda: left_band_display_change(1))
   #-----------------
     win.frButt_rond= Frame(win.left_band, bg='yellow', width=width, height=0.3*height, grow=True)
-    win.butt_rond_mob = Button(win.frButt_rond, text='Choix du rond mobile', command=left_band_display_change(2))
+    Button(win.frButt_rond, text='Choix du rond mobile', command=lambda: left_band_display_change(2))
   #-----------------
     win.frButt_trocho= Frame(win.left_band, bg='red', width=width, height=0.3*height, grow=True)
-    win.butt_troco = Button(win.frButt_trocho,text='Paramétres trochoides', command=left_band_display_change(3))
+    Button(win.frButt_trocho, text='Paramétres trochoides', command=lambda: left_band_display_change(3))
   #-----------------
-
+    win.butt_forme_fixe = win.left_band[0]
+    win.butt_rond_mob = win.left_band[1]
+    win.butt_troco = win.left_band[2]
     #would be a list to stock left_band's widget. If done, wouldn't be necessary to set <win.> to windget's name anymore.
     #win.left_band_list = []
     #win.left_band_list.append(win.frButt_fixe, win.frButt_rond, win.frButt_trocho)
 #=======================================(prent: win.play_ctr)===============================================
-    Button(win.play_ctr,text='Lets play')
+    #Button(win.play_ctr,text='Lets play')
 #
 # 
-     win.loop()
+    win.loop()
 
    
 if __name__ == '__main__':

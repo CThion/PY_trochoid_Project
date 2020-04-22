@@ -9,6 +9,18 @@ from ezTK import *
 from math import *
 # ==============================================================================
 
+def left_band_display_change(key_butt):
+    """callback fuction for buttons in left_band <forme fixe> <cercle mobile> <trait trocho>
+    When called it does the switch from the parameting display to the drawing diplay, in
+    the left_band
+    The key_butt identify each of the three buttons"""
+    #about <forme fixe> button
+    if key_butt == 1:
+          return
+    return
+
+
+
 #==============================================================================  
     
 def main():
@@ -36,21 +48,27 @@ def main():
     #canvas to display the trocho
     win.canvas=Canvas(win.play_band, bg='purple', width=width, height=0.7*height, border=5, grow=False)
 
-#=======================================(parent: win.left_band)===============================================
+#=======================================(parent: win.left_band)=============================================== 
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
     win.frButt_fixe= Frame(win.left_band, bg='gray', width=width, height=0.3*height, grow=True)
-    Button(win.frButt_fixe,text='Choix de la forme fixe')
+    win.butt_forme_fixe = Button(win.frButt_fixe,text='Choix de la forme fixe', command=left_band_display_change(1))
   #-----------------
     win.frButt_rond= Frame(win.left_band, bg='yellow', width=width, height=0.3*height, grow=True)
-    Button(win.frButt_rond, text='Choix du rond mobile')
+    win.butt_rond_mob = Button(win.frButt_rond, text='Choix du rond mobile', command=left_band_display_change(2))
   #-----------------
     win.frButt_trocho= Frame(win.left_band, bg='red', width=width, height=0.3*height, grow=True)
-    Button(win.frButt_trocho,text='Paramétres trochoides')
+    win.butt_troco = Button(win.frButt_trocho,text='Paramétres trochoides', command=left_band_display_change(3))
   #-----------------
+
+    #would be a list to stock left_band's widget. If done, wouldn't be necessary to set <win.> to windget's name anymore.
+    #win.left_band_list = []
+    #win.left_band_list.append(win.frButt_fixe, win.frButt_rond, win.frButt_trocho)
+#=======================================(prent: win.play_ctr)===============================================
     Button(win.play_ctr,text='Lets play')
-#=======================================()===============================================
-    win.loop()
+#
+# 
+     win.loop()
 
    
 if __name__ == '__main__':

@@ -44,25 +44,25 @@ def main():
     win.left_band = Frame(win.frameking, bg='white', width=300, height=1000, flow='S', border=5, grow=True)#On garde la même hauteur
 
 #=======================================(parent: win.big_band)===================================================
-    win.prince_band= Frame(win.big_band, bg='red', width=width/2, height=0.7*height, border=4,flow='W', grow=True)
-    win.bot_band=Frame(win.big_band,bg='blue', width=width, height=height, border=4, grow=True)
+    win.prince_band= Frame(win.big_band, bg='red', width=900, height=700, border=4,flow='W', grow=True) #On garde la largeur de la frame parent
+    win.bot_band=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True) #Somme des hauteurs = 1000 
 
 #=======================================(parent: win.prince_band)==================================================
     #frame at right containing button for starting and drawing control while playing 
-    win.right_band=Frame(win.prince_band, bg='green', width=0.1*width, height=0.7*height, border=4, grow=True)
+    win.right_band=Frame(win.prince_band, bg='green', width=100, height=700, border=4, grow=True)
     #canvas to display the trocho
-    win.canvas=Canvas(win.prince_band, bg='purple', width=width, height=0.7*height, border=5, grow=True)
+    win.canvas=Canvas(win.prince_band, bg='purple', width=800, height=700, border=5, grow=True)
 
 #=======================================(parent: win.left_band)=============================================== 
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
-    win.frButt_fixe= Frame(win.left_band, bg='gray', width=width, height=0.3*height, grow=True)
+    win.frButt_fixe= Frame(win.left_band, bg='gray', width=300, height=333, grow=True)
     Button(win.frButt_fixe, text='Choix de la forme fixe', command=lambda: left_band_display_change(1))
   #-----------------
-    win.frButt_rond= Frame(win.left_band, bg='yellow', width=width, height=0.3*height, grow=True)
+    win.frButt_rond= Frame(win.left_band, bg='yellow', width=300, height=333, grow=True)
     Button(win.frButt_rond, text='Choix du rond mobile', command=lambda: left_band_display_change(2))
   #-----------------
-    win.frButt_trocho= Frame(win.left_band, bg='red', width=width, height=0.3*height, grow=True)
+    win.frButt_trocho= Frame(win.left_band, bg='red', width=300, height=333, grow=True)
     Button(win.frButt_trocho, text='Paramétres trochoides', command=lambda: left_band_display_change(3))
   #-----------------
     win.butt_forme_fixe = win.left_band[0]

@@ -10,8 +10,14 @@ from math import *
 #x=(R+mR)cosmt−hcos(t+mt),
 #y=(R+mR)sinmt−hsin(t+mt)
 
+def test():
+    list_of_screen_coods = [(50,250),(150,100),(250,250),(350,100),(450,250),(550,100)]
+    for (x00,y00,x11,y11) in coords_list_spliter(list_of_screen_coods):
+        win.canvas.create_line(x00,y00,x11,y11, width=1,fill="red")
+
+
 #=============================================================================================================================
-def coods_list_spliter(screen_points):
+def coords_list_spliter(screen_points): #https://stackoverflow.com/questions/16494896/create-a-line-using-a-list-of-coordinates-in-python-gui
     """ Function to take list of points and make them into lines
     """
     is_first = True
@@ -30,32 +36,25 @@ def coods_list_spliter(screen_points):
             # Set current x,y to start coords of next line
             x0,y0 = x,y
 
-def test():
-    list_of_screen_coods = [(50,250),(150,100),(250,250),(350,100)]
-    for (x00,y00,x11,y11) in linemaker(list_of_screen_coods):
-        win.canvas.create_line(x00,y00,x11,y11, width=1,fill="red")
-
-    
 #==============================================================================================================================
-def hypo_trocho(t=1, points=[]):
+def hypo_trocho(t=1):
     """draw an hypotrochoide"""
     #VARIABLES----------------------------------------
-    x0, y0 = win.C_entry.state.splite(','); x0, y0 = int(x0), int(y0) #intial point
-    R = win.R_entry.state
-    r = win.r_entry.state
-    h = win.h_entry.state
+    R = int(win.R_entry.state)
+    r = int(win.r_entry.state)
+    h = int(win.h_entry.state)
     m = R/r
 
     #FONCTION-----------------------------------------
     xi = (R+m*R)*cos(m*t)-h*cos(t+m*t)
     yi = -(R+m*R)*sin(m*t)+h*sin(t+m*t)
-    points.append([xi, yi])
-    win.canvas.create_line()
-    t+=1 #time goes by...
+    win.trocho_points_list.append((xi, yi)) #--add the new point's coords
+    print(win.trocho_points_list)
+    for (x0,y0,x1,y1) in coords_list_spliter(win.trocho_points_list):
+        win.canvas.create_line(x0,y0,x1,y1, width=1,fill="red")
+    t+=1 #--time goes by...
     #--------------------------------------------------
-    
-
-    win.after(20, hypo_trocho)
+    win.after(20, hypo_trocho(t))
 
 #==============================================================================================================================
 def on_start():
@@ -67,28 +66,33 @@ def on_start():
 
 def pre_disp():
     """calback fontion for every parameting widgets (scale, entry...)"""
+    return
 
 
 
 #==============================================================================================================================
 def main():
     """programm tot test canvas widget"""
-    height, width = 720, 1080
+    #=========VARIABLES=========
     global win
-    win = Win(title="drawer fonctions", flow='E', grow=True)
+    height, width = 720, 1080
     
+    win = Win(title="drawer fonctions", flow='E', grow=True)
     #=========================(parent: win)=======================================
     win.left_band = Frame(win, width=width/4, height=height, bg='cyan', flow='S', grow=True)
     win.canvas = Canvas(win, width=width*3/4, height=height)
 
     #=========================(parent: left_band)=================================
-    win.start = Button(win.left_band, text=('start', 'stop'), command=test())
+    win.start = Button(win.left_band, text=('start', 'stop'), command=hypo_trocho)
     parameters_band = Frame(win.left_band, flow='ES', fold=2, grow=True)
 
     #=========================(parent: parameters_band)===========================
-    #-----C
-    Label(parameters_band, text='choice the C coords')
-    win.C_entry = Entry(parameters_band, command=pre_disp)
+    #-----xC
+    Label(parameters_band, text='choice the x C coords')
+    win.xC_entry = Entry(parameters_band, command=pre_disp)
+    #-----yC
+    Label(parameters_band, text='choice the y C coords')
+    win.yC_entry = Entry(parameters_band, command=pre_disp)
     #-----R
     Label(parameters_band, text='choice the R value')
     win.R_entry = Entry(parameters_band, command=pre_disp)
@@ -99,6 +103,9 @@ def main():
     Label(parameters_band, text='choice the h value')
     win.h_entry = Entry(parameters_band, command=pre_disp)
 
+    #--liste of points used to draw the trochoide curve. Initialised with the starting point choosen by user.
+    win.trocho_points_list = [(100,100)] 
+    #win.trocho_points_list = [(int(win.xC_entry.state), int(win.yC_entry.state))] 
     #==============================================================================
     win.loop()
     

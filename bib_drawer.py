@@ -1,60 +1,66 @@
 from ezTK import *
 from math import *
+#=============================================================================================================================
+# r is the radius of the rolling circle, <CONSTANT
+# R is the radius of the fixed circle, <CONSTANT
+# m=R/r is the modulus of the trochoid,  <CONSTANT
+# h is the distance from the tracing point to the centre of the rolling circle <CONSTANT
+# 
+#####epitro
+#x=(R+mR)cosmt−hcos(t+mt),
+#y=(R+mR)sinmt−hsin(t+mt)
+#==============================================================================================================================
+def hypo_trocho():
+    """draw an hypotrochoide"""
+    R = win.R_entry.state
+    win.canvas.create_oval(50,50,100,R)
 
 
-def movator():
-    """vitesse linéaire: d/t : (d=2px)/(t=10ms)
-    ==> vitesse constante pour l'instant, on verra plus tard
-    pour passer à v en dérivé."""
-
-    xPw, yPw, xQw, yQw = win.canvas.coords(win.roulette)
-    xC, yC = (xPw+xQw)/2,(yPw+yQw)/2 #coords du centre des cercles
-    xP, yP, xQ, yQ = xPw-xC, yPw-yC, xQw-xC, yQw-yC #changement de variabe, on se ramène à l'origine du repère
-    R = sqrt((xQ-xP)**2+(yQ-yP)**2)/2 #rayon du cercle contenant le carré contenant la roulette.
-    #a = d/(2*R) #angle de rotation, dépendant de d
+#==============================================================================================================================
+def on_start():
+      """callback function for the 'START/STOP' button"""
+      win.start.state = 1 - win.start.state # switch button (state <--> 1-stat
+      #if win.button.state == 1: tick() # start 'tick' when button state is 1
+      if win.start.state == 1: hypo_trocho()
     
-    for k in range(1,4):
-        a = radians(k*20)
-    #nouvelles coords du point P
-        xP2 = xP*cos(a)+yP*sin(a) + xC 
-        yP2 = -xP*sin(a)+yP*cos(a) + yC 
-    #nouvelles coords du point Q
-        xQ2 = xQ*cos(a)+yQ*sin(a) + xC 
-        yQ2 = -xQ*sin(a)+yQ*cos(a) + yC
 
-        #win.canvas.create_oval(xP2, yP2, xQ2, yQ2, outline="blue")
-        win.canvas.create_line(xP2, yP2, xQ2, yQ2, fill="red")
+def pre_disp():
+    """calback fontion for every parameting widgets (scale, entry...)"""
 
-    #win.canvas.coords(win.roulette, xP2, yP2, xQ2, yQ2)
-    #win.canvas.coords(win.temoin, xP2, yP2, xQ2, yQ2)
-    #win.after(t, movator(d, t))
-    
-    
+
+
+#==============================================================================================================================
 def main():
     """programm tot test canvas widget"""
+    height, width = 1000, 1300
     global win
-    win = Win(title="canvas_training", grow=True)
+    win = Win(title="drawer fonctions", flow='E', grow=True)
     
-    win.canvas = Canvas(win, width=600, height=600)
-    win.item = []
-    xP, yP = 200, 200
-    xQ = 400
-    yQ = yP+abs(xQ-xP)
-    
-    win.roulette = win.canvas.create_oval(xP,yP,xQ,yQ)
-    win.temoin = win.canvas.create_line(xP,yP,xQ,yQ)
+    #=========================(parent: win)=======================================
+    win.left_band = Frame(win, width=width/4, height=height, flow='S', grow=True)
+    win.canvas = Canvas(win, width=width*3/4, height=height)
 
-    #win.roulette2 = win.canvas.create_oval(xP,yP,xQ,yQ)
-    win.temoin2 = win.canvas.create_line(xP,yP,xQ,yQ,fill="blue")
-    
-    win.centre = win.canvas.create_line((xQ+xP)/2,2,(xQ+xP)/2,500, fill="blue")
-    win.centre = win.canvas.create_line(2,(yQ+yP)/2, 500, (yQ+yP)/2, fill="green")
-    
-    movator()
-    
+    #=========================(parent: left_band)=================================
+    win.start = Button(win.left_band, text=('start', 'stop'), command=on_start)
+    parameters_band = Frame(win.left_band, flow='ES', fold=2, grow=True)
+
+    #=========================(parent: parameters_band)===========================
+    Label(parameters_band, text='choice the R value')
+    win.R_entry = Entry(parameters_band, commande=pre_disp)
+    #-----
+    Label(parameters_band, text='choice the r value')
+    win.r_entry = Entry(parameters_band, commande=pre_disp)
+    #-----
+    Label(parameters_band, text='choice the h value')
+    win.h_entry = Entry(parameters_band, commande=pre_disp)
+    #-----
+
+
+    #==============================================================================
     win.loop()
     
-
+#==============================================================================================================================
+#==============================================================================================================================
 
 if __name__ == '__main__':
   main()

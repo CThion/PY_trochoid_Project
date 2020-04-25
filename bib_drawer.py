@@ -10,6 +10,11 @@ from math import *
 #x=(R+mR)cosmt−hcos(t+mt),
 #y=(R+mR)sinmt−hsin(t+mt)
 
+def test2(a=1):
+    a+=1
+    print(a)
+    win.after(10, test2(a))
+
 def test():
     list_of_screen_coods = [(50,250),(150,100),(250,250),(350,100),(450,250),(550,100)]
     for (x00,y00,x11,y11) in coords_list_spliter(list_of_screen_coods):
@@ -37,7 +42,7 @@ def coords_list_spliter(screen_points): #https://stackoverflow.com/questions/164
             x0,y0 = x,y
 
 #==============================================================================================================================
-def hypo_trocho(t=1):
+def hypo_trocho(t):
     """draw an hypotrochoide"""
     #VARIABLES----------------------------------------
     R = int(win.R_entry.state)
@@ -46,29 +51,36 @@ def hypo_trocho(t=1):
     m = R/r
 
     #FONCTION-----------------------------------------
-    xi = (R+m*R)*cos(m*t)-h*cos(t+m*t)
-    yi = -(R+m*R)*sin(m*t)+h*sin(t+m*t)
+    xi = int(win.xC_entry.state) + (R+m*R)*cos(m*t)-h*cos(t+m*t)
+    yi = int(win.xC_entry.state) + (R+m*R)*sin(m*t)-h*sin(t+m*t)
+    #print(len(win.trocho_points_list))
+    print(len(win.trocho_points_list))
     win.trocho_points_list.append((xi, yi)) #--add the new point's coords
-    print(win.trocho_points_list)
     for (x0,y0,x1,y1) in coords_list_spliter(win.trocho_points_list):
-        win.canvas.create_line(x0,y0,x1,y1, width=1,fill="red")
-    t+=1 #--time goes by...
+        win.canvas.create_line(x0,y0,x1,y1, width=1, fill="red")
     #--------------------------------------------------
-    win.after(20, hypo_trocho(t))
+
+#==============================================================================================================================
+def tick():
+    """recursive fonction calling hypo_trocho"""
+    if win.start['text']=="start": return
+    win.t +=0.1
+    win.timer['text'] = win.t #increment t
+    hypo_trocho(win.t)
+    win.after(100, tick)
 
 #==============================================================================================================================
 def on_start():
       """callback function for the 'START/STOP' button"""
       win.start.state = 1 - win.start.state # switch button (state <--> 1-stat
       #if win.button.state == 1: tick() # start 'tick' when button state is 1
-      if win.start.state == 1: hypo_trocho()
-    
+      if win.start.state == 1: tick()
 
+    
+#==============================================================================================================================
 def pre_disp():
     """calback fontion for every parameting widgets (scale, entry...)"""
     return
-
-
 
 #==============================================================================================================================
 def main():
@@ -83,13 +95,16 @@ def main():
     win.canvas = Canvas(win, width=width*3/4, height=height)
 
     #=========================(parent: left_band)=================================
-    win.start = Button(win.left_band, text=('start', 'stop'), command=hypo_trocho)
+    win.start = Button(win.left_band, text=('start', 'stop'), command=on_start)
+    win.timer = Label(win.left_band, text=0, border=1)
     parameters_band = Frame(win.left_band, flow='ES', fold=2, grow=True)
 
     #=========================(parent: parameters_band)===========================
+    #-----
+    Button(parameters_band, command=test)
     #-----xC
     Label(parameters_band, text='choice the x C coords')
-    win.xC_entry = Entry(parameters_band, command=pre_disp)
+    win.xC_entry = Entry(parameters_band, command=test2)
     #-----yC
     Label(parameters_band, text='choice the y C coords')
     win.yC_entry = Entry(parameters_band, command=pre_disp)
@@ -104,8 +119,9 @@ def main():
     win.h_entry = Entry(parameters_band, command=pre_disp)
 
     #--liste of points used to draw the trochoide curve. Initialised with the starting point choosen by user.
-    win.trocho_points_list = [(100,100)] 
+    win.trocho_points_list = [] 
     #win.trocho_points_list = [(int(win.xC_entry.state), int(win.yC_entry.state))] 
+    win.t = 0
     #==============================================================================
     win.loop()
     

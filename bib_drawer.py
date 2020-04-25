@@ -52,12 +52,14 @@ def hypo_trocho(t):
 
     #FONCTION-----------------------------------------
     xi = int(win.xC_entry.state) + (R+m*R)*cos(m*t)-h*cos(t+m*t)
-    yi = int(win.xC_entry.state) + (R+m*R)*sin(m*t)-h*sin(t+m*t)
+    yi = int(win.xC_entry.state) + -(R+m*R)*sin(m*t)+h*sin(t+m*t)
     #print(len(win.trocho_points_list))
-    print(len(win.trocho_points_list))
+    print("win.trocho_point_list =", len(win.trocho_points_list), "win.canvas_item =", len(win.canvas_item))
     win.trocho_points_list.append((xi, yi)) #--add the new point's coords
     for (x0,y0,x1,y1) in coords_list_spliter(win.trocho_points_list):
-        win.canvas.create_line(x0,y0,x1,y1, width=1, fill="red")
+        win.canvas_item.append(win.canvas.create_line(x0,y0,x1,y1, width=1, fill="red"))
+    if len(win.trocho_points_list)>1:
+        del win.canvas_item[0]
     #--------------------------------------------------
 
 #==============================================================================================================================
@@ -105,23 +107,29 @@ def main():
     #-----xC
     Label(parameters_band, text='choice the x C coords')
     win.xC_entry = Entry(parameters_band, command=test2)
+    win.xC_entry.insert(0, 200) #add a default value 100
     #-----yC
     Label(parameters_band, text='choice the y C coords')
     win.yC_entry = Entry(parameters_band, command=pre_disp)
+    win.yC_entry.insert(0, 200)
     #-----R
     Label(parameters_band, text='choice the R value')
     win.R_entry = Entry(parameters_band, command=pre_disp)
+    win.R_entry.insert(0,30)
     #-----r
     Label(parameters_band, text='choice the r value')
     win.r_entry = Entry(parameters_band, command=pre_disp)
+    win.r_entry.insert(0,30)
     #-----h
     Label(parameters_band, text='choice the h value')
     win.h_entry = Entry(parameters_band, command=pre_disp)
+    win.h_entry.insert(0,20)
 
     #--liste of points used to draw the trochoide curve. Initialised with the starting point choosen by user.
+    win.canvas_item = []
     win.trocho_points_list = [] 
-    #win.trocho_points_list = [(int(win.xC_entry.state), int(win.yC_entry.state))] 
     win.t = 0
+
     #==============================================================================
     win.loop()
     

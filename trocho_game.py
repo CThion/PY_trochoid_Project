@@ -68,7 +68,7 @@ def main():
     win.prince_band= Frame(win.big_band, bg='red', width=900, height=700,op=0,flow='W', grow=True) #On garde la largeur de la frame parent
     #win.bot_band=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True) #Somme des hauteurs = 1000 
       #welcome message
-    win.welcomeDisplay = Label(win.big_band, text='On mange des bébé mort.')
+    win.welcomeDisplay = Label(win.big_band, text='TExt welcome to do, with a text widget')
 #=======================================(parent: win.prince_band)==================================================
     #frame at right containing button for starting and drawing control while playing 
     win.right_band=Frame(win.prince_band, bg='cyan', width=100, height=700, grow=True)

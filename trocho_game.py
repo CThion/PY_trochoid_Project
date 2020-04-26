@@ -34,17 +34,17 @@ def main_bot_band(key_butt):
 
 def bot_band_fixe():
     del win.big_band[1]
-    win.bot_band_fixe=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True)
+    win.bot_band_fixe=Frame(win.big_band,bg='yellow', width=900, height=300, grow=True)
     win.label_aff_1=Label(win.bot_band_fixe, text=('Affichage 1'))
     
 def bot_band_rond():
     del win.big_band[1]
-    win.bot_band_rond=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True)
+    win.bot_band_rond=Frame(win.big_band,bg='yellow', width=900, height=300, grow=True)
     win.label_aff_2=Label(win.bot_band_rond, text='Affichage 2')
 
 def bot_band_trocho():
     del win.big_band[1]
-    win.bot_band_trocho=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True)
+    win.bot_band_trocho=Frame(win.big_band,bg='yellow', width=900, height=300, grow=True)
     win.label_aff_3=Label(win.bot_band_trocho, text='Affichage 3')    
     
 #==============================================================================  
@@ -61,19 +61,19 @@ def main():
     win.frameking= Frame(win, width=1200, height=1000, bg='black', flow='W')#frame principale 
 
 #=======================================(parent: win.frameking)===============================================
-    win.big_band = Frame(win.frameking, bg='yellow', width=900, height=1000, flow='S', grow=True) #La largeur est égale à 1200 en sommant les deux largeurs
-    win.left_band = Frame(win.frameking, bg='white', width=300, height=1000, flow='S', border=5, grow=True)#On garde la même hauteur
+    win.big_band = Frame(win.frameking, bg='yellow', width=900, height=1000,op=0, flow='S', grow=True) #La largeur est égale à 1200 en sommant les deux largeurs
+    win.left_band = Frame(win.frameking, bg='white', width=300, height=1000,op=0, flow='S', grow=True)#On garde la même hauteur
 
 #=======================================(parent: win.big_band)===================================================
-    win.prince_band= Frame(win.big_band, bg='red', width=900, height=700, border=4,flow='W', grow=True) #On garde la largeur de la frame parent
+    win.prince_band= Frame(win.big_band, bg='red', width=900, height=700,op=0,flow='W', grow=True) #On garde la largeur de la frame parent
     #win.bot_band=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True) #Somme des hauteurs = 1000 
       #welcome message
     win.welcomeDisplay = Label(win.big_band, text='On mange des bébé mort.')
 #=======================================(parent: win.prince_band)==================================================
     #frame at right containing button for starting and drawing control while playing 
-    win.right_band=Frame(win.prince_band, bg='green', width=100, height=700, border=4, grow=True)
+    win.right_band=Frame(win.prince_band, bg='cyan', width=100, height=700, grow=True)
     #canvas to display the trocho
-    win.canvas=Canvas(win.prince_band, bg='purple', width=800, height=700, border=5, grow=True)
+    win.canvas=Canvas(win.prince_band, bg='white', width=800, height=700, grow=True)
 
 #=======================================(parent: win.left_band)=============================================== 
     #confining buttons into individul frame to better control their dimentions
@@ -81,10 +81,10 @@ def main():
     win.frButt_fixe= Frame(win.left_band, bg='gray', width=300, height=333, grow=True)
     Button(win.frButt_fixe, text='Choix de la forme fixe', command=lambda: main_bot_band(1))
   #-----------------
-    win.frButt_rond= Frame(win.left_band, bg='yellow', width=300, height=333, grow=True)
+    win.frButt_rond= Frame(win.left_band, bg='cyan', width=300, height=333, grow=True)
     Button(win.frButt_rond, text='Choix du rond mobile', command=lambda: main_bot_band(2))
   #-----------------
-    win.frButt_trocho= Frame(win.left_band, bg='red', width=300, height=333, grow=True)
+    win.frButt_trocho= Frame(win.left_band, bg='gray', width=300, height=333, grow=True)
     Button(win.frButt_trocho, text='Paramétres trochoides', command=lambda: main_bot_band(3))
   #-----------------
     

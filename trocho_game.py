@@ -9,23 +9,54 @@ from ezTK import *
 from math import *
 # ==============================================================================
 
-def left_band_display_change(key_butt):
+def main_bot_band(key_butt):
     """callback fuction for buttons in left_band <forme fixe> <cercle mobile> <trait trocho>
     When called it does the switch from the parameting display to the drawing diplay, in
     the left_band
     The key_butt identify each of the three buttons"""
     #about <forme fixe> button
+    
     if key_butt == 1:
-          win.butt_forme_fixe['text']=("je suis le 1")
-          #win.butt_forme_fixe.config(text="je suis le 1")
+
+        
+
+        bot_band_fixe()
+        
+          
+          #affiachge 1
     elif key_butt == 2:
-          win.play_band.config(width=10)
-          # win.butt_rond_mob.config(text="je suis le 2")
+        
+
+        bot_band_rond()
+        
+          
+          #Affichage 2
     else:
-          win.butt_troco.config(text="je suis le 3") 
+        
+        bot_band_trocho()
+        
+          
+          #affichage 3
 
 
-
+def bot_band_fixe():
+    del win.bot_band_rond
+    del win.bot_band_trocho
+    win.bot_band_fixe=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True)
+    win.label_aff_1=Label(win.bot_band_fixe, text=('Affichage 1'))
+    
+def bot_band_rond():
+    del win.bot_band_fixe
+    del win.bot_band_trocho
+    win.bot_band_rond=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True)
+    win.label_aff_2=Label(win.bot_band_rond, text='Affichage 2')
+def bot_band_trocho():
+    del win.bot_band_rond
+    del win.bot_band_fixe
+    
+    win.bot_band_trocho=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True)
+    win.label_aff_3=Label(win.bot_band_trocho, text='Affichage 3')    
+    
 #==============================================================================  
     
 def main():
@@ -45,7 +76,7 @@ def main():
 
 #=======================================(parent: win.big_band)===================================================
     win.prince_band= Frame(win.big_band, bg='red', width=900, height=700, border=4,flow='W', grow=True) #On garde la largeur de la frame parent
-    win.bot_band=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True) #Somme des hauteurs = 1000 
+    #win.bot_band=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True) #Somme des hauteurs = 1000 
 
 #=======================================(parent: win.prince_band)==================================================
     #frame at right containing button for starting and drawing control while playing 
@@ -57,17 +88,15 @@ def main():
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
     win.frButt_fixe= Frame(win.left_band, bg='gray', width=300, height=333, grow=True)
-    Button(win.frButt_fixe, text='Choix de la forme fixe', command=lambda: left_band_display_change(1))
+    Button(win.frButt_fixe, text='Choix de la forme fixe', command=lambda: main_bot_band(1))
   #-----------------
     win.frButt_rond= Frame(win.left_band, bg='yellow', width=300, height=333, grow=True)
-    Button(win.frButt_rond, text='Choix du rond mobile', command=lambda: left_band_display_change(2))
+    Button(win.frButt_rond, text='Choix du rond mobile', command=lambda: main_bot_band(2))
   #-----------------
     win.frButt_trocho= Frame(win.left_band, bg='red', width=300, height=333, grow=True)
-    Button(win.frButt_trocho, text='Paramétres trochoides', command=lambda: left_band_display_change(3))
+    Button(win.frButt_trocho, text='Paramétres trochoides', command=lambda: main_bot_band(3))
   #-----------------
-    win.butt_forme_fixe = win.left_band[0]
-    win.butt_rond_mob = win.left_band[1]
-    win.butt_troco = win.left_band[2]
+    
     #would be a list to stock left_band's widget. If done, wouldn't be necessary to set <win.> to windget's name anymore.
     #win.left_band_list = []
     #win.left_band_list.append(win.frButt_fixe, win.frButt_rond, win.frButt_trocho)

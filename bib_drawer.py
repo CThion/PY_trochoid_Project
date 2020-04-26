@@ -7,13 +7,14 @@ from math import *
 
 #=============================================================================================================================
 def test():
-      
+    '''temporary fonction for checking out bib_drawer's issues'''
     #list_of_screen_coods = [(50,250),(150,100),(250,250),(350,100),(450,250),(550,100)]
     print(
         'win.canvas_item = ', win.canvas_item,
         'win.points_coords_list = ', win.points_coords_list,
         sep='\n',end='\n\n'
         )
+    win.canvas.create_line([100,200,50,60])
     #win.TEST['state']='disabled'
 
 #=============================================================================================================================
@@ -21,7 +22,6 @@ def epi_trocho(t):
     """calcul a trochoide coord at time t, then add the coord to the global liste of coord, then trace the trochoide with all
     the point of this list, then remove the older line created."""
     #VARIABLES----------------------------------------
-    xC, yC = int(win.xC_entry.state), int(win.yC_entry.state) #coord of begin point 
     R = int(win.R_entry.state) #R = radius of the fixed circle
     r = int(win.r_entry.state) #r = radius of the rolling circle
     h = int(win.h_entry.state) #h = distance from the tracing point to the centre of the rolling circle
@@ -31,8 +31,9 @@ def epi_trocho(t):
       #new point coords = begin point coord + parametric fonction
     xi = int(win.xC_entry.state) + (R-m*R)*cos(m*t)+h*cos(t-m*t) 
     yi = int(win.yC_entry.state) + -(R-m*R)*sin(m*t)+h*sin(t-m*t) 
-      #add nex point to point_list and create line with it
+      #  add nex point to point_list 
     win.points_coords_list.append((xi, yi))
+      #  create line with upadted point_coords_list
     win.canvas_item.append(win.canvas.create_line(win.points_coords_list))
     #--------------------------------------------------
 
@@ -47,27 +48,20 @@ def hypo_trocho(t):
     m = R/r                    # m=R/r is the modulus of the trochoid
 
     #FONCTION-----------------------------------------
-    xi = int(win.xC_entry.state) + (R+m*R)*cos(m*t)-h*cos(t+m*t) # x center coord + parametric fonction
+      #  new point coords = begin point coord + parametric fonction
+    xi = int(win.xC_entry.state) + (R+m*R)*cos(m*t)-h*cos(t+m*t) 
     yi = int(win.xC_entry.state) + -(R+m*R)*sin(m*t)+h*sin(t+m*t) 
-
-    #print("win.points_coords_list =", len(win.points_coords_list), "win.canvas_item =", len(win.canvas_item))
+      #  add nex point to point_list 
     win.points_coords_list.append((xi, yi)) #--add the new point's coords
-    #win.canvas.create_line(win.canvas_item[-1].coord, )
-    
-    
-    for (x0,y0,x1,y1) in coords_list_spliter(win.points_coords_list):
-        win.canvas_item.append(win.canvas.create_line(x0,y0,x1,y1, width=1, fill="red"))
-    if len(win.points_coords_list)>1:
-        del win.canvas_item[0]
-    #--------------------------------------------------
-
+      #  create line with upadted point_coords_list
+    win.canvas_item.append(win.canvas.create_line(win.points_coords_list))
 #==============================================================================================================================
 def tick():
     """recursive fonction calling hypo_trocho"""
     if win.start['text']=="start": return
     win.t +=0.1
     win.timer['text'] = win.t #increment t
-    hypo_trocho(win.t)
+    epi_trocho(win.t)
     win.after(100, tick)  
     
 
@@ -110,8 +104,8 @@ def main():
    #===========================(canvas)============================================
     win.canvas = Canvas(win, width=width*3/4, height=height)
     test_frame = Frame(win, bg="yellow", grow=True)
-    win.TEST = Button(test_frame, text="TEST", width=10, height=10, grow=True, command=test)
-    win.canvas.create_window(400, 50, window=test_frame)
+    win.TEST = Button(test_frame, text="TEST", width=10, height=5, grow=True, command=test)
+    win.canvas.create_window(400, 200, window=test_frame)
 
     #=========================(left_band)=========================================
     win.left_band = Frame(win, width=width/4, height=height, bg='cyan', flow='N', grow=True)
@@ -136,7 +130,7 @@ def main():
     #-----h
     Label(parameters_band, text='choice the h value')
     win.h_entry = Entry(parameters_band, command=pre_disp)
-    win.h_entry.insert(0,20)
+    win.h_entry.insert(0,30)
     #------------(start & reset & timer)-----------------------------------------------
     win.start = Button(win.left_band, text=('start', 'stop'), grow=True, command=on_start)
     win.reset = Button(win.left_band, text='reset', grow=True, command=lambda:on_reset()) #read when program lauched ==> initialise win.point_coord_list

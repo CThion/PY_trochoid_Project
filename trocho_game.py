@@ -9,22 +9,12 @@ from ezTK import *
 from math import *
 # ==============================================================================
 
-<<<<<<< HEAD
-def right_band_display():
-=======
 def main_bot_band(key_butt):
->>>>>>> diplay_fonction
     """callback fuction for buttons in left_band <forme fixe> <cercle mobile> <trait trocho>
     When called it does the switch from the parameting display to the drawing diplay, in
     the left_band
     The key_butt identify each of the three buttons"""
     #about <forme fixe> button
-<<<<<<< HEAD
-    win.right_band = Frame(win.prince_band, bg='green', width=100, height=700, border=4, flow='S', grow=True)
-    win.speed_scale = Scale(win.right_band, scale=(0,99))
-    win.start_butt = Button(win.right_band, text="START")
-    #win.butt_forme_fixe.state=tk.DISABLED
-=======
       
       #affiachge 1
     if key_butt == 1:
@@ -41,7 +31,6 @@ def main_bot_band(key_butt):
         
         bot_band_trocho()
         
->>>>>>> diplay_fonction
 
 def bot_band_fixe():
     del win.big_band[1]
@@ -82,36 +71,14 @@ def main():
     win.welcomeDisplay = Label(win.big_band, text='On mange des bébé mort.')
 #=======================================(parent: win.prince_band)==================================================
     #frame at right containing button for starting and drawing control while playing 
-<<<<<<< HEAD
-    
-    
-    
-    right_band_display()
-
-
-
-    #canvas to display the trocho
-    win.canvas=Canvas(win.prince_band, bg='purple', width=800, height=700, border=5, grow=True)
-    
-=======
     win.right_band=Frame(win.prince_band, bg='cyan', width=100, height=700, grow=True)
     #canvas to display the trocho
     win.canvas=Canvas(win.prince_band, bg='white', width=800, height=700, grow=True)
 
->>>>>>> diplay_fonction
 #=======================================(parent: win.left_band)=============================================== 
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
     win.frButt_fixe= Frame(win.left_band, bg='gray', width=300, height=333, grow=True)
-<<<<<<< HEAD
-    Button(win.frButt_fixe, text='afficher right_band', command=right_band_display)
-  #-----------------
-    win.frButt_rond= Frame(win.left_band, bg='yellow', width=300, height=333, grow=True)
-    Button(win.frButt_rond, text='masquer right_band', command=lambda: win.right_band.destroy())
-  #-----------------
-    win.frButt_trocho= Frame(win.left_band, bg='red', width=300, height=333, grow=True)
-    Button(win.frButt_trocho, text='Paramétres trochoides', command=right_band_display)
-=======
     Button(win.frButt_fixe, text='Choix de la forme fixe', command=lambda: main_bot_band(1))
   #-----------------
     win.frButt_rond= Frame(win.left_band, bg='cyan', width=300, height=333, grow=True)
@@ -119,7 +86,6 @@ def main():
   #-----------------
     win.frButt_trocho= Frame(win.left_band, bg='gray', width=300, height=333, grow=True)
     Button(win.frButt_trocho, text='Paramétres trochoides', command=lambda: main_bot_band(3))
->>>>>>> diplay_fonction
   #-----------------
     
     #would be a list to stock left_band's widget. If done, wouldn't be necessary to set <win.> to windget's name anymore.

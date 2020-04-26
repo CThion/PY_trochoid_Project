@@ -1,0 +1,51 @@
+Bonjour Monsieur,
+
+	## L'état actuel de notre projet sur les trochoïdes:
+
+- non oppérationnel. Le programme ne trace pas encore de trochoide. L'interface n'est pas sufisament esthétique. Il manque énormément des foncitonnalités souhaitées.
+
+- le développement de l'interface graphique (trocho_game.py) et celui des fonctions de dessin (draw_fonction.py) sont pour l'instant séparés (l'interface main() dans draw_fonction n'a valeur qu'a servir de zone de test). 
+
+
+
+	## Ce que l'on a réussi à faire:
+
+- dans draw_fonction.py: réaliser le tracé d'une équation paramétrique, avec fonction de start/stop/reset. Pour l'instant pas de trochoïde en tant que telle, malgré l'utilisation d'équations paramétriques sensées le faire.
+
+- afficher une fenêtre présentant un Canvas central, et des frame autour pour accueillir les futures widgets de parametrage/contrôle.
+
+- changer la frame de parametrage (bot_frame) selon le bouton pressé dans le bandeau de gauche (left_frame).
+
+
+
+	## Ce qui est prévu de faire avant tout:
+
+- trouver les équations qui fonctionnent et ainsi réussir à afficher des trochoïdes et pas seulement des courbes random.
+
+- intégrer les fonctions de draw_fonction à trocho_game, et donc ajouter les widget nécessaires pour se faire.
+
+- passer sous variable les dimensions des widgets de trocho_game
+
+- ajouter les fonction de changement de tracé/couleur/épaisseur/....
+
+
+
+	## Et une fois cela fait, on pourra:
+
+- permetre le zoom/dézoom sur le canvas.
+
+- augmenter le nombre de support à trochoide possible, avec des équations plus générales peut être.
+
+- permettre de sauvegarder un déssin réaliser sous forme de fichier png.
+
+- faire un mode de démonstration avec plusieurs préréglages pour les différents types de trochoides.
+
+- permettre d'afficher les équations utilisées en temps réel, avec du Latex pour la mise en forme.
+
+- pouvoir tracer plusieurs canvas en même temps, ou en diféré.
+
+
+
+
+
+

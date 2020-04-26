@@ -23,4 +23,5 @@ https://homeomath2.imingo.net/rotation.htm
 site que le prof avait conseillé
 https://machinelearnia.com/matplotlib/
 
-
+nouveau site qui a l'air bien
+https://riptutorial.com/tkinter/example/17180/creating-an-entry-widget-and-setting-a-default-value

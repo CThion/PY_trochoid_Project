@@ -1,19 +1,13 @@
 from ezTK import *
 from math import *
-#=============================================================================================================================
-# r is the radius of the rolling circle, <CONSTANT
-# R is the radius of the fixed circle, <CONSTANT
-# m=R/r is the modulus of the trochoid,  <CONSTANT
-# h is the distance from the tracing point to the centre of the rolling circle <CONSTANT
-# 
+#============================================================================================================================= 
 #####epitro
 #x=(R+mR)cosmt−hcos(t+mt),
 #y=(R+mR)sinmt−hsin(t+mt)
 
-def test2(a=1):
-    a+=1
-    print(a)
-    win.after(10, test2(a))
+def test2():
+    return
+    #return k for k in range(2,5)
 
 def test():
     list_of_screen_coods = [(50,250),(150,100),(250,250),(350,100),(450,250),(550,100)]
@@ -43,12 +37,13 @@ def coords_list_spliter(screen_points): #https://stackoverflow.com/questions/164
 
 #==============================================================================================================================
 def hypo_trocho(t):
-    """draw an hypotrochoide"""
+    """calcul a trochoide coord at time t, then add the coord to the global liste of coord, then trace the trochoide with all
+    the point of this list, then remove the older line created."""
     #VARIABLES----------------------------------------
-    R = int(win.R_entry.state)
-    r = int(win.r_entry.state)
-    h = int(win.h_entry.state)
-    m = R/r
+    R = int(win.R_entry.state) #R = radius of the fixed circle
+    r = int(win.r_entry.state) #r = radius of the rolling circle
+    h = int(win.h_entry.state) #h = distance from the tracing point to the centre of the rolling circle
+    m = R/r                    # m=R/r is the modulus of the trochoid
 
     #FONCTION-----------------------------------------
     xi = int(win.xC_entry.state) + (R+m*R)*cos(m*t)-h*cos(t+m*t)

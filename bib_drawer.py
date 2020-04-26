@@ -6,26 +6,8 @@ from math import *
 #y=(R+mR)sinmt−hsin(t+mt)
 
 #=============================================================================================================================
-def coords_list_spliter(screen_points): #https://stackoverflow.com/questions/16494896/create-a-line-using-a-list-of-coordinates-in-python-gui
-    """ Function to take list of points and make them into lines
-    """
-    is_first = True
-      # Set up some variables to hold x,y coods
-    x0 = y0 = 0
-      # Grab each pair of points from the input list
-    for (x,y) in screen_points:
-        # If its the first point in a set, set x0,y0 to the values
-        if is_first:
-            x0 = x
-            y0 = y
-            is_first = False
-        else:
-            # If its not the fist point yeild previous pair and current pair
-            yield x0,y0,x,y
-            # Set current x,y to start coords of next line
-            x0,y0 = x,y
-
 def test():
+      
     #list_of_screen_coods = [(50,250),(150,100),(250,250),(350,100),(450,250),(550,100)]
     print(
         'win.canvas_item = ', win.canvas_item,

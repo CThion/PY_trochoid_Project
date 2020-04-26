@@ -1,10 +1,12 @@
 from ezTK import *
 from math import *
 #============================================================================================================================= 
-#####epitro
-#x=(R+mR)cosmt−hcos(t+mt),
-#y=(R+mR)sinmt−hsin(t+mt)
+'''epitro
+x=(R+mR)cosmt−hcos(t+mt),
+y=(R+mR)sinmt−hsin(t+mt)
 
+If h>r, then the trochoid is called elongated (Fig.1a, Fig.2a), when h>r shortened 
+'''
 #=============================================================================================================================
 def test():
     '''temporary fonction for checking out bib_drawer's issues'''
@@ -61,7 +63,7 @@ def tick():
     if win.start['text']=="start": return
     win.t +=0.1
     win.timer['text'] = win.t #increment t
-    epi_trocho(win.t)
+    hypo_trocho(win.t)
     win.after(100, tick)  
     
 
@@ -133,9 +135,10 @@ def main():
     win.h_entry.insert(0,30)
     #------------(start & reset & timer)-----------------------------------------------
     win.start = Button(win.left_band, text=('start', 'stop'), grow=True, command=on_start)
-    win.reset = Button(win.left_band, text='reset', grow=True, command=lambda:on_reset()) #read when program lauched ==> initialise win.point_coord_list
+    win.reset = Button(win.left_band, text='reset', grow=True, command=on_reset) #read when program lauched ==> initialise win.point_coord_list
     win.timer = Label(win.left_band, text=0, border=1, grow=True)
- 
+
+    on_reset()
     win.loop()
     
 #==============================================================================================================================

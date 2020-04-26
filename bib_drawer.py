@@ -80,10 +80,14 @@ def on_start():
 #==============================================================================================================================
 def on_reset():
     """callback fonction for the 'reset' button"""
+      #  supress all created canvas_line
     for item in win.canvas_item: win.canvas.delete(item)
-    for coord in win.points_coords_list: del coord
-      # initialise points_coords_list with begin point coords.
-    win.points_coords_list.append((int(win.xC_entry.state), int(win.yC_entry.state)))
+      #  actualise the liste of canvas lines
+    win.canvas_item = []
+      #  supress all created points and initialised with start point coords.
+    win.points_coords_list = [(int(win.xC_entry.state), int(win.yC_entry.state))]
+      #  reinitialise time
+    win.t = 0
     
 #==============================================================================================================================
 def pre_disp():

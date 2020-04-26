@@ -15,45 +15,35 @@ def main_bot_band(key_butt):
     the left_band
     The key_butt identify each of the three buttons"""
     #about <forme fixe> button
-    
+      
+      #affiachge 1
     if key_butt == 1:
 
-        
-
         bot_band_fixe()
-        
           
-          #affiachge 1
+      #Affichage 2
     elif key_butt == 2:
-        
-
+    
         bot_band_rond()
-        
-          
-          #Affichage 2
+              
+      #affichage 3
     else:
         
         bot_band_trocho()
         
-          
-          #affichage 3
-
 
 def bot_band_fixe():
-    del win.bot_band_rond
-    del win.bot_band_trocho
+    del win.big_band[1]
     win.bot_band_fixe=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True)
     win.label_aff_1=Label(win.bot_band_fixe, text=('Affichage 1'))
     
 def bot_band_rond():
-    del win.bot_band_fixe
-    del win.bot_band_trocho
+    del win.big_band[1]
     win.bot_band_rond=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True)
     win.label_aff_2=Label(win.bot_band_rond, text='Affichage 2')
+
 def bot_band_trocho():
-    del win.bot_band_rond
-    del win.bot_band_fixe
-    
+    del win.big_band[1]
     win.bot_band_trocho=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True)
     win.label_aff_3=Label(win.bot_band_trocho, text='Affichage 3')    
     
@@ -77,7 +67,8 @@ def main():
 #=======================================(parent: win.big_band)===================================================
     win.prince_band= Frame(win.big_band, bg='red', width=900, height=700, border=4,flow='W', grow=True) #On garde la largeur de la frame parent
     #win.bot_band=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True) #Somme des hauteurs = 1000 
-
+      #welcome message
+    win.welcomeDisplay = Label(win.big_band, text='On mange des bébé mort.')
 #=======================================(parent: win.prince_band)==================================================
     #frame at right containing button for starting and drawing control while playing 
     win.right_band=Frame(win.prince_band, bg='green', width=100, height=700, border=4, grow=True)

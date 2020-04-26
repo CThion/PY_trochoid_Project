@@ -14,6 +14,9 @@ def test():
     print(
         'win.canvas_item = ', win.canvas_item,
         'win.points_coords_list = ', win.points_coords_list,
+        'hauteur de win = ', win.winfo_height(),
+        'largeur de win = ', win.winfo_width(),
+        'haut de mon écran', win.winfo_screenmmheight(),
         sep='\n',end='\n\n'
         )
     win.canvas.create_line([100,200,50,60])
@@ -96,7 +99,7 @@ def pre_disp():
 
 #==============================================================================================================================
 def main():
-    """programm tot test canvas widget"""
+    """programm to test canvas widget, not used in principal program "trocho_game.py"""
     #=========VARIABLES=========
     global win
     height, width = 720, 1080

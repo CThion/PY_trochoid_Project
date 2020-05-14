@@ -164,7 +164,7 @@ def bot_band_trocho():
 def main():
     """our graphic interface"""
     global win
-    width, height = 1500, 1000
+    width, height = 1100, 700
     win = Win(title='trochoïde', grow=True, flow='SE', op=2)
 #===========================================================================================================
     win.canvas_item = [] #  list of points used to draw the trochoide curve.

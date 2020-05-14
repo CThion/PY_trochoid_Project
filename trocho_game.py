@@ -164,7 +164,7 @@ def bot_band_trocho():
 def main():
     """our graphic interface"""
     global win
-    width, height = 1200, 1000
+    width, height = 1500, 1000
     win = Win(title='trochoïde', grow=True, flow='SE', op=2)
 #===========================================================================================================
     win.canvas_item = [] #  list of points used to draw the trochoide curve.
@@ -174,33 +174,33 @@ def main():
     #frame for general options (language...)
     win.top_band= Frame(win, bg='red', width=width, height=height//40, grow=False)  
     #principal frame
-    win.frameking= Frame(win, width=1200, height=1000, bg='black', flow='W')#frame principale 
+    win.frameking= Frame(win, width=width, height=height, bg='black', flow='W')#frame principale 
 
 #=======================================(parent: win.frameking)===============================================
-    win.big_band = Frame(win.frameking, bg='yellow', width=900, height=1000,op=0, flow='S', grow=True) #La largeur est égale à 1200 en sommant les deux largeurs
-    win.left_band = Frame(win.frameking, bg='white', width=300, height=1000,op=0, flow='S', grow=True)#On garde la même hauteur
+    win.big_band = Frame(win.frameking, bg='yellow', width=(width)*3/4, height=height,op=0, flow='S', grow=True) #La largeur est égale à 1200 en sommant les deux largeurs
+    win.left_band = Frame(win.frameking, bg='white', width=(width)*1/4, height=height,op=0, flow='S', grow=True)#On garde la même hauteur
 
 #=======================================(parent: win.big_band)===================================================
-    win.prince_band= Frame(win.big_band, bg='red', width=900, height=700,op=0,flow='W', grow=True) #On garde la largeur de la frame parent
+    win.prince_band= Frame(win.big_band, bg='red', width=(width)*3/4, height=(height)*7/10,op=0,flow='W', grow=True) #On garde la largeur de la frame parent
     #win.bot_band=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True) #Somme des hauteurs = 1000 
       #welcome message
-    win.welcomeDisplay = Label(win.big_band, text='Vive^-1 le confinement.')
+    win.welcomeDisplay = Label(win.big_band, text='Salamaalekum.')
 #=======================================(parent: win.prince_band)==================================================
     #frame at right containing button for starting and drawing control while playing 
-    win.right_band=Frame(win.prince_band, bg='pink', width=100, height=700, grow=True,flow='S')
+    win.right_band=Frame(win.prince_band, bg='pink', width=(width)*1/12, height=(height)*7/10, grow=True,flow='S')
     #canvas to display the trocho
-    win.canvas=Canvas(win.prince_band, bg='white', width=800, height=700, grow=True)
+    win.canvas=Canvas(win.prince_band, bg='white', width=(width)*2/3, height=(height)*7/10, grow=True)
 
 #=======================================(parent: win.left_band)=============================================== 
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
-    win.frButt_fixe= Frame(win.left_band, bg='gray', width=300, height=333, grow=True)
+    win.frButt_fixe= Frame(win.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
     Button(win.frButt_fixe, text='Choix de la forme fixe', command=lambda: main_bot_band(1))
   #-----------------
-    win.frButt_rond= Frame(win.left_band, bg='cyan', width=300, height=333, grow=True)
+    win.frButt_rond= Frame(win.left_band, bg='cyan', width=(width)*1/4, height=(height)*1/3, grow=True)
     Button(win.frButt_rond, text='Choix du rond mobile', command=lambda: main_bot_band(2))
   #-----------------
-    win.frButt_trocho= Frame(win.left_band, bg='purple', width=300, height=333, grow=True)
+    win.frButt_trocho= Frame(win.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
     Button(win.frButt_trocho, text='Paramétres trochoides', command=lambda: main_bot_band(3))
   #-----------------
     

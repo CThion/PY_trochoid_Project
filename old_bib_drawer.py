@@ -57,6 +57,7 @@ def hypo_trocho(t):
     win.points_coords_list.append((xi, yi)) #--add the new point's coords
       #  create line with upadted point_coords_list
     win.canvas_item.append(win.canvas.create_line(win.points_coords_list))
+
 #==============================================================================================================================
 def tick():
     """recursive fonction calling hypo_trocho"""
@@ -66,7 +67,6 @@ def tick():
     hypo_trocho(win.t)
     win.after(100, tick)  
     
-
 #==============================================================================================================================
 def on_start():
       """callback function for the 'START/STOP' button"""
@@ -94,7 +94,10 @@ def pre_disp():
     """calback fontion for every parameting widgets (scale, entry...)"""
     return
 
+
+
 #==============================================================================================================================
+
 def main():
     """programm tot test canvas widget"""
     #=========VARIABLES=========

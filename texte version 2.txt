@@ -1,20 +1,20 @@
 Bonjour Monsieur,
 
-	## L'état actuel de notre projet sur les trochoïdes:
+	## L'ï¿½tat actuel de notre projet sur les trochoï¿½des:
 
-- non opérationnel. Le programme ne trace pas encore de trochoide , il faut que l'on travaille encore davantage dessus. 
-L'interface est plus esthétique que la version 1, mais ce n'est pas encore ça. Il manque énormément des fonctionnalités souhaitées.
+- toujours non opï¿½rationnel. Le programme ne trace toujours pas de trochoide , il faut que l'on travaille encore davantage dessus. 
+L'interface est plus esthï¿½tique que la version 1, mais ce n'est pas encore abouti. Il manque encore beaucoup des fonctionnalitï¿½s souhaitï¿½es.
 
-- le développement de l'interface graphique (trocho_game.py) et celui des fonctions de dessin (draw_fonction.py) sont désormais ensemble sous le nom trocho_game .py. 
+- le dï¿½veloppement de l'interface graphique (trocho_game.py) et celui des fonctions de dessin (draw_fonction.py) sont dï¿½sormais ensemble sous le nom trocho_game .py. 
 
 
-## Ce que l'on a reussi à faire :
+## Ce que l'on a reussi ï¿½ faire depuis la version 1:
 
-	-- intégrer les fonctions de draw_fonction à trocho_game, et donc ajouter les widget nécessaires pour se faire.
+	-- intï¿½grer les fonctions de draw_fonction ï¿½ trocho_game, et donc ajouter les widgets nï¿½cessaires pour se faire.
 	-- passer sous variable les dimensions des widgets de trocho_game
-	-- On peut modifier la couleur et l'épaisseur du trait dans trocho_game.py
+	-- On peut modifier la couleur et l'ï¿½paisseur du trait dans trocho_game.py
 
 ## Ce que l'on souhaite faire pour la version 3 :
-   Au niveau de l'interface , on souhaite rajouter un bouton pour choisir le language
-
-   - permetre le zoom/dézoom sur le canvas. 
+	
+	-- rÃ©ussir Ã  utiliser les fonctions de dessin depuis une bibliothÃ¨que et non depuis le fichier en lui mÃªme (problÃ¨me de variable global)
+	-- mÃªmes objectif que pour le projet 2: possibilitÃ© de changement de langue, zoom dÃ©zoom, sauvegarder les dessins, voir les Ã©quations paramÃ©triques en direct.

@@ -1,3 +1,5 @@
+
+  
 # ==============================================================================
 """Our display screen for trochoid game"""
 # ==============================================================================
@@ -32,7 +34,7 @@ def hypo_trocho(t):
       #  add nex point to point_list 
     win.points_coords_list.append((xi, yi)) #--add the new point's coords
       #  create line with upadted point_coords_list
-    win.canvas_item.append(win.canvas.create_line(win.points_coords_list))
+    win.canvas_item.append(win.canvas.create_line(win.points_coords_list,fill=win.entry1.state))
 #================================================================================
 def epi_trocho(t):
     """calcul a trochoide coord at time t, then add the coord to the global liste of coord, then trace the trochoide with all
@@ -93,6 +95,7 @@ def pre_disp():
     """calback fontion for every parameting widgets (scale, entry...)"""
     return
 #===================================================================================
+    
 #===================================================================================
 def main_bot_band(key_butt):
 
@@ -133,6 +136,7 @@ def bot_band_trocho():
     del win.big_band[1]
     win.bot_band_trocho=Frame(win.big_band,bg='yellow', width=900, height=300,flow='ES',fold=4, grow=True)
     
+    
 
     #-------------------------xC value-----------------------------
     Label(win.bot_band_trocho, text='choice the x C coords')
@@ -157,6 +161,9 @@ def bot_band_trocho():
     
     win.h_entry = Entry(win.bot_band_trocho, command=pre_disp)
     win.h_entry.insert(0,30)
+    #--------------------------Couleurs----------------------------
+    Label(win.bot_band_trocho,text='Choisir la couleur')
+    win.entry1=Entry(win.bot_band_trocho)
     
     
 #==============================================================================  

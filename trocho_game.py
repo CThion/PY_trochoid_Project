@@ -34,7 +34,7 @@ def hypo_trocho(t):
       #  add nex point to point_list 
     win.points_coords_list.append((xi, yi)) #--add the new point's coords
       #  create line with upadted point_coords_list
-    win.canvas_item.append(win.canvas.create_line(win.points_coords_list,fill=win.entry1.state))
+    win.canvas_item.append(win.canvas.create_line(win.points_coords_list, fill=win.troco_color_entry.state, width=win.troco_width_entry.state))
 #================================================================================
 def epi_trocho(t):
     """calcul a trochoide coord at time t, then add the coord to the global liste of coord, then trace the trochoide with all
@@ -163,7 +163,12 @@ def bot_band_trocho():
     win.h_entry.insert(0,30)
     #--------------------------Couleurs----------------------------
     Label(win.bot_band_trocho,text='Choisir la couleur')
-    win.entry1=Entry(win.bot_band_trocho)
+    win.troco_color_entry=Entry(win.bot_band_trocho)
+    win.troco_color_entry.insert(0,"cyan")
+    #--------------------------Epaisseur----------------------------
+    Label(win.bot_band_trocho, text='choice the trocho width')
+    win.troco_width_entry = Entry(win.bot_band_trocho, command=pre_disp)
+    win.troco_width_entry.insert(0,3)
     
     
 #==============================================================================  

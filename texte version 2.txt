@@ -1,0 +1,20 @@
+Bonjour Monsieur,
+
+	## L'état actuel de notre projet sur les trochoïdes:
+
+- non opérationnel. Le programme ne trace pas encore de trochoide , il faut que l'on travaille encore davantage dessus. 
+L'interface est plus esthétique que la version 1, mais ce n'est pas encore ça. Il manque énormément des fonctionnalités souhaitées.
+
+- le développement de l'interface graphique (trocho_game.py) et celui des fonctions de dessin (draw_fonction.py) sont désormais ensemble sous le nom trocho_game .py. 
+
+
+## Ce que l'on a reussi à faire :
+
+	-- intégrer les fonctions de draw_fonction à trocho_game, et donc ajouter les widget nécessaires pour se faire.
+	-- passer sous variable les dimensions des widgets de trocho_game
+	-- On peut modifier la couleur et l'épaisseur du trait dans trocho_game.py
+
+## Ce que l'on souhaite faire pour la version 3 :
+   Au niveau de l'interface , on souhaite rajouter un bouton pour choisir le language
+
+   - permetre le zoom/dézoom sur le canvas. 

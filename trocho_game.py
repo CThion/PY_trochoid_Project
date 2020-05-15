@@ -14,7 +14,7 @@ def tick():
     """recursive fonction calling hypo_trocho"""
     if win.start_stop['text']=="start": return
     win.t +=0.1
-    win.timer['text'] = win.t #increment t
+    win.timer['text'] = round(win.t,1) #increment t
     hypo_trocho(win.t)
     win.after(100, tick)
 #=================================================================================    

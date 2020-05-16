@@ -12,3 +12,8 @@ win = Win(title='trochoïde', grow=True, flow='SE', op=2)
 win.canvas_item = [] #  list of points used to draw the trochoide curve.
 win.points_coords_list = [] #  containers for all created canvas item
 win.t = 0 #global time used in parametrics equations
+
+
+    #used in epitroco et hypotroco et reset. stock points
+#win.epi_points_coords_list = [0, 0]
+#win.hypo_points_coords_list = [0, 0]

@@ -9,7 +9,7 @@ __date__    = "2020-04-"
 from ezTK import *
 from math import *
 import settings as st
-import old_bib_drawer as bd
+import bib_drawer as bd
 # ==============================================================================
   
 #===================================================================================

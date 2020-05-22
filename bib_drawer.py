@@ -2,17 +2,6 @@ from ezTK import *
 from math import *
 import settings as st
 
-#================================================================================
-def test():
-    '''temporary fonction for checking out bib_drawer's issues'''
-    #list_of_screen_coods = [(50,250),(150,100),(250,250),(350,100),(450,250),(550,100)]
-    print(
-        'st.win.canvas_item = ', st.win.canvas_item,
-        'st.win.points_coords_list = ', st.win.points_coords_list,
-        sep='\n',end='\n\n'
-        )
-    st.win.canvas.create_line([100,200,50,60])
-    #st.win.TEST['state']='disabled'
 
 #============================================================================================================================= 
 def tick():
@@ -32,16 +21,17 @@ def hypo_trocho(t):
     r = int(st.win.r_entry.state) #r = radius of the rolling circle
     h = int(st.win.h_entry.state) #h = distance from the tracing point to the centre of the rolling circle
     m = R/r                    # m=R/r is the modulus of the trochoid
-
     #FONCTION-----------------------------------------
-      #  new point coords = begin point coord + parametric fonction
+      #new point coords = begin point coord + parametric fonction
     xi = int(st.win.xC_entry.state) + (R+m*R)*cos(m*t)-h*cos(t+m*t) 
     yi = int(st.win.xC_entry.state) + -(R+m*R)*sin(m*t)+h*sin(t+m*t) 
-      #  add nex point to point_list 
-    st.win.points_coords_list.append((xi, yi)) #--add the new point's coords
-      #  create line with upadted point_coords_list
+      #add next point to point_list 
+    st.win.points_coords_list.append((xi, yi)) #--add the new point's coords tuple
+      #create line with upadted point_coords_list
     st.win.canvas_item.append(st.win.canvas.create_line(st.win.points_coords_list, fill=st.win.troco_color_entry.state, width=st.win.troco_width_entry.state))
-
+      #delete all the previous canvas. If not done, the program get more and more slower because have to manage with so many different lines.
+    if len(st.win.canvas_item) > 1 :
+          for item in st.win.canvas_item[0:len(st.win.canvas_item)-1]: st.win.canvas.delete(item)
 #================================================================================
 def epi_trocho(t):
     """calcul a trochoide coord at time t, then add the coord to the global liste of coord, then trace the trochoide with all
@@ -73,9 +63,12 @@ def on_start():
             tick()
 
 #=================================================================================          
-def on_reset():
-    """callback fonction for the 'reset' button"""
-      #  supress all created canvas_line
+def on_reset(): #exeption
+    """
+    callback fonction for the 'reset' button. exeption define the number of lines in st.win.canvas_item that wont be suppressed (from the 
+    last created. If execption = 0, st.win.cavas_item is fully cleared. 
+    """
+      #  supress all created canvas_line except the last ones 
     for item in st.win.canvas_item: st.win.canvas.delete(item)
       #  actualise the liste of canvas lines
     st.win.canvas_item = []
@@ -85,8 +78,10 @@ def on_reset():
     st.win.t = 0
 
 #===================================================================================
+
 def pre_disp():
-    """calback fontion for every parameting widgets (scale, entry...)"""
+    """calback fontion for every parameting widgets (scale, entry...) which makes the display of parametings choosen by the user in real time,
+    before he started to play."""
     return
 
 #===================================================================================    

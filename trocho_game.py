@@ -11,7 +11,19 @@ from math import *
 import settings as st
 import bib_drawer as bd
 # ==============================================================================
-  
+def test():
+    '''temporary fonction for checking out bib_drawer's issues'''
+    #list_of_screen_coods = [(50,250),(150,100),(250,250),(350,100),(450,250),(550,100)]
+    print(
+        'st.win.canvas_item = ', st.win.canvas_item,
+        'st.win.points_coords_list = ', st.win.points_coords_list,
+        'plage normalement supprimée: ', st.win.canvas_item[0:len(st.win.canvas_item)-1],
+        'nombre ditem de canvas', len(st.win.canvas_item),
+        sep='\n',end='\n\n'
+        )
+    st.win.canvas.create_line([100,200,50,60])
+    #st.win.TEST['state']='disabled'
+
 #===================================================================================
 def main_bot_band(key_butt):
     """callback fuction for buttons in left_band <forme fixe> <cercle mobile> <trait trocho>
@@ -47,8 +59,6 @@ def bot_band_trocho():
     Label(st.win.bot_band_trocho, text='choice the y C coords')
     st.win.yC_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
     st.win.yC_entry.insert(0, 200)
-
-#===================================================================================
     #-------------------------R value------------------------------
     Label(st.win.bot_band_trocho, text='choice the R value')
     st.win.R_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
@@ -73,7 +83,7 @@ def bot_band_trocho():
 #==============================================================================  
 def main():
     """our graphic interface"""
-    width, height = 1100, 700
+    width, height = 900, 500
   #=======================================(parent: st.win)=======================================================
     #frame for general options (language...)
     st.win.top_band= Frame(st.win, bg='red', width=width, height=height//40, grow=False)  
@@ -89,6 +99,7 @@ def main():
     #st.win.bot_band=Frame(st.win.big_band,bg='blue', width=900, height=300, border=4, grow=True) #Somme des hauteurs = 1000 
       #welcome message
     st.win.welcomeDisplay = Label(st.win.big_band, text='Salamaalekum.')
+    main_bot_band(3)
   #=======================================(parent: st.win.prince_band)==================================================
     #frame at right containing button for starting and drast.wing control while playing 
     st.win.right_band=Frame(st.win.prince_band, bg='pink', width=(width)*1/12, height=(height)*7/10, grow=True,flow='S')
@@ -111,12 +122,13 @@ def main():
     st.win.timer = Label(st.win.right_band, text=0, border=1, grow=True)
     st.win.reset = Button(st.win.right_band, text='reset', grow=True, command=bd.on_reset)
   #===================================================================================
+    #widgets temporaire, seulement pour tester le programme graphiquement
     test_frame = Frame(st.win, bg="yellow")
-    test_butt = Button(test_frame, text="TEST")
+    Button(test_frame, text="TEST", command=test)
     st.win.canvas.create_window(50, 50, window=test_frame)
   #===================================================================================
-    main_bot_band(3)
-    bd.on_reset() #used one time to create the st.win.points_coords_list. Otherwise need to push stat/stop butt twice befor it start
+    #bd.on_reset() #used one time to create the st.win.points_coords_list. Otherwise need to push stat/stop butt twice befor it start
+    st.win.points_coords_list = st.win.points_coords_list + [st.win.xC_entry.state, st.win.yC_entry.state]
     st.win.loop()
 
    

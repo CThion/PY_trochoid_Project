@@ -85,3 +85,57 @@ def pre_disp():
     return
 
 #===================================================================================    
+def on_language():
+  """callback function for all menu radiobuttons"""
+  
+  
+    # Dont need to convert its str
+  st.win.min= str(st.win.minmenu.state.get())
+  if st.win.min == "Francais" :
+      st.win.change1.state=0
+      st.win.change2.state=0
+      st.win.change3.state=0
+      st.win.change4.state=0
+      st.win.change5.state=0
+      st.win.change6.state=0
+      st.win.change7.state=0
+      st.win.change8.state=0
+      st.win.change9.state=0
+      st.win.change10.state=0
+  elif st.win.min == "Anglais" :
+      st.win.change1.state=1
+      st.win.change2.state=1
+      st.win.change3.state=1
+      st.win.change4.state=1
+      st.win.change5.state=1
+      st.win.change6.state=1
+      st.win.change7.state=1
+      st.win.change8.state=1
+      st.win.change9.state=1
+      st.win.change10.state=1
+         
+  elif st.win.min == "Espagnol" :
+      st.win.change1.state=2
+      st.win.change2.state=2
+      st.win.change3.state=2
+      st.win.change4.state=2
+      st.win.change5.state=2
+      st.win.change6.state=2
+      st.win.change7.state=2
+      st.win.change8.state=2
+      st.win.change9.state=2
+      st.win.change10.state=2
+      
+  elif st.win.min == "Japonais" :
+      st.win.change1.state=3
+      st.win.change2.state=3
+      st.win.change3.state=3
+      st.win.change4.state=3
+      st.win.change5.state=3
+      st.win.change6.state=3
+      st.win.change7.state=3
+      st.win.change8.state=3
+      st.win.change9.state=3
+      st.win.change10.state=3
+        
+        

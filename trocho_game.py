@@ -170,6 +170,29 @@ def bot_band_trocho():
     win.troco_width_entry = Entry(win.bot_band_trocho, command=pre_disp)
     win.troco_width_entry.insert(0,3)
     
+#==============================================================================
+def on_menu():
+  """callback function for all menu radiobuttons"""
+  # Dont need to convert str
+  win.min= str(win.minmenu.state.get())
+  if win.min == "Francais" :
+      win.change1.state=0
+      win.change2.state=0
+      win.change3.state=0
+  elif win.min == "Anglais" :
+      win.change1.state=1
+      win.change2.state=1
+      win.change3.state=1
+      
+  elif win.min == "Espagnol" :
+      win.change1.state=2
+      win.change2.state=2
+      win.change3.state=2
+      
+  elif win.min == "Japonais" :
+      win.change1.state=3
+      win.change2.state=3
+      win.change3.state=3
     
 #==============================================================================  
     
@@ -184,7 +207,15 @@ def main():
     win.t = 0 #global time used in parametrics equations
 #=======================================(parent: win)=======================================================
     #frame for general options (language...)
-    win.top_band= Frame(win, bg='red', width=width, height=height//40, grow=False)  
+    win.top_band=Frame(win, bg='white', width=width, height=height//40, grow=False)
+    win.master['menu'] = menu = Menu(win.master)
+    win.minmenu = Menu(win.top_band,menu, tearoff=False); win.minmenu.state = StringVar()
+    menu.add_cascade(label='Langue', menu=win.minmenu)
+    for value in ("Francais","Anglais","Espagnol","Japonais"):
+        win.minmenu.add_radiobutton(label=value, var=win.minmenu.state, command=on_menu)
+    #language
+    
+    
     #principal frame
     win.frameking= Frame(win, width=width, height=height, bg='black', flow='W')#frame principale 
 
@@ -207,13 +238,13 @@ def main():
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
     win.frButt_fixe= Frame(win.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
-    Button(win.frButt_fixe, text='Choix de la forme fixe', command=lambda: main_bot_band(1))
+    win.change1=Button(win.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda: main_bot_band(1))
   #-----------------
     win.frButt_rond= Frame(win.left_band, bg='cyan', width=(width)*1/4, height=(height)*1/3, grow=True)
-    Button(win.frButt_rond, text='Choix du rond mobile', command=lambda: main_bot_band(2))
+    win.change2=Button(win.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda: main_bot_band(2))
   #-----------------
     win.frButt_trocho= Frame(win.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
-    Button(win.frButt_trocho, text='Paramétres trochoides', command=lambda: main_bot_band(3))
+    win.change3=Button(win.frButt_trocho, text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda: main_bot_band(3))
   #-----------------
     
     

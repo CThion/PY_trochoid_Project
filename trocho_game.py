@@ -21,8 +21,13 @@ def test():
         'nombre ditem de canvas', len(st.win.canvas_item),
         sep='\n',end='\n\n'
         )
-    st.win.canvas.create_line([100,200,50,60])
     #st.win.TEST['state']='disabled'
+
+def save_value(key_butt):
+    """"""
+    if key_butt == 1: return
+
+
 
 #===================================================================================
 def main_bot_band(key_butt):
@@ -31,12 +36,17 @@ def main_bot_band(key_butt):
     the left_band
     The key_butt identify each of the three buttons"""
     #about <forme fixe> button  
-    #affiachge 1
-    if key_butt == 1: bot_band_fixe()
-    #Affichage 2
-    elif key_butt == 2: bot_band_rond()          
-    #affichage 3
+    #welcome message
+    if key_butt == "welcome": bot_band_welcome()
+    #affiachge "fixe"
+    elif key_butt == "fixe": bot_band_fixe()
+    #Affichage "rond"
+    elif key_butt == "rond": bot_band_rond()          
+    #affichage "trocho"
     else: bot_band_trocho()
+
+def bot_band_welcome():
+      Label(st.win.big_band, text='Salamaalekum.')
         
 def bot_band_fixe():
     del st.win.big_band[1]
@@ -53,24 +63,24 @@ def bot_band_trocho():
     st.win.bot_band_trocho=Frame(st.win.big_band,bg='yellow', width=900, height=300,flow='ES',fold=4, grow=True)
     #-------------------------xC value-----------------------------
     Label(st.win.bot_band_trocho, text='choice the x C coords')
-    st.win.xC_entry = Entry(st.win.bot_band_trocho,command=bd.pre_disp)
-    st.win.xC_entry.insert(0, 200)
+    st.win.xC_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
+    st.win.xC_entry.insert(0, st.hypo_dic['xC'])
     #-------------------------yC value-----------------------------
     Label(st.win.bot_band_trocho, text='choice the y C coords')
     st.win.yC_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
-    st.win.yC_entry.insert(0, 200)
+    st.win.yC_entry.insert(0, st.hypo_dic['yC'])
     #-------------------------R value------------------------------
     Label(st.win.bot_band_trocho, text='choice the R value')
     st.win.R_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
-    st.win.R_entry.insert(0,30)
+    st.win.R_entry.insert(0,st.hypo_dic['R'])
     #-------------------------r value------------------------------
     Label(st.win.bot_band_trocho, text='choice the r value')
     st.win.r_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
-    st.win.r_entry.insert(0,30)
+    st.win.r_entry.insert(0,st.hypo_dic['r'])
     #-------------------------h value------------------------------
     Label(st.win.bot_band_trocho, text='choice the h value')
     st.win.h_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
-    st.win.h_entry.insert(0,30)
+    st.win.h_entry.insert(0, st.hypo_dic['h'])
     #--------------------------Couleurs----------------------------
     Label(st.win.bot_band_trocho,text='Choisir la couleur')
     st.win.troco_color_entry=Entry(st.win.bot_band_trocho)
@@ -90,32 +100,29 @@ def main():
     #principal frame
     st.win.frameking= Frame(st.win, width=width, height=height, bg='black', flow='W')#frame principale 
 
-  #=======================================(parent: st.win.frameking)===============================================
+  #=======================================(parent: st.win.frameking)=================================================
     st.win.big_band = Frame(st.win.frameking, bg='yellow', width=(width)*3/4, height=height,op=0, flow='S', grow=True) #La largeur est égale à 1200 en sommant les deux largeurs
     st.win.left_band = Frame(st.win.frameking, bg='white', width=(width)*1/4, height=height,op=0, flow='S', grow=True)#On garde la même hauteur
 
   #=======================================(parent: st.win.big_band)===================================================
     st.win.prince_band= Frame(st.win.big_band, bg='red', width=(width)*3/4, height=(height)*7/10,op=0,flow='W', grow=True) #On garde la largeur de la frame parent
-    #st.win.bot_band=Frame(st.win.big_band,bg='blue', width=900, height=300, border=4, grow=True) #Somme des hauteurs = 1000 
-      #welcome message
-    st.win.welcomeDisplay = Label(st.win.big_band, text='Salamaalekum.')
-    main_bot_band(3)
-  #=======================================(parent: st.win.prince_band)==================================================
+    main_bot_band("welcome")
+  #=======================================(parent: st.win.prince_band)================================================
     #frame at right containing button for starting and drast.wing control while playing 
     st.win.right_band=Frame(st.win.prince_band, bg='pink', width=(width)*1/12, height=(height)*7/10, grow=True,flow='S')
     #canvas to display the trocho
     st.win.canvas=Canvas(st.win.prince_band, bg='white', width=(width)*2/3, height=(height)*7/10, grow=True)
-  #=======================================(parent: st.win.left_band)=============================================== 
+  #=======================================(parent: st.win.left_band)==================================================
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
     st.win.frButt_fixe= Frame(st.win.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
-    Button(st.win.frButt_fixe, text='Choix de la forme fixe', command=lambda: main_bot_band(1))
+    Button(st.win.frButt_fixe, text='Choix de la forme fixe', command=lambda: main_bot_band("fixe"))
   #-----------------
     st.win.frButt_rond= Frame(st.win.left_band, bg='cyan', width=(width)*1/4, height=(height)*1/3, grow=True)
-    Button(st.win.frButt_rond, text='Choix du rond mobile', command=lambda: main_bot_band(2))
+    Button(st.win.frButt_rond, text='Choix du rond mobile', command=lambda: main_bot_band("rond"))
   #-----------------
     st.win.frButt_trocho= Frame(st.win.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
-    Button(st.win.frButt_trocho, text='Paramétres trochoides', command=lambda: main_bot_band(3))
+    Button(st.win.frButt_trocho, text='Paramétres trochoides', command=lambda: main_bot_band("trocho"))
   #=======================================(prent: st.win.play_ctr)===============================================
   #Boutons qui se changent tentative d'implantation de draw à trocho
     st.win.start_stop=Button(st.win.right_band,text=('start', 'stop'), grow=True, command=bd.on_start)
@@ -127,8 +134,6 @@ def main():
     Button(test_frame, text="TEST", command=test)
     st.win.canvas.create_window(50, 50, window=test_frame)
   #===================================================================================
-    #bd.on_reset() #used one time to create the st.win.points_coords_list. Otherwise need to push stat/stop butt twice befor it start
-    st.win.points_coords_list = st.win.points_coords_list + [st.win.xC_entry.state, st.win.yC_entry.state]
     st.win.loop()
 
    

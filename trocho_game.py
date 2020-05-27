@@ -64,8 +64,7 @@ def bot_band_trocho():
     del st.win.big_band[1]
     st.win.bot_band_trocho=Frame(st.win.big_band,bg='yellow', width=900, height=300,flow='ES',fold=4, grow=True)
     #-------------------------xC value-----------------------------
-    st.win.change10=Label(st.win.bot_band_trocho, text=('Choisir coords de x
-                                                        C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
+    st.win.change10=Label(st.win.bot_band_trocho, text=('Choisir coords de xC','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
     st.win.xC_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
     st.win.xC_entry.insert(0, st.hypo_dic['xC'])
     #-------------------------yC value-----------------------------

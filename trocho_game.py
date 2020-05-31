@@ -20,19 +20,15 @@ def test():
         'st.win.points_coords_list = ', st.win.points_coords_list,
         'plage normalement supprimée: ', st.win.canvas_item[0:len(st.win.canvas_item)-1],
         'nombre ditem de canvas', len(st.win.canvas_item),
-        'st.hypo_dic  ', st.hypo_dic,
         sep='\n',end='\n\n'
         )
     #st.win.TEST['state']='disabled'
 
-def save_value(key_entry, entry, band_dic):
+def save_value(key_butt):
     """"""
-    if key_entry == "all": return #to save every entry's values of a bot_band
-    else: band_dic[key_entry] = entry.state #when the user press enter after entering a his value
-          
+    if key_butt == 1: return
 
 #===================================================================================
-
 
 #===================================================================================
 def main_bot_band(key_butt):
@@ -55,53 +51,57 @@ def bot_band_welcome():
         
 def bot_band_fixe():
     del st.win.big_band[1]
-    st.win.bot_band_fixe=Frame(st.win.big_band,bg='yellow', width=900, height=300, grow=True)
-    st.win.label_aff_1=Button(st.win.bot_band_fixe, text=('Affichage 1','Test fr','Test en','Test esp'))
-    #--------------------------Couleurs----------------------------
-    Label(st.win.bot_band_fixe, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    st.win.fixe_color_entry = Entry(st.win.bot_band_fixe, command=lambda: save_value("fixe_color", st.win.fixe_color_entry, st.fixe_dic))
-    st.win.fixe_color_entry.insert(0, st.fixe_dic['fixe_color'])
+    st.win.bot_band_fixe=Frame(st.win.big_band,bg='yellow', width=900, height=300,flow='ES',fold=2, grow=True)
+    #----------------------------------------------------------------------------------------------------------------------------------------------#
+    st.win.change11=Label(st.win.bot_band_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'))
+    Entry(st.win.bot_band_fixe)
+    #-------------------------------------#
+    st.win.change12=Label(st.win.bot_band_fixe, text=('Choix de la taille de la forme fixe','Choice of size of fixed shape','Elección del tamaño de la forma fija.','固定形状のサイズの選択'))
+    Entry(st.win.bot_band_fixe)
+    #-------------------------------------#
+    st.win.change13=Label(st.win.bot_band_fixe, text=('Choix de la postion de la forme fixe','Choice of the position of the fixed shape','Elección de la posición de la forma fija.','固定形状の位置の選択'))
+    Entry(st.win.bot_band_fixe)
     
 def bot_band_rond():
     del st.win.big_band[1]
     st.win.bot_band_rond=Frame(st.win.big_band,bg='yellow', width=900, height=300, grow=True)
-    st.win.label_aff_2=Button(st.win.bot_band_rond, text=('Affichage deux','Affichage two','afficho 2','表示 2'))
-    #--------------------------Couleurs----------------------------
-    Label(st.win.bot_band_rond, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    st.win.rond_color_entry = Entry(st.win.bot_band_rond, command=lambda: save_value("rond_color", st.win.rond_color_entry, st.rond_dic))
-    st.win.rond_color_entry.insert(0, st.rond_dic['rond_color'])
+    st.win.label_aff_2=Label(st.win.bot_band_rond, text='Choix de la taille du cercle mobile')
+    Scale(st.win.bot_band_rond,orient='vertical', scale=(0, 10))
+    Label(st.win.bot_band_rond,text='Choix de la position du cercle mobile')
+    Checkbutton(st.win.bot_band_rond, text='Epitrochoides')
+    Checkbutton(st.win.bot_band_rond, text='Hypotrochoides')
 
 def bot_band_trocho():
     del st.win.big_band[1]
     st.win.bot_band_trocho=Frame(st.win.big_band,bg='yellow', width=900, height=300,flow='ES',fold=4, grow=True)
     #-------------------------xC value-----------------------------
-    st.win.change10=Label(st.win.bot_band_trocho, text=('Choisir coords de xC','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
-    st.win.xC_entry = Entry(st.win.bot_band_trocho, command=lambda: save_value("xC", st.win.xC_entry, st.hypo_dic))
+    st.win.change10=Label(st.win.bot_band_trocho, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
+    st.win.xC_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
     st.win.xC_entry.insert(0, st.hypo_dic['xC'])
     #-------------------------yC value-----------------------------
     st.win.change9=Label(st.win.bot_band_trocho, text=('Choisir coords de y C','choice the y C coords','Elige coordenadas de y C','y C の座標を選択'))
-    st.win.yC_entry = Entry(st.win.bot_band_trocho, command=lambda: save_value("yC", st.win.yC_entry, st.hypo_dic))
+    st.win.yC_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
     st.win.yC_entry.insert(0, st.hypo_dic['yC'])
     #-------------------------R value------------------------------
     st.win.change8=Label(st.win.bot_band_trocho, text=('Choisir valeur R','choice the R value','Elige valor R','値を選択 R'))
-    st.win.R_entry = Entry(st.win.bot_band_trocho, command=lambda: save_value("R", st.win.R_entry, st.hypo_dic))
+    st.win.R_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
     st.win.R_entry.insert(0,st.hypo_dic['R'])
     #-------------------------r value------------------------------
     st.win.change7=Label(st.win.bot_band_trocho, text=('Choisir valeur r','choice the r value','Elige valor r','値を選択 r'))
-    st.win.r_entry = Entry(st.win.bot_band_trocho, command=lambda: save_value("r", st.win.r_entry, st.hypo_dic))
+    st.win.r_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
     st.win.r_entry.insert(0,st.hypo_dic['r'])
     #-------------------------h value------------------------------
     st.win.change6=Label(st.win.bot_band_trocho, text=('Choisir valeur h','choice the h value','Elige valor h','値を選択 h'))
-    st.win.h_entry = Entry(st.win.bot_band_trocho, command=lambda: save_value("h", st.win.h_entry, st.hypo_dic))
+    st.win.h_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
     st.win.h_entry.insert(0, st.hypo_dic['h'])
     #--------------------------Couleurs----------------------------
     st.win.change5=Label(st.win.bot_band_trocho,text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    st.win.troco_color_entry=Entry(st.win.bot_band_trocho, command=lambda: save_value("troco_color", st.win.troco_color_entry, st.hypo_dic))
-    st.win.troco_color_entry.insert(0, st.hypo_dic['troco_color'])
+    st.win.troco_color_entry=Entry(st.win.bot_band_trocho)
+    st.win.troco_color_entry.insert(0,"cyan")
     #--------------------------Epaisseur----------------------------
     st.win.change4=Label(st.win.bot_band_trocho, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
-    st.win.troco_width_entry = Entry(st.win.bot_band_trocho, command=lambda: save_value("width", st.win.troco_width_entry, st.hypo_dic))
-    st.win.troco_width_entry.insert(0, st.hypo_dic['width'])
+    st.win.troco_width_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
+    st.win.troco_width_entry.insert(0,3)
     
 #==============================================================================  
 def main():
@@ -109,13 +109,15 @@ def main():
     width, height = 900, 500
   #=======================================(parent: st.win)=======================================================
     #frame for general options (language...)
-    st.win.top_band= Frame(st.win, bg='red', width=width, height=height//40, grow=False)  
+    st.win.top_band= Frame(st.win, bg='red', width=width, height=height//40, grow=False)
+    #language début
+    
     st.win.master['menu'] = menu = Menu(st.win.master)
-    st.win.minmenu = Menu(st.win.top_band,menu, tearoff=False); st.win.minmenu.state = StringVar()
+    st.win.minmenu = Menu(menu, tearoff=False); st.win.minmenu.state = StringVar()
     menu.add_cascade(label='Langue', menu=st.win.minmenu)
     for value in ("Francais","Anglais","Espagnol","Japonais"):
         st.win.minmenu.add_radiobutton(label=value, var=st.win.minmenu.state, command=bd.on_language)
-    #language
+    #language fin
 
     #principal frame
     
@@ -139,15 +141,13 @@ def main():
     st.win.frButt_fixe= Frame(st.win.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
 
     st.win.change1=Button(st.win.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda: main_bot_band("fixe"))# Trois choix possibles 1 par state
-    
   #-----------------
     st.win.frButt_rond= Frame(st.win.left_band, bg='cyan', width=(width)*1/4, height=(height)*1/3, grow=True)
     st.win.change2=Button(st.win.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda: main_bot_band("rond"))# Trois choix possibles 1 par state
-    
   #-----------------
     st.win.frButt_trocho= Frame(st.win.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
     st.win.change3=Button(st.win.frButt_trocho, text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda: main_bot_band("trocho")) # Trois choix possibles 1 par state
-  #=======================================(prent: st.win.play_ctr)===============================================
+#=======================================(prent: st.win.play_ctr)===============================================
   #Boutons qui se changent tentative d'implantation de draw à trocho
     st.win.start_stop=Button(st.win.right_band,text=('start', 'stop'), grow=True, command=bd.on_start)
     st.win.timer = Label(st.win.right_band, text=0, border=1, grow=True)
@@ -158,9 +158,6 @@ def main():
     Button(test_frame, text="TEST", command=test)
     st.win.canvas.create_window(50, 50, window=test_frame)
   #===================================================================================
-    main_bot_band("rond")
-    main_bot_band("fixe'")
-    main_bot_band("trocho")
     st.win.loop()
 
    

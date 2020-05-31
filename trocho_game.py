@@ -29,7 +29,175 @@ def save_value(key_butt):
     if key_butt == 1: return
 
 #===================================================================================
+def on_language(key_but):
+  """callback function for all menu radiobuttons"""
+  
+  
+    # Dont need to convert its str
+  st.win.min= str(st.win.minmenu.state.get())
+#--------------------------Francais-----------------------------------------------
+      
+  if st.win.min == "Francais" and key_but == "trocho" :
+      
+      st.win.change1.state=0
+      st.win.change2.state=0
+      st.win.change3.state=0
+      st.win.change4.state=0
+      st.win.change5.state=0
+      st.win.change6.state=0
+      st.win.change7.state=0
+      st.win.change8.state=0
+      st.win.change9.state=0
+      st.win.change10.state=0
+      
+  elif st.win.min == "Francais" and key_but == "fixe" :
 
+      
+      st.win.change1.state=0
+      st.win.change2.state=0
+      st.win.change3.state=0
+
+      
+      st.win.change11.state=0
+      st.win.change12.state=0
+      st.win.change13.state=0
+
+  elif st.win.min == "Francais" and key_but == "rond" :
+
+      st.win.change1.state=0
+      st.win.change2.state=0
+      st.win.change3.state=0
+
+      
+      st.win.change14.state=0
+      st.win.change15.state=0
+
+
+
+      
+#--------------------------Anglais-----------------------------------------------
+      
+
+  elif st.win.min == "Anglais" and key_but == "trocho" :
+      
+      st.win.change1.state=1
+      st.win.change2.state=1
+      st.win.change3.state=1
+      
+      st.win.change4.state=1
+      st.win.change5.state=1
+      st.win.change6.state=1
+      st.win.change7.state=1
+      st.win.change8.state=1
+      st.win.change9.state=1
+      st.win.change10.state=1
+
+      
+  elif st.win.min == "Anglais" and key_but == "fixe" :
+      
+      st.win.change1.state=1
+      st.win.change2.state=1
+      st.win.change3.state=1
+      
+      st.win.change11.state=1
+      st.win.change12.state=1
+      st.win.change13.state=1
+      
+  elif st.win.min == "Anglais" and key_but == "rond" :
+
+      st.win.change1.state=1
+      st.win.change2.state=1
+      st.win.change3.state=1
+
+      st.win.change14.state=1
+      st.win.change15.state=1
+
+      
+
+
+
+      
+#--------------------------Espagnol-----------------------------------------------         
+  elif st.win.min == "Espagnol" and key_but == "trocho" :
+      
+      st.win.change1.state=2
+      st.win.change2.state=2
+      st.win.change3.state=2
+     
+      st.win.change4.state=2
+      st.win.change5.state=2
+      st.win.change6.state=2
+      st.win.change7.state=2
+      st.win.change8.state=2
+      st.win.change9.state=2
+      st.win.change10.state=2
+      
+  elif st.win.min == "Espagnol" and key_but == "fixe" :
+      
+      st.win.change1.state=2
+      st.win.change2.state=2
+      st.win.change3.state=2
+
+      
+      st.win.change11.state=2
+      st.win.change12.state=2
+      st.win.change13.state=2
+
+  elif st.win.min == "Espagnol" and key_but == "rond" :
+      
+      st.win.change1.state=2
+      st.win.change2.state=2
+      st.win.change3.state=2
+
+      st.win.change14.state=2
+      st.win.change15.state=2
+
+
+
+
+      
+#--------------------------Japonais-----------------------------------------------      
+
+  elif st.win.min == "Japonais" and key_but == "trocho" :
+      
+      st.win.change1.state=3
+      st.win.change2.state=3
+      st.win.change3.state=3
+
+      st.win.change4.state=3
+      st.win.change5.state=3
+      st.win.change6.state=3
+      st.win.change7.state=3
+      st.win.change8.state=3
+      st.win.change9.state=3
+      st.win.change10.state=3
+      
+  elif st.win.min == "Japonais" and key_but == "fixe" :
+      
+      st.win.change1.state=3
+      st.win.change2.state=3
+      st.win.change3.state=3
+
+      st.win.change11.state=3
+      st.win.change12.state=3
+      st.win.change13.state=3
+
+  elif st.win.min == "Japonais" and key_but == "rond" :
+      
+      st.win.change1.state=3
+      st.win.change2.state=3
+      st.win.change3.state=3
+
+      st.win.change14.state=3
+      st.win.change15.state=3
+
+
+
+#===================================================================================
+def on_case(key_but2):
+    if key_but2=="Epi":
+         st.win.cb.state='disabled'
+        
 #===================================================================================
 def main_bot_band(key_butt):
     """callback fuction for buttons in left_band <forme fixe> <cercle mobile> <trait trocho>
@@ -64,12 +232,23 @@ def bot_band_fixe():
     
 def bot_band_rond():
     del st.win.big_band[1]
-    st.win.bot_band_rond=Frame(st.win.big_band,bg='yellow', width=900, height=300, grow=True)
-    st.win.label_aff_2=Label(st.win.bot_band_rond, text='Choix de la taille du cercle mobile')
+    st.win.bot_band_rond=Frame(st.win.big_band,bg='yellow', width=900, height=300,flow='ES',fold=2, grow=True)
+    st.win.change14 = st.win.label_aff_2=Label(st.win.bot_band_rond, text=('Choix de la taille du cercle mobile','Choice of the size of the moving circle','Elección del tamaño del círculo móvil','動く円のサイズの選択'))
+    
     Scale(st.win.bot_band_rond,orient='vertical', scale=(0, 10))
-    Label(st.win.bot_band_rond,text='Choix de la position du cercle mobile')
-    Checkbutton(st.win.bot_band_rond, text='Epitrochoides')
-    Checkbutton(st.win.bot_band_rond, text='Hypotrochoides')
+    
+    st.win.change15 = Label(st.win.bot_band_rond,text=('Choix de la position du cercle mobile','Choice of the position of the moving circle','Elección de la posición del círculo móvil','動く円の位置の選択'))
+    
+    Label(st.win.bot_band_rond)
+    
+    st.win.cb=Checkbutton(st.win.bot_band_rond,onvalue=1,offvalue=0,command= lambda: on_case("Hypo"))
+    
+    Label(st.win.bot_band_rond,text='Hypotrochoides(cercle qui roule depuis l intéreieur)')
+    
+    st.win.cb2=Checkbutton(st.win.bot_band_rond,onvalue=1,offvalue=0,command=
+                           lambda: on_case("Hypo"))
+    
+    Label(st.win.bot_band_rond,text='Epitrochoides (cercle qui roule depuis l extérieur) ')
 
 def bot_band_trocho():
     del st.win.big_band[1]
@@ -116,7 +295,7 @@ def main():
     st.win.minmenu = Menu(menu, tearoff=False); st.win.minmenu.state = StringVar()
     menu.add_cascade(label='Langue', menu=st.win.minmenu)
     for value in ("Francais","Anglais","Espagnol","Japonais"):
-        st.win.minmenu.add_radiobutton(label=value, var=st.win.minmenu.state, command=bd.on_language)
+        st.win.minmenu.add_radiobutton(label=value, var=st.win.minmenu.state, command=on_language(key_but="base"))
     #language fin
 
     #principal frame
@@ -140,13 +319,13 @@ def main():
   #-----------------  
     st.win.frButt_fixe= Frame(st.win.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
 
-    st.win.change1=Button(st.win.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda: main_bot_band("fixe"))# Trois choix possibles 1 par state
+    st.win.change1=Button(st.win.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))# Trois choix possibles 1 par state
   #-----------------
     st.win.frButt_rond= Frame(st.win.left_band, bg='cyan', width=(width)*1/4, height=(height)*1/3, grow=True)
-    st.win.change2=Button(st.win.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda: main_bot_band("rond"))# Trois choix possibles 1 par state
+    st.win.change2=Button(st.win.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))# Trois choix possibles 1 par state
   #-----------------
     st.win.frButt_trocho= Frame(st.win.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
-    st.win.change3=Button(st.win.frButt_trocho, text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda: main_bot_band("trocho")) # Trois choix possibles 1 par state
+    st.win.change3=Button(st.win.frButt_trocho, text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
 #=======================================(prent: st.win.play_ctr)===============================================
   #Boutons qui se changent tentative d'implantation de draw à trocho
     st.win.start_stop=Button(st.win.right_band,text=('start', 'stop'), grow=True, command=bd.on_start)

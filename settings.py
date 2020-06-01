@@ -14,7 +14,7 @@ win.canvas_item = [] #  containers for all created canvas item
 
 #==============================================================================================================================================
     #dictionnary for values of differents bot_band 
-hypo_dic = {"xC":200, "yC":200, "R":30, "r":30, "h":30, "troco_color":"cyan", "width":2, "hypo_speed":10} #values of all bot_band_trocho's entries
+hypo_dic = {"xC":200, "yC":200, "R":30, "r":30, "h":30, "troco_color":"cyan", "width":2, "troco_speed":250} #values of all bot_band_trocho's entries
 #R = radius of the fixed circle   #r = radius of the rolling circle  #h = distance from the tracing point to the centre of the rolling circle
 #-------------------
 fixe_dic = {"fixe_color":"blue"} #values of all bot_band_fixe's entries 

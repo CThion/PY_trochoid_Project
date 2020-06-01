@@ -5,12 +5,12 @@ import settings as st
 
 #============================================================================================================================= 
 def tick():
-    """recursive fonction calling hypo_trocho"""
+    """recursive fonction calling hypo_trocho. Contrôle the speed of the drawing."""
     if st.win.start_stop['text']=="start": return
-    st.win.t +=0.1
-    st.win.timer['text'] = round(st.win.t,1) #increment t
-    hypo_trocho(st.win.t)
-    st.win.after(st.win.trocho_speed.state, tick)
+    st.win.t +=0.1  #increment time
+    st.win.timer['text'] = round(st.win.t,1) #update t display in label
+    hypo_trocho(st.win.t) #call the main drawing fonction with next time value
+    st.win.after(st.win.troco_speed.state, tick) #speed of the drawing determined by st.win.troco_speed
 
 #=================================================================================    
 def hypo_trocho(t):
@@ -29,8 +29,8 @@ def hypo_trocho(t):
     st.win.points_coords_list.append((xi, yi)) #--add the new point's coords tuple
       #create line with upadted point_coords_list
     st.win.canvas_item.append(st.win.canvas.create_line(st.win.points_coords_list, fill=st.win.troco_color_entry.state, width=st.win.troco_width_entry.state))
-      #delete all the previous canvas. If not done, the program get more and more slower because have to manage with so many different lines.
-    if len(st.win.canvas_item) > 1 :
+      #delete all the previous canvas_line.  
+    if len(st.win.canvas_item) > 1 : #if there is only one canvas_line, do not delete it.
           for item in st.win.canvas_item[0:len(st.win.canvas_item)-1]: st.win.canvas.delete(item)
 #================================================================================
 def epi_trocho(t):

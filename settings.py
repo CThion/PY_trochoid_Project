@@ -22,8 +22,3 @@ fixe_dic = {"fixe_color":"blue"} #values of all bot_band_fixe's entries
 
 rond_dic = {"rond_color":"red"} #values of all bot_band_rond's entries
 
-
-
-    #used in epitroco et hypotroco et reset. stock points
-#win.epi_points_coords_list = [0, 0]
-#win.hypo_points_coords_list = [0, 0]

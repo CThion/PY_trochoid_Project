@@ -35,7 +35,7 @@ def on_language(key_but):
   
     # Dont need to convert its str
   st.win.min= str(st.win.minmenu.state.get())
-#--------------------------Francais-----------------------------------------------
+ #--------------------------Francais-----------------------------------------------
       
   if st.win.min == "Francais" and key_but == "trocho" :
       
@@ -75,7 +75,7 @@ def on_language(key_but):
 
 
       
-#--------------------------Anglais-----------------------------------------------
+ #--------------------------Anglais-----------------------------------------------
       
 
   elif st.win.min == "Anglais" and key_but == "trocho" :
@@ -117,7 +117,7 @@ def on_language(key_but):
 
 
       
-#--------------------------Espagnol-----------------------------------------------         
+ #--------------------------Espagnol-----------------------------------------------         
   elif st.win.min == "Espagnol" and key_but == "trocho" :
       
       st.win.change1.state=2
@@ -156,7 +156,7 @@ def on_language(key_but):
 
 
       
-#--------------------------Japonais-----------------------------------------------      
+ #--------------------------Japonais-----------------------------------------------      
 
   elif st.win.min == "Japonais" and key_but == "trocho" :
       
@@ -190,8 +190,6 @@ def on_language(key_but):
 
       st.win.change14.state=3
       st.win.change15.state=3
-
-
 
 #===================================================================================
 def on_case(key_but2):
@@ -253,34 +251,39 @@ def bot_band_rond():
 def bot_band_trocho():
     del st.win.big_band[1]
     st.win.bot_band_trocho=Frame(st.win.big_band,bg='yellow', width=900, height=300,flow='ES',fold=4, grow=True)
+    #4 frame to aligne differents widgets
+    fr1 = Frame(st.win.bot_band_trocho); fr2 = Frame(st.win.bot_band_trocho); fr3 = Frame(st.win.bot_band_trocho); fr4 = Frame(st.win.bot_band_trocho)
     #-------------------------xC value-----------------------------
-    st.win.change10=Label(st.win.bot_band_trocho, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
-    st.win.xC_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
+    st.win.change10 = Label(fr1, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
+    st.win.xC_entry = Entry(fr2, command=bd.pre_disp)
     st.win.xC_entry.insert(0, st.hypo_dic['xC'])
     #-------------------------yC value-----------------------------
-    st.win.change9=Label(st.win.bot_band_trocho, text=('Choisir coords de y C','choice the y C coords','Elige coordenadas de y C','y C の座標を選択'))
-    st.win.yC_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
+    st.win.change9 = Label(fr1, text=('Choisir coords de y C','choice the y C coords','Elige coordenadas de y C','y C の座標を選択'))
+    st.win.yC_entry = Entry(fr2, command=bd.pre_disp)
     st.win.yC_entry.insert(0, st.hypo_dic['yC'])
     #-------------------------R value------------------------------
-    st.win.change8=Label(st.win.bot_band_trocho, text=('Choisir valeur R','choice the R value','Elige valor R','値を選択 R'))
-    st.win.R_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
+    st.win.change8 = Label(fr1, text=('Choisir valeur R','choice the R value','Elige valor R','値を選択 R'))
+    st.win.R_entry = Entry(fr2, command=bd.pre_disp)
     st.win.R_entry.insert(0,st.hypo_dic['R'])
     #-------------------------r value------------------------------
-    st.win.change7=Label(st.win.bot_band_trocho, text=('Choisir valeur r','choice the r value','Elige valor r','値を選択 r'))
-    st.win.r_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
+    st.win.change7 = Label(fr1, text=('Choisir valeur r','choice the r value','Elige valor r','値を選択 r'))
+    st.win.r_entry = Entry(fr2, command=bd.pre_disp)
     st.win.r_entry.insert(0,st.hypo_dic['r'])
     #-------------------------h value------------------------------
-    st.win.change6=Label(st.win.bot_band_trocho, text=('Choisir valeur h','choice the h value','Elige valor h','値を選択 h'))
-    st.win.h_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
+    st.win.change6 = Label(fr3, text=('Choisir valeur h','choice the h value','Elige valor h','値を選択 h'))
+    st.win.h_entry = Entry(fr4, command=bd.pre_disp)
     st.win.h_entry.insert(0, st.hypo_dic['h'])
     #--------------------------Couleurs----------------------------
-    st.win.change5=Label(st.win.bot_band_trocho,text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    st.win.troco_color_entry=Entry(st.win.bot_band_trocho)
+    st.win.change5 = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
+    st.win.troco_color_entry=Entry(fr4)
     st.win.troco_color_entry.insert(0,"cyan")
     #--------------------------Epaisseur----------------------------
-    st.win.change4=Label(st.win.bot_band_trocho, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
-    st.win.troco_width_entry = Entry(st.win.bot_band_trocho, command=bd.pre_disp)
+    st.win.change4=Label(fr3, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
+    st.win.troco_width_entry = Entry(fr4, command=bd.pre_disp)
     st.win.troco_width_entry.insert(0,3)
+    #--------------------------Speed--------------------------------
+    st.win.change16=Label(fr3, anchor='NW', text=('  vitesse','  speed'))
+    st.win.trocho_speed = Scale(fr4, orient='vertical', scale=(0, 10))
     
 #==============================================================================  
 def main():

@@ -193,7 +193,8 @@ def on_language(key_but):
 
 #===================================================================================
 def on_case(key_but2):
-    if key_but2=="Epi":
+  """"""
+  if key_but2=="Epi":
          st.win.cb.state='disabled'
         
 #===================================================================================
@@ -283,7 +284,7 @@ def bot_band_trocho():
     st.win.troco_width_entry.insert(0,3)
     #--------------------------Speed--------------------------------
     st.win.change16=Label(fr3, anchor='NW', text=('  vitesse','  speed'))
-    st.win.trocho_speed = Scale(fr4, orient='vertical', scale=(0, 10))
+    st.win.trocho_speed = Scale(fr4, orient='vertical', scale=(10, 1000))
     
 #==============================================================================  
 def main():
@@ -329,7 +330,7 @@ def main():
   #-----------------
     st.win.frButt_trocho= Frame(st.win.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
     st.win.change3=Button(st.win.frButt_trocho, text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
-#=======================================(prent: st.win.play_ctr)===============================================
+ #=======================================(prent: st.win.play_ctr)===============================================
   #Boutons qui se changent tentative d'implantation de draw à trocho
     st.win.start_stop=Button(st.win.right_band,text=('start', 'stop'), grow=True, command=bd.on_start)
     st.win.timer = Label(st.win.right_band, text=0, border=1, grow=True)

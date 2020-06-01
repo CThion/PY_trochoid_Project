@@ -10,7 +10,7 @@ def tick():
     st.win.t +=0.1
     st.win.timer['text'] = round(st.win.t,1) #increment t
     hypo_trocho(st.win.t)
-    st.win.after(100, tick)
+    st.win.after(st.win.trocho_speed.state, tick)
 
 #=================================================================================    
 def hypo_trocho(t):

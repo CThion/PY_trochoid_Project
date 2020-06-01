@@ -257,34 +257,35 @@ def bot_band_trocho():
     #-------------------------xC value-----------------------------
     st.win.change10 = Label(fr1, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
     st.win.xC_entry = Entry(fr2, command=bd.pre_disp)
-    st.win.xC_entry.insert(0, st.hypo_dic['xC'])
+    st.win.xC_entry.insert(0, st.hypo_dic['xC']) #default xC value
     #-------------------------yC value-----------------------------
     st.win.change9 = Label(fr1, text=('Choisir coords de y C','choice the y C coords','Elige coordenadas de y C','y C の座標を選択'))
     st.win.yC_entry = Entry(fr2, command=bd.pre_disp)
-    st.win.yC_entry.insert(0, st.hypo_dic['yC'])
+    st.win.yC_entry.insert(0, st.hypo_dic['yC']) #default yC value
     #-------------------------R value------------------------------
     st.win.change8 = Label(fr1, text=('Choisir valeur R','choice the R value','Elige valor R','値を選択 R'))
     st.win.R_entry = Entry(fr2, command=bd.pre_disp)
-    st.win.R_entry.insert(0,st.hypo_dic['R'])
+    st.win.R_entry.insert(0,st.hypo_dic['R']) #default R value
     #-------------------------r value------------------------------
     st.win.change7 = Label(fr1, text=('Choisir valeur r','choice the r value','Elige valor r','値を選択 r'))
     st.win.r_entry = Entry(fr2, command=bd.pre_disp)
-    st.win.r_entry.insert(0,st.hypo_dic['r'])
+    st.win.r_entry.insert(0,st.hypo_dic['r']) #default r value
     #-------------------------h value------------------------------
     st.win.change6 = Label(fr3, text=('Choisir valeur h','choice the h value','Elige valor h','値を選択 h'))
     st.win.h_entry = Entry(fr4, command=bd.pre_disp)
-    st.win.h_entry.insert(0, st.hypo_dic['h'])
-    #--------------------------Couleurs----------------------------
+    st.win.h_entry.insert(0, st.hypo_dic['h']) #default h value
+    #--------------------------color----------------------------
     st.win.change5 = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
     st.win.troco_color_entry=Entry(fr4)
-    st.win.troco_color_entry.insert(0,"cyan")
-    #--------------------------Epaisseur----------------------------
+    st.win.troco_color_entry.insert(0,"cyan") #default color value
+    #--------------------------width----------------------------
     st.win.change4=Label(fr3, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
     st.win.troco_width_entry = Entry(fr4, command=bd.pre_disp)
-    st.win.troco_width_entry.insert(0,3)
+    st.win.troco_width_entry.insert(0,3) #default width value
     #--------------------------Speed--------------------------------
     st.win.change16=Label(fr3, anchor='NW', text=('  vitesse','  speed'))
     st.win.trocho_speed = Scale(fr4, orient='vertical', scale=(10, 1000))
+    st.win.trocho_speed.set(200) #default speed
     
 #==============================================================================  
 def main():

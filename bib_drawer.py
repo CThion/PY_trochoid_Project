@@ -13,25 +13,30 @@ def tick():
     st.win.after(st.win.troco_speed.state, tick) #speed of the drawing determined by st.win.troco_speed
 
 #=================================================================================    
+def hypo_cord_calculator(t):
+  """calcul a trochoide coord at time t, then add the coord to the global liste of coord, then trace the trochoide with all
+  the point of this list, then remove the older line created."""
+  #VARIABLES----------------------------------------
+  R = st.hypo_dic["R"] #R = radius of the fixed circle
+  r = st.hypo_dic["r"] #r = radius of the rolling circle
+  h = st.hypo_dic["h"] #h = distance from the tracing point to the centre of the rolling circle
+  m = R/r                    # m=R/r is the modulus of the trochoid
+  #FONCTION-----------------------------------------
+    #new point coords = begin point coord + parametric fonction
+  xi = st.hypo_dic["xC"] + (R+m*R)*cos(m*t)-h*cos(t+m*t) 
+  yi = st.hypo_dic["yC"] + -(R+m*R)*sin(m*t)+h*sin(t+m*t) 
+  return (xi, yi)
+
 def hypo_trocho(t):
-    """calcul a trochoide coord at time t, then add the coord to the global liste of coord, then trace the trochoide with all
-    the point of this list, then remove the older line created."""
-    #VARIABLES----------------------------------------
-    R = int(st.win.R_entry.state) #R = radius of the fixed circle
-    r = int(st.win.r_entry.state) #r = radius of the rolling circle
-    h = int(st.win.h_entry.state) #h = distance from the tracing point to the centre of the rolling circle
-    m = R/r                    # m=R/r is the modulus of the trochoid
-    #FONCTION-----------------------------------------
-      #new point coords = begin point coord + parametric fonction
-    xi = int(st.win.xC_entry.state) + (R+m*R)*cos(m*t)-h*cos(t+m*t) 
-    yi = int(st.win.xC_entry.state) + -(R+m*R)*sin(m*t)+h*sin(t+m*t) 
-      #add next point to point_list 
-    st.win.points_coords_list.append((xi, yi)) #--add the new point's coords tuple
-      #create line with upadted point_coords_list
-    st.win.canvas_item.append(st.win.canvas.create_line(st.win.points_coords_list, fill=st.win.troco_color_entry.state, width=st.win.troco_width_entry.state))
-      #delete all the previous canvas_line.  
-    if len(st.win.canvas_item) > 1 : #if there is only one canvas_line, do not delete it.
-          for item in st.win.canvas_item[0:len(st.win.canvas_item)-1]: st.win.canvas.delete(item)
+    #add next point to point_list 
+  st.win.points_coords_list[0] = hypo_cord_calculator(0)  #first point of the trocho, initialised by 0 in settings
+  st.win.points_coords_list.append(hypo_cord_calculator(t)) #--add the new point's coords tuple
+    #create line with upadted point_coords_list
+  st.win.canvas_item.append(st.win.canvas.create_line(st.win.points_coords_list, fill=st.win.troco_color_entry.state, width=st.win.troco_width_entry.state))
+    #delete all the previous canvas_line.  
+  if len(st.win.canvas_item) > 1 : #if there is only one canvas_line, do not delete it.
+    for item in st.win.canvas_item[0:len(st.win.canvas_item)-1]: st.win.canvas.delete(item)
+
 #================================================================================
 def epi_trocho(t):
     """calcul a trochoide coord at time t, then add the coord to the global liste of coord, then trace the trochoide with all

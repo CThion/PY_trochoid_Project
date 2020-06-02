@@ -2,6 +2,7 @@
 #https://stackoverflow.com/questions/13034496/using-global-variables-between-files
 
 from ezTK import *
+import bib_drawer as bd
 #==============================================================================================================================================
 global Win
 win = Win(title='trochoïde', grow=True, flow='SE', op=2)
@@ -23,4 +24,4 @@ rond_dic = {"rond_color":"red"} #values of all bot_band_rond's entries
 
 #==============================================================================================================================================
     #Initialisation
-win.points_coords_list = [(hypo_dic["xC"], hypo_dic["yC"])]  #  list of points used to draw the trochoide curve.
+win.points_coords_list = [0]  #  list of points used to draw the trochoide curve, initialised with first point in 0

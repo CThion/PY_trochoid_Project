@@ -4,14 +4,13 @@
 from ezTK import *
 import bib_drawer as bd
 #==============================================================================================================================================
-global Win
 win = Win(title='trochoïde', grow=True, flow='SE', op=2)
 #==============================================================================================================================================
 
 
     #VARIABLES
-win.t = 0 #global time used in parametrics equations
-win.canvas_item = [] #  containers for all created canvas item
+t = 0 #global time used in parametrics equations
+canvas_item = [] #  containers for all created canvas item
 
 #==============================================================================================================================================
     #dictionnary for values of differents bot_band 
@@ -24,4 +23,4 @@ rond_dic = {"rond_color":"red"} #values of all bot_band_rond's entries
 
 #==============================================================================================================================================
     #Initialisation
-win.points_coords_list = [0]  #  list of points used to draw the trochoide curve, initialised with first point in 0
+points_coords_list = [0]  #  list of points used to draw the trochoide curve, initialised with first point in 0

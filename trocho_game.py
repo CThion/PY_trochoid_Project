@@ -28,6 +28,8 @@ def save_value(key_butt):
     """"""
     if key_butt == 1: return
 
+    
+
 #===================================================================================
 def on_language(key_but):
   """callback function for all menu radiobuttons"""
@@ -231,9 +233,16 @@ def bot_band_fixe():
     #-------------------------------------#
     st.win.change13 = Label(fr1, text=('Choix de la postion de la forme fixe','Choice of the position of the fixed shape','Elección de la posición de la forma fija.','固定形状の位置の選択'))
     Entry(fr2)
+
+    del st.win.frButt_fixe[0]
+    st.win.change1 = Button(st.win.frButt_fixe,fg='white', text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))
+    del st.win.frButt_rond[0]
+    st.win.change2 = Button(st.win.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))
+    del st.win.frButt_trocho[0]
+    st.win.change3=Button(st.win.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
     
 def bot_band_rond():
-    
+    width,height = 900,500
     del st.win.big_band[1]
     st.win.bot_band_rond=Frame(st.win.big_band,bg='yellow', width=900, height=300,flow='ES',fold=2, grow=True)
     #2 frame to aligne different widgets
@@ -246,7 +255,14 @@ def bot_band_rond():
     st.win.change15 = Label(fr1,text=('Choix de la position du cercle mobile','Choice of the position of the moving circle','Elección de la posición del círculo móvil','動く円の位置の選択'))
     
     st.win.change16 = Button(fr2,text=('Hypotrochoides','Epitrochoides'),command=lambda : on_case("Epi"))  
+
+    del st.win.frButt_rond[0]
+    st.win.change2 = Button(st.win.frButt_rond,fg='white', text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))
+    del st.win.frButt_trocho[0]
     
+    st.win.change3 = Button(st.win.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
+    del st.win.frButt_fixe[0]
+    st.win.change1 = Button(st.win.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))
 def bot_band_trocho():
     del st.win.big_band[1]
     st.win.bot_band_trocho = Frame(st.win.big_band,bg='yellow', width=900, height=300,flow='ES',fold=5, grow=True)
@@ -281,9 +297,51 @@ def bot_band_trocho():
     st.win.troco_width_entry = Entry(fr4, command=bd.pre_disp)
     st.win.troco_width_entry.insert(0, st.hypo_dic['width']) #default width value
     #--------------------------Speed--------------------------------
+    
+    
+    st.win.change3 = Button(st.win.frButt_trocho,bg='purple',fg='white',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
+    del st.win.frButt_trocho[0]
+
+    del st.win.frButt_rond[0]
+    st.win.change2 = Button(st.win.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))
+    del st.win.frButt_fixe[0]
+    st.win.change1 = Button(st.win.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))
     #st.win.change16 = Label(fr_speed, text=('  vitesse','  speed'))
     
-    
+#==============================================================================
+def on_return(key_br):
+
+    width, height = 900, 500
+
+    if key_br=="Return":
+
+        st.win.start_stop.state=0
+        del st.win.top_band[0]
+        main_bot_band("welcome")
+        st.win.left_band = Frame(st.win.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=True)
+        
+        st.win.frButt_fixe = Frame(st.win.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
+        st.win.change1 = Button(st.win.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))# Trois choix possibles 1 par state
+  #-----------------
+        st.win.frButt_rond = Frame(st.win.left_band, bg='cyan', width=(width)*1/4, height=(height)*1/3, grow=True)
+        st.win.change2 = Button(st.win.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))# Trois choix possibles 1 par state
+  #-----------------
+        st.win.frButt_trocho = Frame(st.win.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
+        st.win.change3 = Button(st.win.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
+        
+#==============================================================================
+def on_change(key_but3):
+    save_value(1)
+    if key_but3=="Start":
+        del st.win.left_band[0]
+        del st.win.left_band[1]
+        del st.win.left_band[0]
+       
+        del st.win.frameking[1]
+        
+        del st.win.big_band[1]
+
+        st.win.change_return= Button(st.win.top_band,text="Return",command=lambda:on_return("Return"))
 #==============================================================================  
 def main():
     """our graphic interface"""
@@ -306,7 +364,7 @@ def main():
 
   #=======================================(parent: st.win.frameking)=================================================
     st.win.big_band = Frame(st.win.frameking, bg='yellow', width=(width)*3/4, height=height,op=0, flow='S', grow=True) #La largeur est égale à 1200 en sommant les deux largeurs
-    st.win.left_band = Frame(st.win.frameking, bg='white', width=(width)*1/4, height=height,op=0, flow='S', grow=True)#On garde la même hauteur
+    st.win.left_band = Frame(st.win.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=True)#On garde la même hauteur
 
   #=======================================(parent: st.win.big_band)===================================================
     st.win.prince_band = Frame(st.win.big_band, bg='red', width=(width)*3/4, height=(height)*7/10,op=0,flow='W', grow=True) #On garde la largeur de la frame parent
@@ -326,11 +384,11 @@ def main():
     st.win.change2 = Button(st.win.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))# Trois choix possibles 1 par state
   #-----------------
     st.win.frButt_trocho = Frame(st.win.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
-    st.win.change3 = Button(st.win.frButt_trocho, text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
+    st.win.change3 = Button(st.win.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
  #=======================================(prent: st.win.right_band)===============================================
   #Boutons qui se changent tentative d'implantation de draw à trocho
     fr1 = Frame(st.win.right_band, flow='N'); fr2 = Frame(st.win.right_band, flow='N')#; fr3 = Frame(st.win.right_band); fr4 = Frame(st.win.right_band,border=0,width=width,height=0,bd=0) ;fr5 = Frame(st.win.right_band,border=0,grow=True) 
-    st.win.start_stop=Button(fr1,text=('start', 'stop'), grow=True, command=bd.on_start)
+    st.win.start_stop=Button(fr1,text=('start', 'stop'), grow=True, command=lambda:(bd.on_start(),on_change("Start")))
     st.win.timer = Label(fr1, text=0, bd=1, grow=True)
     st.win.reset = Button(fr1, text='reset', grow=True, command=bd.on_reset)
     

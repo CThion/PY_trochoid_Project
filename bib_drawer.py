@@ -17,14 +17,14 @@ def hypo_cord_calculator(t):
   """fonction to compute the point coordinates of a trochoide at t time
   """
   #VARIABLES----------------------------------------
-  R = st.hypo_dic["R"] #R = radius of the fixed circle
-  r = st.hypo_dic["r"] #r = radius of the rolling circle
+  R = st.fixe_dic["R"] #R = radius of the fixed circle
+  r = st.rond_dic["r"] #r = radius of the rolling circle
   h = st.hypo_dic["h"] #h = distance from the tracing point to the centre of the rolling circle
   m = R/r                    # m=R/r is the modulus of the trochoid
   #FONCTION-----------------------------------------
     #new point coords = begin point coord + parametric fonction
-  xi = st.hypo_dic["xC"] + (R+m*R)*cos(m*t)-h*cos(t+m*t) 
-  yi = st.hypo_dic["yC"] + -(R+m*R)*sin(m*t)+h*sin(t+m*t) 
+  xi = st.fixe_dic["xC"] + (R+m*R)*cos(m*t)-h*cos(t+m*t) 
+  yi = st.fixe_dic["yC"] + -(R+m*R)*sin(m*t)+h*sin(t+m*t) 
   return (xi, yi)
 
   #-----------------------------------------------------------------------------

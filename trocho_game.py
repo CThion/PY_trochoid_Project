@@ -1,5 +1,3 @@
-
-
 # ==============================================================================
 """Our display screen for trochoid game"""
 # ==============================================================================
@@ -24,11 +22,36 @@ def test():
         )
     #st.TEST['state']='disabled'
 
-#===================================================================================
+#===============================================================================
 def save_value():
     """save all value in dic (in settings). Called  by start_stop button and the three button of the left_band
     """
-    return
+    if st.bot_band_indic == "bot_band_trocho":
+        st.hypo_dic = { # update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band 
+        "h":st.h_entry.state, 
+        "troco_color":st.troco_color_entry.state, 
+        "width":st.troco_width_entry.state, 
+        "troco_speed":st.troco_speed.state
+        }
+    #-----------------
+    elif st.bot_band_indic == "bot_band_rond":
+        st.rond_dic = {# update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band
+        "r":st.r_entry.state, 
+        "trocho_type":st.troco_type_butt.state, 
+        "rond_color":st.rond_color_entry.state, 
+        "rond_width":st.rond_width_entry.state
+        }
+    #-----------------
+    elif st.bot_band_indic == "bot_band_fixe":
+        st.fixe_dic = { #values of all bot_band_fixe's entries 
+        "xC":st.xC_entry.state, 
+        "yC":st.yC_entry.state,
+        "R":st.R_entry.state,
+        "fixe_type":st.fixe_type_entry.state, 
+        "fixe_color":st.fixe_color_entry.state, 
+        "fixe_width":st.fixe_width_entry.state
+        }
+      
 
 #===================================================================================
 def on_language(key_but):
@@ -44,13 +67,13 @@ def on_language(key_but):
       st.change1.state=0
       st.change2.state=0
       st.change3.state=0
-      st.change4.state=0
-      st.change5.state=0
-      st.change6.state=0
-      st.change7.state=0
-      st.change8.state=0
-      st.change9.state=0
-      st.change10.state=0
+      st.troco_width_label.state=0
+      st.troco_color_label.state=0
+      st.h_label.state=0
+      st.r_label.state=0
+      st.R_label.state=0
+      st.yC_label.state=0
+      st.xC_label.state=0
       
   elif st.min == "Francais" and key_but == "fixe" :
 
@@ -60,9 +83,7 @@ def on_language(key_but):
       st.change3.state=0
 
       
-      st.change11.state=0
-      st.change12.state=0
-      st.change13.state=0
+      st.fixe_type_label.state=0
 
   elif st.min == "Francais" and key_but == "rond" :
 
@@ -71,12 +92,8 @@ def on_language(key_but):
       st.change3.state=0
 
       
-      st.change14.state=0
-      st.change15.state=0
+      st.troco_type_label.state=0
 
-
-
-      
  #--------------------------Anglais-----------------------------------------------
       
 
@@ -86,13 +103,13 @@ def on_language(key_but):
       st.change2.state=1
       st.change3.state=1
       
-      st.change4.state=1
-      st.change5.state=1
-      st.change6.state=1
-      st.change7.state=1
-      st.change8.state=1
-      st.change9.state=1
-      st.change10.state=1
+      st.troco_width_label.state=1
+      st.troco_color_label.state=1
+      st.h_label.state=1
+      st.r_label.state=1
+      st.R_label.state=1
+      st.yC_label.state=1
+      st.xC_label.state=1
 
       
   elif st.min == "Anglais" and key_but == "fixe" :
@@ -101,9 +118,7 @@ def on_language(key_but):
       st.change2.state=1
       st.change3.state=1
       
-      st.change11.state=1
-      st.change12.state=1
-      st.change13.state=1
+      st.fixe_type_label.state=1
       
   elif st.min == "Anglais" and key_but == "rond" :
 
@@ -111,13 +126,7 @@ def on_language(key_but):
       st.change2.state=1
       st.change3.state=1
 
-      st.change14.state=1
-      st.change15.state=1
-
-      
-
-
-
+      st.troco_type_label.state=1
       
  #--------------------------Espagnol-----------------------------------------------         
   elif st.min == "Espagnol" and key_but == "trocho" :
@@ -126,13 +135,13 @@ def on_language(key_but):
       st.change2.state=2
       st.change3.state=2
      
-      st.change4.state=2
-      st.change5.state=2
-      st.change6.state=2
-      st.change7.state=2
-      st.change8.state=2
-      st.change9.state=2
-      st.change10.state=2
+      st.troco_width_label.state=2
+      st.troco_color_label.state=2
+      st.h_label.state=2
+      st.r_label.state=2
+      st.R_label.state=2
+      st.yC_label.state=2
+      st.xC_label.state=2
       
   elif st.min == "Espagnol" and key_but == "fixe" :
       
@@ -141,9 +150,7 @@ def on_language(key_but):
       st.change3.state=2
 
       
-      st.change11.state=2
-      st.change12.state=2
-      st.change13.state=2
+      st.fixe_type_label.state=2
 
   elif st.min == "Espagnol" and key_but == "rond" :
       
@@ -151,13 +158,9 @@ def on_language(key_but):
       st.change2.state=2
       st.change3.state=2
 
-      st.change14.state=2
-      st.change15.state=2
+      st.troco_type_label.state=2
 
 
-
-
-      
  #--------------------------Japonais-----------------------------------------------      
 
   elif st.min == "Japonais" and key_but == "trocho" :
@@ -166,13 +169,13 @@ def on_language(key_but):
       st.change2.state=3
       st.change3.state=3
 
-      st.change4.state=3
-      st.change5.state=3
-      st.change6.state=3
-      st.change7.state=3
-      st.change8.state=3
-      st.change9.state=3
-      st.change10.state=3
+      st.troco_width_label.state=3
+      st.troco_color_label.state=3
+      st.h_label.state=3
+      st.r_label.state=3
+      st.R_label.state=3
+      st.yC_label.state=3
+      st.xC_label.state=3
       
   elif st.min == "Japonais" and key_but == "fixe" :
       
@@ -180,9 +183,7 @@ def on_language(key_but):
       st.change2.state=3
       st.change3.state=3
 
-      st.change11.state=3
-      st.change12.state=3
-      st.change13.state=3
+      st.fixe_type_label.state=3
 
   elif st.min == "Japonais" and key_but == "rond" :
       
@@ -190,15 +191,14 @@ def on_language(key_but):
       st.change2.state=3
       st.change3.state=3
 
-      st.change14.state=3
-      st.change15.state=3
+      st.troco_type_label.state=3
 
 #===================================================================================
 def on_case(key_but2):
-  """DOCSTRING
+  """fonction to make switch the trocho_type button's text in bot_band_rond. Called by bot_band_rond
   """
   if key_but2=="Epi":
-      st.change16.state+=1
+      st.troco_type_butt.state+=1
          
 #===================================================================================
 def main_bot_band(key_butt):
@@ -217,22 +217,41 @@ def main_bot_band(key_butt):
     else: bot_band_trocho()
 
 def bot_band_welcome():
-      Label(st.big_band, text='Salamaalekum.')
+    save_value() #save value of the current bot_band before delete it and set the bot_band_rond
+    st.bot_band_indic = "welcome" #update st.bot_band_indic in settings
+    Label(st.big_band, text='Salamaalekum.')
         
 def bot_band_fixe():
+    save_value() #save value of the current bot_band before delete it and set the bot_band_rond
+    st.bot_band_indic = "bot_band_fixe" #update st.bot_band_indic in settings
     del st.big_band[1]
     st.bot_band_fixe = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=2, grow=True)
     #2 frame to aligne different widgets
     fr1 = Frame(st.bot_band_fixe); fr2 = Frame(st.bot_band_fixe)
-    #----------------------------------------------------------------------------------------------------------------------------------------------#
-    st.change11 = Label(fr1, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'))
-    Entry(fr2)
-    #-------------------------------------#
-    st.change12 = Label(fr1, text=('Choix de la taille de la forme fixe','Choice of size of fixed shape','Elección del tamaño de la forma fija.','固定形状のサイズの選択'))
-    Entry(fr2)
-    #-------------------------------------#
-    st.change13 = Label(fr1, text=('Choix de la postion de la forme fixe','Choice of the position of the fixed shape','Elección de la posición de la forma fija.','固定形状の位置の選択'))
-    Entry(fr2)
+    #-------------------------xC value-----------------------------
+    st.xC_label = Label(fr1, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
+    st.xC_entry = Entry(fr2, command=bd.pre_disp)
+    st.xC_entry.insert(0, st.fixe_dic['xC']) #default xC value
+    #-------------------------yC value-----------------------------
+    st.yC_label = Label(fr1, text=('Choisir coords de y C','choice the y C coords','Elige coordenadas de y C','y C の座標を選択'))
+    st.yC_entry = Entry(fr2, command=bd.pre_disp)
+    st.yC_entry.insert(0, st.fixe_dic['yC']) #default yC value
+    #-------------------------R value------------------------------
+    st.R_label = Label(fr1, text=('Choisir valeur R','choice the R value','Elige valor R','値を選択 R'))
+    st.R_entry = Entry(fr2, command=bd.pre_disp)
+    st.R_entry.insert(0,st.fixe_dic['R']) #default R value
+    #-------------------------fixe_type value------------------------------
+    st.fixe_type_label = Label(fr1, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'))
+    st.fixe_type_entry = Entry(fr2, command=bd.pre_disp)
+    st.fixe_type_entry.insert(0,st.fixe_dic["fixe_type"])
+    #-------------------------fixe_color------------------------------
+    st.fixe_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
+    st.fixe_color_entry = Entry(fr2, command=bd.pre_disp)
+    st.fixe_color_entry.insert(0,st.fixe_dic["fixe_color"])
+    #-------------------------fixe_width------------------------------
+    st.fixe_width_label = Label(fr1)
+    st.fixe_width_entry = Entry(fr2, command=bd.pre_disp) 
+    st.fixe_width_entry.insert(0,st.fixe_dic["fixe_width"])
 
     del st.frButt_fixe[0]
     st.change1 = Button(st.frButt_fixe,fg='white', text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))
@@ -242,62 +261,56 @@ def bot_band_fixe():
     st.change3=Button(st.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
     
 def bot_band_rond():
-    width,height = 900,500
-    del st.big_band[1]
-    st.bot_band_rond=Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=2, grow=True)
-    #2 frame to aligne different widgets
-    fr1 = Frame(st.bot_band_rond); fr2 = Frame(st.bot_band_rond)
+    save_value() #save value of the current bot_band before delete it and set the bot_band_rond
+    st.bot_band_indic = "bot_band_rond" #update st.bot_band_indic in settings
+    del st.big_band[1] #del the current bot_band
+    st.bot_band_rond = Frame(st.big_band,bg='yellow', width=900, height=300, flow='ES', fold=2, grow=True) #main frame
+    fr1 = Frame(st.bot_band_rond); fr2 = Frame(st.bot_band_rond)#2 frame to aligne different widgets
+    #-------------------------  r  ------------------------------
+    st.r_label = Label(fr1, text=('Choix de la taille du cercle mobile','Choice of the size of the moving circle','Elección del tamaño del círculo móvil','動く円のサイズの選択')) 
+    st.r_entry = Entry(fr2, command=bd.pre_disp)
+    st.r_entry.insert(0,st.rond_dic['r']) #default r value
+    #-------------------------trocho_type-----------------------------
+    st.troco_type_label = Label(fr1, text=('Choix de la position du cercle mobile','Choice of the position of the moving circle','Elección de la posición del círculo móvil','動く円の位置の選択'))
+    st.troco_type_butt = Button(fr2,text=('Hypotrochoides','Epitrochoides'),command=lambda : on_case("Epi"))  
+    #--------------------------rond_color----------------------------
+    st.rond_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
+    st.rond_color_entry=Entry(fr2)
+    st.rond_color_entry.insert(0, st.rond_dic['rond_color']) #default color value
+    #--------------------------rond_width----------------------------
+    st.rond_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
+    st.rond_width_entry = Entry(fr2, command=bd.pre_disp)
+    st.rond_width_entry.insert(0, st.rond_dic['rond_width']) #default width value
 
-    st.change14 = st.label_aff_2=Label(fr1, text=('Choix de la taille du cercle mobile','Choice of the size of the moving circle','Elección del tamaño del círculo móvil','動く円のサイズの選択'))
     
-    Scale(fr2, orient='horizontal', scale=(0, 10))
-    
-    st.change15 = Label(fr1,text=('Choix de la position du cercle mobile','Choice of the position of the moving circle','Elección de la posición del círculo móvil','動く円の位置の選択'))
-    
-    st.change16 = Button(fr2,text=('Hypotrochoides','Epitrochoides'),command=lambda : on_case("Epi"))  
-
     del st.frButt_rond[0]
     st.change2 = Button(st.frButt_rond,fg='white', text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))
     del st.frButt_trocho[0]
-    
     st.change3 = Button(st.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
     del st.frButt_fixe[0]
     st.change1 = Button(st.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))
 
 def bot_band_trocho():
+    """DOCSTRING
+    """
+    save_value() #save value of the current bot_band before delete it and set the bot_band_rond
+    st.bot_band_indic = "bot_band_trocho" #update st.bot_band_indic in settings
     del st.big_band[1]
     st.bot_band_trocho = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=5, grow=True)
     #4 frame to aligne differents widgets
     fr1 = Frame(st.bot_band_trocho); fr2 = Frame(st.bot_band_trocho); fr3 = Frame(st.bot_band_trocho); fr4 = Frame(st.bot_band_trocho)
-    #-------------------------xC value-----------------------------
-    st.change10 = Label(fr1, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
-    st.xC_entry = Entry(fr2, command=bd.pre_disp)
-    st.xC_entry.insert(0, st.hypo_dic['xC']) #default xC value
-    #-------------------------yC value-----------------------------
-    st.change9 = Label(fr1, text=('Choisir coords de y C','choice the y C coords','Elige coordenadas de y C','y C の座標を選択'))
-    st.yC_entry = Entry(fr2, command=bd.pre_disp)
-    st.yC_entry.insert(0, st.hypo_dic['yC']) #default yC value
-    #-------------------------R value------------------------------
-    st.change8 = Label(fr1, text=('Choisir valeur R','choice the R value','Elige valor R','値を選択 R'))
-    st.R_entry = Entry(fr2, command=bd.pre_disp)
-    st.R_entry.insert(0,st.hypo_dic['R']) #default R value
-    #-------------------------r value------------------------------
-    st.change7 = Label(fr1, text=('Choisir valeur r','choice the r value','Elige valor r','値を選択 r'))
-    st.r_entry = Entry(fr2, command=bd.pre_disp)
-    st.r_entry.insert(0,st.hypo_dic['r']) #default r value
     #-------------------------h value------------------------------
-    st.change6 = Label(fr3, text=('Choisir valeur h','choice the h value','Elige valor h','値を選択 h'))
+    st.h_label = Label(fr3, text=('Choisir valeur h','choice the h value','Elige valor h','値を選択 h'))
     st.h_entry = Entry(fr4, command=bd.pre_disp)
     st.h_entry.insert(0, st.hypo_dic['h']) #default h value
-    #--------------------------color----------------------------
-    st.change5 = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
+    #--------------------------troco_color----------------------------
+    st.troco_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
     st.troco_color_entry=Entry(fr4)
     st.troco_color_entry.insert(0, st.hypo_dic['troco_color']) #default color value
     #--------------------------width----------------------------
-    st.change4 = Label(fr3, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
+    st.troco_width_label = Label(fr3, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
     st.troco_width_entry = Entry(fr4, command=bd.pre_disp)
     st.troco_width_entry.insert(0, st.hypo_dic['width']) #default width value
-    #--------------------------Speed--------------------------------
     
     
     st.change3 = Button(st.frButt_trocho,bg='purple',fg='white',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
@@ -307,7 +320,7 @@ def bot_band_trocho():
     st.change2 = Button(st.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))
     del st.frButt_fixe[0]
     st.change1 = Button(st.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))
-    #st.change16 = Label(fr_speed, text=('  vitesse','  speed'))
+    #st.troco_type_butt = Label(fr_speed, text=('  vitesse','  speed'))
     
 #==============================================================================
 def on_return():
@@ -331,7 +344,7 @@ def on_return():
         st.change3 = Button(st.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
         st.display_indic = "parameting" #update st.display_indic
 
-#==============================================================================
+#------------------------------------------------------------------------------
 def on_change():
     """fonction to switch from the parameting display (with left_band and bot_band) to the drawing display
     """

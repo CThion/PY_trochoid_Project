@@ -10,12 +10,12 @@ def tick():
     st.t +=0.1  #increment time
     st.timer['text'] = round(st.t,1) #update t display in label
     hypo_trocho(st.t) #call the main drawing fonction with next time value
-    st.win.after(st.troco_speed.state, tick) #speed of the drawing determined by st.troco_speed
+    st.win.after(st.hypo_dic["troco_speed"], tick) #speed of the drawing, determined by st.troco_speed
 
 #=================================================================================    
 def hypo_cord_calculator(t):
-  """calcul a trochoide coord at time t, then add the coord to the global liste of coord, then trace the trochoide with all
-  the point of this list, then remove the older line created."""
+  """fonction to compute the point coordinates of a trochoide at t time
+  """
   #VARIABLES----------------------------------------
   R = st.hypo_dic["R"] #R = radius of the fixed circle
   r = st.hypo_dic["r"] #r = radius of the rolling circle
@@ -27,12 +27,12 @@ def hypo_cord_calculator(t):
   yi = st.hypo_dic["yC"] + -(R+m*R)*sin(m*t)+h*sin(t+m*t) 
   return (xi, yi)
 
+  #-----------------------------------------------------------------------------
 def hypo_trocho(t):
-    #add next point to point_list 
   st.points_coords_list[0] = hypo_cord_calculator(0)  #first point of the trocho, initialised by 0 in settings
-  st.points_coords_list.append(hypo_cord_calculator(t)) #--add the new point's coords tuple
+  st.points_coords_list.append(hypo_cord_calculator(t)) #add the new point's coords tuple
     #create line with upadted point_coords_list     st.troco_color_entry.state    st.troco_width_entry.state
-  st.canvas_item.append(st.canvas.create_line(st.points_coords_list, fill="red", width=5))
+  st.canvas_item.append(st.canvas.create_line(st.points_coords_list, fill=st.hypo_dic["troco_color"], width=st.hypo_dic["width"]))
     #delete all the previous canvas_line.  
   if len(st.canvas_item) > 1 : #if there is only one canvas_line, do not delete it.
     for item in st.canvas_item[0:len(st.canvas_item)-1]: st.canvas.delete(item)
@@ -71,15 +71,11 @@ def on_reset(): #exeption
     """
     callback fonction for the 'reset' button. exeption define the number of lines in st.canvas_item that wont be suppressed (from the 
     last created. If execption = 0, st.cavas_item is fully cleared. 
-    """
-      #  supress all created canvas_line except the last ones 
-    for item in st.canvas_item: st.canvas.delete(item)
-      #  actualise the liste of canvas lines
-    st.canvas_item = []
-      #  supress all created points and initialised with start point coords.
-    st.points_coords_list = [(int(st.xC_entry.state), int(st.yC_entry.state))]
-      #  reinitialise time
-    st.t = 0
+    """ 
+    for item in st.canvas_item: st.canvas.delete(item) #  supress all created canvas_line except the last ones
+    st.canvas_item = []#  actualise the liste of canvas lines
+    st.points_coords_list = [0] #  supress all created points
+    st.t = 0 #  reinitialise time
 
 #===================================================================================
 

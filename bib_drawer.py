@@ -59,13 +59,12 @@ def epi_trocho(t):
     
 #================================================================================
 def on_start():
-      """callback function for the 'START/STOP' button"""
+      """callback function for the 'START/STOP' button. Call the tick() fonction that call drawing fonctions."""
         # switch button (state <--> 1-stat)
       st.start_stop.state = 1 - st.start_stop.state 
         # if st.button.state == 1: tick() # start 'tick' when button state is 1
       if st.start_stop.state == 1: 
-            # start the recusive 
-            tick()
+            tick() # start the recusive 
 
 #=================================================================================          
 def on_reset(): #exeption

@@ -1,6 +1,6 @@
 
 
-  # ==============================================================================
+# ==============================================================================
 """Our display screen for trochoid game"""
 # ==============================================================================
 __author__  = "Plantey--veux Axel & Thion Clement"
@@ -24,12 +24,11 @@ def test():
         )
     #st.TEST['state']='disabled'
 
+#===================================================================================
 def save_value():
     """save all value in dic (in settings). Called  by start_stop button and the three button of the left_band
     """
-
-
-    
+    return
 
 #===================================================================================
 def on_language(key_but):
@@ -196,11 +195,11 @@ def on_language(key_but):
 
 #===================================================================================
 def on_case(key_but2):
-  """"""
+  """DOCSTRING
+  """
   if key_but2=="Epi":
       st.change16.state+=1
          
-        
 #===================================================================================
 def main_bot_band(key_butt):
     """callback fuction for buttons in left_band <forme fixe> <cercle mobile> <trait trocho>
@@ -311,39 +310,39 @@ def bot_band_trocho():
     #st.change16 = Label(fr_speed, text=('  vitesse','  speed'))
     
 #==============================================================================
-def on_return(key_br):
-
+def on_return():
+    """fonction to switch from the "running" display (when the trocho is being drown) to the parameting display
+    """
     width, height = 900, 500
 
-    if key_br=="Return":
-
-        st.start_stop.state=0
-        del st.top_band[0]
+    if st.display_indic == "running":
+        #st.start_stop.state = 0
+        del st.top_band[0] #delete st.change_return button
+          #now recreate all widgets of the parameting display
         main_bot_band("welcome")
         st.left_band = Frame(st.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=True)
-        
         st.frButt_fixe = Frame(st.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
         st.change1 = Button(st.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))# Trois choix possibles 1 par state
-  #-----------------
+        #-----------------
         st.frButt_rond = Frame(st.left_band, bg='cyan', width=(width)*1/4, height=(height)*1/3, grow=True)
         st.change2 = Button(st.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))# Trois choix possibles 1 par state
-  #-----------------
+        #-----------------
         st.frButt_trocho = Frame(st.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
         st.change3 = Button(st.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
-        
-#==============================================================================
-def on_change(key_but3):
-    save_value() #save value before deling the bot_band
-    if key_but3=="Start":
-        del st.left_band[0]
-        del st.left_band[1]
-        del st.left_band[0]
-       
-        del st.frameking[1]
-        
-        del st.big_band[1]
+        st.display_indic = "parameting" #update st.display_indic
 
-        st.change_return = Button(st.top_band,text="Return",command=lambda:on_return("Return"))
+#==============================================================================
+def on_change():
+    """fonction to switch from the parameting display (with left_band and bot_band) to the drawing display
+    """
+    save_value() #save value before deling the bot_band
+    if st.display_indic == "parameting": #means "if we are currently with the parameting display"
+        del st.left_band[0] #delete all widgets exept right_band and canvas
+        del st.left_band[1]
+        del st.frameking[1]
+        del st.big_band[1]
+        st.change_return = Button(st.top_band,text="Return",command=lambda:on_return()) #button to come back on the previous diplay
+        st.display_indic = "running" #update st.display_indic
 
 #==============================================================================  
 def main():
@@ -351,23 +350,17 @@ def main():
     width, height = 900, 500
   #=======================================(parent: st.win)=======================================================
     st.top_band= Frame(st.win, bg='red', width=width, height=height//40, grow=False) #frame for general options (language...)
-    #language début
-    
+      #language début
     st.win.master['menu'] = menu = Menu(st.win.master)
     st.minmenu = Menu(menu, tearoff=False); st.minmenu.state = StringVar()
     menu.add_cascade(label='Langue', menu=st.minmenu)
     for value in ("Francais","Anglais","Espagnol","Japonais"):
         st.minmenu.add_radiobutton(label=value, var=st.minmenu.state, command=on_language(key_but="base"))
-    #language fin
-
-    #principal frame
-    
-    st.frameking= Frame(st.win, width=width, height=height, bg='black', flow='W')#frame principale 
-
+      #language fin    
+    st.frameking= Frame(st.win, width=width, height=height, bg='black', flow='W')#principal frame
   #=======================================(parent: st.frameking)=================================================
     st.big_band = Frame(st.frameking, bg='yellow', width=(width)*3/4, height=height,op=0, flow='S', grow=True) #La largeur est égale à 1200 en sommant les deux largeurs
     st.left_band = Frame(st.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=True)#On garde la même hauteur
-
   #=======================================(parent: st.big_band)===================================================
     st.prince_band = Frame(st.big_band, bg='red', width=(width)*3/4, height=(height)*7/10,op=0,flow='W', grow=True) #On garde la largeur de la frame parent
     main_bot_band("welcome")
@@ -390,7 +383,7 @@ def main():
   #=======================================(prent: st.right_band)===============================================
   #Boutons qui se changent tentative d'implantation de draw à trocho
     fr1 = Frame(st.right_band, flow='N'); fr2 = Frame(st.right_band, flow='N')#; fr3 = Frame(st.right_band); fr4 = Frame(st.right_band,border=0,width=width,height=0,bd=0) ;fr5 = Frame(st.right_band,border=0,grow=True) 
-    st.start_stop=Button(fr1,text=('start', 'stop'), grow=True, command=lambda:(bd.on_start(),on_change("Start")))
+    st.start_stop = Button(fr1, text=('start', 'stop'), grow=True, command=lambda:(bd.on_start(), on_change()))
     st.timer = Label(fr1, text=0, bd=1, grow=True)
     st.reset = Button(fr1, text='reset', grow=True, command=bd.on_reset)
     #speed 

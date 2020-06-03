@@ -217,12 +217,12 @@ def main_bot_band(key_butt):
     else: bot_band_trocho()
 
 def bot_band_welcome():
-    save_value() #save value of the current bot_band before delete it and set the bot_band_rond
+    save_value() #save value of the current bot_band before delete it and set the bot_band_welcome
     st.bot_band_indic = "welcome" #update st.bot_band_indic in settings
     Label(st.big_band, text='Salamaalekum.')
         
 def bot_band_fixe():
-    save_value() #save value of the current bot_band before delete it and set the bot_band_rond
+    save_value() #save value of the current bot_band before delete it and set the bot_band_fixe
     st.bot_band_indic = "bot_band_fixe" #update st.bot_band_indic in settings
     del st.big_band[1]
     st.bot_band_fixe = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=2, grow=True)
@@ -230,27 +230,27 @@ def bot_band_fixe():
     fr1 = Frame(st.bot_band_fixe); fr2 = Frame(st.bot_band_fixe)
     #-------------------------xC value-----------------------------
     st.xC_label = Label(fr1, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
-    st.xC_entry = Entry(fr2, command=bd.pre_disp)
+    st.xC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
     st.xC_entry.insert(0, st.fixe_dic['xC']) #default xC value
     #-------------------------yC value-----------------------------
     st.yC_label = Label(fr1, text=('Choisir coords de y C','choice the y C coords','Elige coordenadas de y C','y C の座標を選択'))
-    st.yC_entry = Entry(fr2, command=bd.pre_disp)
+    st.yC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
     st.yC_entry.insert(0, st.fixe_dic['yC']) #default yC value
     #-------------------------R value------------------------------
     st.R_label = Label(fr1, text=('Choisir valeur R','choice the R value','Elige valor R','値を選択 R'))
-    st.R_entry = Entry(fr2, command=bd.pre_disp)
+    st.R_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
     st.R_entry.insert(0,st.fixe_dic['R']) #default R value
     #-------------------------fixe_type value------------------------------
     st.fixe_type_label = Label(fr1, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'))
-    st.fixe_type_entry = Entry(fr2, command=bd.pre_disp)
+    st.fixe_type_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
     st.fixe_type_entry.insert(0,st.fixe_dic["fixe_type"])
     #-------------------------fixe_color------------------------------
     st.fixe_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    st.fixe_color_entry = Entry(fr2, command=bd.pre_disp)
+    st.fixe_color_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
     st.fixe_color_entry.insert(0,st.fixe_dic["fixe_color"])
     #-------------------------fixe_width------------------------------
     st.fixe_width_label = Label(fr1)
-    st.fixe_width_entry = Entry(fr2, command=bd.pre_disp) 
+    st.fixe_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value())) 
     st.fixe_width_entry.insert(0,st.fixe_dic["fixe_width"])
 
     del st.frButt_fixe[0]
@@ -268,18 +268,18 @@ def bot_band_rond():
     fr1 = Frame(st.bot_band_rond); fr2 = Frame(st.bot_band_rond)#2 frame to aligne different widgets
     #-------------------------  r  ------------------------------
     st.r_label = Label(fr1, text=('Choix de la taille du cercle mobile','Choice of the size of the moving circle','Elección del tamaño del círculo móvil','動く円のサイズの選択')) 
-    st.r_entry = Entry(fr2, command=bd.pre_disp)
+    st.r_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
     st.r_entry.insert(0,st.rond_dic['r']) #default r value
     #-------------------------trocho_type-----------------------------
     st.troco_type_label = Label(fr1, text=('Choix de la position du cercle mobile','Choice of the position of the moving circle','Elección de la posición del círculo móvil','動く円の位置の選択'))
-    st.troco_type_butt = Button(fr2,text=('Hypotrochoides','Epitrochoides'),command=lambda : on_case("Epi"))  
+    st.troco_type_butt = Button(fr2,text=('Hypotrochoides','Epitrochoides'),command=lambda : (on_case("Epi"), save_value()))  
     #--------------------------rond_color----------------------------
     st.rond_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    st.rond_color_entry=Entry(fr2)
+    st.rond_color_entry=Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
     st.rond_color_entry.insert(0, st.rond_dic['rond_color']) #default color value
     #--------------------------rond_width----------------------------
     st.rond_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
-    st.rond_width_entry = Entry(fr2, command=bd.pre_disp)
+    st.rond_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
     st.rond_width_entry.insert(0, st.rond_dic['rond_width']) #default width value
 
     
@@ -301,16 +301,16 @@ def bot_band_trocho():
     fr1 = Frame(st.bot_band_trocho); fr2 = Frame(st.bot_band_trocho); fr3 = Frame(st.bot_band_trocho); fr4 = Frame(st.bot_band_trocho)
     #-------------------------h value------------------------------
     st.h_label = Label(fr3, text=('Choisir valeur h','choice the h value','Elige valor h','値を選択 h'))
-    st.h_entry = Entry(fr4, command=bd.pre_disp)
+    st.h_entry = Entry(fr4, command=lambda:(bd.pre_disp(), save_value()))
     st.h_entry.insert(0, st.hypo_dic['h']) #default h value
     #--------------------------troco_color----------------------------
     st.troco_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    st.troco_color_entry=Entry(fr4)
+    st.troco_color_entry=Entry(fr4, command=lambda:(bd.pre_disp(), save_value()))
     st.troco_color_entry.insert(0, st.hypo_dic['troco_color']) #default color value
     #--------------------------width----------------------------
     st.troco_width_label = Label(fr3, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
-    st.troco_width_entry = Entry(fr4, command=bd.pre_disp)
-    st.troco_width_entry.insert(0, st.hypo_dic['width']) #default width value
+    st.troco_width_entry = Entry(fr4, command=lambda:(bd.pre_disp(), save_value()))
+    st.troco_width_entry.insert(0, st.hypo_dic['width']) #default width value 
     
     
     st.change3 = Button(st.frButt_trocho,bg='purple',fg='white',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))

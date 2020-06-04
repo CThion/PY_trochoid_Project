@@ -379,6 +379,7 @@ def on_change():
         del st.big_band[1]
         st.change_return = Button(st.top_band,text="Return",command=lambda:on_return()) #button to come back on the previous diplay
         st.display_indic="running" #update st.display_indic
+        st.bot_band_indic="" #in order not to get in the if condition in on_save() also called by start_stop
 
 #==============================================================================  
 def main():
@@ -396,7 +397,7 @@ def main():
     st.frameking= Frame(st.win, width=width, height=height, bg='black', flow='W')#principal frame
   #=======================================(parent: st.frameking)=================================================
     st.big_band = Frame(st.frameking, bg='yellow', width=(width)*3/4, height=height,op=0, flow='S', grow=True) #La largeur est égale à 1200 en sommant les deux largeurs
-    st.left_band = Frame(st.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=True)#On garde la même hauteur
+    st.left_band = Frame(st.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=False)#On garde la même hauteur
   #=======================================(parent: st.big_band)===================================================
     st.prince_band = Frame(st.big_band, bg='red', width=(width)*3/4, height=(height)*7/10,op=0,flow='W', grow=True) #On garde la largeur de la frame parent
     main_bot_band("welcome")
@@ -417,7 +418,7 @@ def main():
     st.frButt_trocho = Frame(st.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
     st.change3 = Button(st.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
   #=======================================(prent: st.right_band)===============================================
-    fr1 = Frame(st.right_band, flow='N'); fr2 = Frame(st.right_band, flow='N')#; fr3 = Frame(st.right_band); fr4 = Frame(st.right_band,border=0,width=width,height=0,bd=0) ;fr5 = Frame(st.right_band,border=0,grow=True) 
+    fr1 = Frame(st.right_band, flow='N'); fr2 = Frame(st.right_band, flow='N', grow=False)#; fr3 = Frame(st.right_band); fr4 = Frame(st.right_band,border=0,width=width,height=0,bd=0) ;fr5 = Frame(st.right_band,border=0,grow=True) 
     st.start_stop = Button(fr1, text=('start', 'stop'), grow=True, command=lambda:(save_value(), on_change(), bd.on_start()))
     st.timer = Label(fr1, text=0, bd=1, grow=True)
     st.reset = Button(fr1, text='reset', grow=True, command=bd.on_reset)

@@ -22,7 +22,6 @@ hypo_dic = { #values of all bot_band_trocho's entries
     "h":30, 
     "color":"cyan", 
     "width":2, 
-    "troco_speed":250
     } 
 #-------------------
 fixe_dic = { #values of all bot_band_fixe's entries 
@@ -41,6 +40,6 @@ rond_dic = { #values of all bot_band_rond's entries
     "rond_width":2
     } 
 
-bot_band_dic = {"bot_band_trocho":hypo_dic, "bot_band_fixe":fixe_dic, "bot_band_rond":rond_dic} #bibli of three bot_band bibli
+bot_band_dic = {"bot_band_trocho":hypo_dic, "bot_band_fixe":fixe_dic, "bot_band_rond":rond_dic, "speed":100} #bibli of three bot_band bibli
 #==============================================================================================================================================
 

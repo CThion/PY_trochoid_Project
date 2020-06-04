@@ -10,7 +10,7 @@ def tick():
     st.t +=0.1  #increment time
     st.timer['text'] = round(st.t,1) #update t display in label
     hypo_trocho(st.t) #call the main drawing fonction with next time value
-    st.win.after(st.hypo_dic["troco_speed"], tick) #speed of the drawing, determined by st.troco_speed
+    st.win.after(st.bot_band_dic["speed"], tick) #speed of the drawing, determined by st.troco_speed
 
 #=================================================================================    
 def hypo_cord_calculator(t):

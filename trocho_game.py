@@ -24,21 +24,20 @@ def test():
 
 #===============================================================================
 def save_value():
-    """save all value in dic (in settings). Called  by start_stop button and the three button of the left_band
+    """save all value in dic (in settings). Called  by start_stop button and the three button of the left_band. Exception:colors values are saved 
+    with on_scale()
     """
+    st.bot_band_dic["speed"] = st.speed.state
     if st.bot_band_indic == "bot_band_trocho":
         st.hypo_dic = { # update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band 
         "h":int(st.h_entry.state), 
-        #"troco_color":st.troco_color_entry.state, 
         "width":int(st.troco_width_entry.state), 
-        "troco_speed":int(st.troco_speed.state)
         }
     #-----------------
     elif st.bot_band_indic == "bot_band_rond":
         st.rond_dic = {# update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band
         "r":int(st.r_entry.state), 
         "trocho_type":st.troco_type_butt.state, 
-        #"rond_color":st.rond_color_entry.state, 
         "rond_width":int(st.rond_width_entry.state)
         }
     #-----------------
@@ -48,11 +47,10 @@ def save_value():
         "yC":int(st.yC_entry.state),
         "R":int(st.R_entry.state),
         "fixe_type":st.fixe_type_entry.state, 
-        #"fixe_color":st.fixe_color_entry.state, 
         "fixe_width":int(st.fixe_width_entry.state)
         }
       
-#===================================================================================
+#===============================================================================
 def on_language(key_but):
   """callback function for all menu radiobuttons"""
   
@@ -192,7 +190,7 @@ def on_language(key_but):
 
       st.troco_type_label.state=3
 
-#==================================================================================
+#===============================================================================
 def on_scale():
   """callback function for all three RGB scales"""
   x = '0123456789ABCDEF'
@@ -427,7 +425,7 @@ def main():
     lapin = Image(file='lapin.gif')
     tortue = Image(file='tortue.gif')
     Label(fr2, image=lapin, grow=True)                                                                                                                                                                                                                                                           
-    st.troco_speed = Scale(fr2, orient='VERTICAL', showvalue=0, bd=0, scale=(10, 1000), grow=True) ; st.troco_speed.set(st.hypo_dic['troco_speed']) #default speed
+    st.speed = Scale(fr2, orient='VERTICAL', showvalue=0, bd=0, scale=(10, 1000), grow=True, command=lambda:save_value()) ; st.speed.set(st.bot_band_dic['speed']) #default speed
     Label(fr2, image=tortue, grow=True)                                                                                                                                                                                                                                                           
   #===================================================================================
     #widgets temporaire, seulement pour tester le programme graphiquement

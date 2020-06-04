@@ -23,20 +23,117 @@ def test():
     #st.TEST['state']='disabled'
 #=====================================================================    
 def test_error(error):
-    save_value()
+    """Check value have the good atribute (int,string,float)"""
+
+#------------------------------Check xC its an int--------------------------
     if error == "error_xC":
         try :
             
 
            xC= int(st.xC_entry.state)
         except ValueError:
+            test_fr_error=Frame(st.win,bg='yellow')
+            Button(test_fr_error, text="Erreur")
+            st.canvas.create_window(50, 50, window=test_fr_error)
+            return
+        save_value()
+#------------------------Check yC its an int-------------------------
+        
+    elif error == "error_yC":
+        try :
+            
+
+           yC= int(st.yC_entry.state)
+        except ValueError:
             print("erreur de conversion")
-    
+            return
+        save_value()
+
+#------------------------Check R its an int-------------------------
+        
+    elif error == "error_R":
+        try :
+            
+
+           R= int(st.R_entry.state)
+        except ValueError:
+            print("erreur de conversion")
+            return
+        save_value()
+        
+#------------------------Check type its an str pas encore fonctionelle-------------------------
+        
+    #elif error == "error_type":
+        #try :
+            
+
+         #  fixe_type = (st.fixe_type_entry.state)
+        #except ValueError:
+         #   print("erreur de conversion")
+          #  return
+        #save_value()        
+#------------------------Check width of trocho its an int-------------------------
+        
+    elif error == "error_fix_width":
+        try :
+            
+
+           fix_width = int(st.fixe_width_entry.state)
+        except ValueError:
+            print("erreur de conversion")
+            return
+        save_value()
+#------------------------Check h its an int-------------------------
+        
+    elif error == "error_h":
+        try :
+            
+
+           h= int(st.h_entry.state)
+        except ValueError:
+            print("erreur de conversion")
+            return
+        save_value()
+#------------------------Check width its an int-------------------------
+        
+    elif error == "error_width":
+        try :
+            
+
+           width= int(st.troco_width_entry.state)
+        except ValueError:
+            print("erreur de conversion")
+            return
+        save_value()
+#------------------------Check if r its an int------------------------- #taille du cercle
+        
+    elif error == "error_r":
+        try :
+            
+
+           r= int(st.r_entry.state)
+        except ValueError:
+            print("erreur de conversion")
+            return
+        save_value()
+#------------------------Check rond_width its an int-------------------------
+        
+    elif error == "error_rond_width":
+        try :
+            
+
+          rond_width= int(st.rond_width_entry.state)
+        except ValueError:
+            print("erreur de conversion")
+            return
+        save_value()
+        
 #===============================================================================
 def save_value():
     """save all value in dic (in settings). Called  by start_stop button and the three button of the left_band. Exception:colors values are saved 
     with on_scale()
     """
+    
     st.bot_band_dic["speed"] = st.speed.state
     if st.bot_band_indic == "bot_band_trocho":
         st.hypo_dic = { # update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band 
@@ -52,11 +149,12 @@ def save_value():
         }
     #--------------------------------------------------
     elif st.bot_band_indic == "bot_band_fixe":
+        #test_error("error_xC")
         st.fixe_dic = { #values of all bot_band_fixe's entries 
         "xC":int(st.xC_entry.state), 
         "yC":int(st.yC_entry.state),
         "R":int(st.R_entry.state),
-        "fixe_type":st.fixe_type_entry.state, 
+         
         "fixe_width":int(st.fixe_width_entry.state)
         }
       
@@ -246,20 +344,18 @@ def bot_band_fixe():
     fr1 = Frame(st.bot_band_fixe); fr2 = Frame(st.bot_band_fixe) ;fr3 = Frame(st.bot_band_fixe)
     #-------------------------xC value-----------------------------
     st.xC_label = Label(fr1, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
-    st.xC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value(), test_error("error_xC") ))
+    st.xC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_xC") ))
     st.xC_entry.insert(0, st.fixe_dic['xC']) #default xC value
     #-------------------------yC value-----------------------------
     st.yC_label = Label(fr1, text=('Choisir coords de y C','choice the y C coords','Elige coordenadas de y C','y C の座標を選択'))
-    st.yC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
+    st.yC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_yC")))
     st.yC_entry.insert(0, st.fixe_dic['yC']) #default yC value
     #-------------------------R value------------------------------
     st.R_label = Label(fr1, text=('Choisir valeur R','choice the R value','Elige valor R','値を選択 R'))
-    st.R_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
+    st.R_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_R")))
     st.R_entry.insert(0,st.fixe_dic['R']) #default R value
     #-------------------------fixe_type value------------------------------
-    st.fixe_type_label = Label(fr1, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'))
-    st.fixe_type_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
-    st.fixe_type_entry.insert(0,st.fixe_dic["fixe_type"])
+    
     #-------------------------fixe_color------------------------------
     st.fixe_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
     #____________Couleurs avec RGB_____________________________________________________
@@ -269,11 +365,12 @@ def bot_band_fixe():
     Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
     Brick(fr2, width=10, height=5, bg='#000000')
     st.win.R, st.win.G, st.win.B = fr3[1], fr3[2], fr3[3]
-    st.win.Label, st.win.brick = fr3[0], fr2[4] 
+    st.win.Label, st.win.brick = fr3[0], fr2[3] 
     #-------------------------fixe_width------------------------------
     st.fixe_width_label = Label(fr1,text="Largeur")
-    st.fixe_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value())) 
+    st.fixe_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_fix_width"))) 
     st.fixe_width_entry.insert(0,st.fixe_dic["fixe_width"])
+    
     #Permet d'afficher la zone sur laquelle l'utlisateur est à un moment "t" en mettant en blanc la chaine de caractéres du dit boutton activé et en mettant en noir les autres
     del st.frButt_fixe[0]
     st.change1 = Button(st.frButt_fixe,fg='white', text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))
@@ -290,7 +387,7 @@ def bot_band_rond():
     fr1 = Frame(st.bot_band_rond); fr2 = Frame(st.bot_band_rond);fr3 = Frame(st.bot_band_rond)#2 frame to aligne different widgets # 
     #-------------------------  r  ------------------------------
     st.r_label = Label(fr1, text=('Choix de la taille du cercle mobile','Choice of the size of the moving circle','Elección del tamaño del círculo móvil','動く円のサイズの選択')) 
-    st.r_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
+    st.r_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_r")))
     st.r_entry.insert(0,st.rond_dic['r']) #default r value
     #-------------------------trocho_type-----------------------------
     st.troco_type_label = Label(fr1, text=('Choix de la position du cercle mobile','Choice of the position of the moving circle','Elección de la posición del círculo móvil','動く円の位置の選択'))
@@ -307,7 +404,7 @@ def bot_band_rond():
     #st.rond_color_entry.insert(0, st.rond_dic['rond_color']) #default color value
     #--------------------------rond_width----------------------------
     st.rond_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
-    st.rond_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
+    st.rond_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_rond_width")))
     st.rond_width_entry.insert(0, st.rond_dic['rond_width']) #default width value
     #Permet d'afficher la zone sur laquelle l'utlisateur est à un moment "t" en mettant en blanc la chaine de caractéres du dit boutton activé et en mettant en noir les autres 
     del st.frButt_rond[0]
@@ -328,7 +425,7 @@ def bot_band_trocho():
     fr1 = Frame(st.bot_band_trocho); fr2 = Frame(st.bot_band_trocho); fr3 = Frame(st.bot_band_trocho)
     #-------------------------h value------------------------------
     st.h_label = Label(fr1, text=('Choisir valeur h','choice the h value','Elige valor h','値を選択 h'))
-    st.h_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
+    st.h_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_h")))
     st.h_entry.insert(0, st.hypo_dic['h']) #default h value
     #--------------------------troco_color----------------------------
     st.troco_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
@@ -344,7 +441,7 @@ def bot_band_trocho():
     #st.troco_color_entry.insert(0, st.hypo_dic['troco_color']) #default color value
     #--------------------------width----------------------------
     st.troco_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
-    st.troco_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
+    st.troco_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_width")))
     st.troco_width_entry.insert(0, st.hypo_dic['width']) #default width value 
     
     #Permet d'afficher la zone sur laquelle l'utlisateur est à un moment "t" en mettant en blanc la chaine de caractéres du dit boutton activé et en mettant en noir les autres

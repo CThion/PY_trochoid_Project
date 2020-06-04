@@ -18,116 +18,27 @@ def test():
         'st.points_coords_list = ', st.points_coords_list,
         'plage normalement supprimée: ', st.canvas_item[0:len(st.canvas_item)-1],
         'nombre ditem de canvas', len(st.canvas_item),
+        'entry_dic', st.entry_dic,
+        'entry_dic_bo_zejfoeriuhg', st.entry_dic["bot_band_trocho"],
         sep='\n',end='\n\n'
         )
+    for value in st.entry_dic[st.bot_band_indic]: print(value.state)
     #st.TEST['state']='disabled'
-#=====================================================================    
-def test_error(error):
-    """Check value have the good atribute (int,string,float)"""
 
-#------------------------------Check xC its an int--------------------------
-    if error == "error_xC":
-        try :
-            
-
-           xC= int(st.xC_entry.state)
-        except ValueError:
-            test_fr_error=Frame(st.win,bg='yellow')
-            Button(test_fr_error, text="Erreur")
-            st.canvas.create_window(50, 50, window=test_fr_error)
-            return
-        save_value()
-#------------------------Check yC its an int-------------------------
-        
-    elif error == "error_yC":
-        try :
-            
-
-           yC= int(st.yC_entry.state)
-        except ValueError:
-            print("erreur de conversion")
-            return
-        save_value()
-
-#------------------------Check R its an int-------------------------
-        
-    elif error == "error_R":
-        try :
-            
-
-           R= int(st.R_entry.state)
-        except ValueError:
-            print("erreur de conversion")
-            return
-        save_value()
-        
-#------------------------Check type its an str pas encore fonctionelle-------------------------
-        
-    #elif error == "error_type":
-        #try :
-            
-
-         #  fixe_type = (st.fixe_type_entry.state)
-        #except ValueError:
-         #   print("erreur de conversion")
-          #  return
-        #save_value()        
-#------------------------Check width of trocho its an int-------------------------
-        
-    elif error == "error_fix_width":
-        try :
-            
-
-           fix_width = int(st.fixe_width_entry.state)
-        except ValueError:
-            print("erreur de conversion")
-            return
-        save_value()
-#------------------------Check h its an int-------------------------
-        
-    elif error == "error_h":
-        try :
-            
-
-           h= int(st.h_entry.state)
-        except ValueError:
-            print("erreur de conversion")
-            return
-        save_value()
-#------------------------Check width its an int-------------------------
-        
-    elif error == "error_width":
-        try :
-            
-
-           width= int(st.troco_width_entry.state)
-        except ValueError:
-            print("erreur de conversion")
-            return
-        save_value()
-#------------------------Check if r its an int------------------------- #taille du cercle
-        
-    elif error == "error_r":
-        try :
-            
-
-           r= int(st.r_entry.state)
-        except ValueError:
-            print("erreur de conversion")
-            return
-        save_value()
-#------------------------Check rond_width its an int-------------------------
-        
-    elif error == "error_rond_width":
-        try :
-            
-
-          rond_width= int(st.rond_width_entry.state)
-        except ValueError:
-            print("erreur de conversion")
-            return
-        save_value()
-        
+#===============================================================================    
+def type_checker():
+  """DOCKSTRING
+  """
+  for value in st.entry_dic[st.bot_band_indic]:
+    try: int(value.state)
+    except ValueError:
+        test_fr_error = Frame(st.win,bg='red')
+        Label(test_fr_error, text="vous devez impérativement entrer un unique nombre")
+        error_message = st.canvas.create_window(100, 100, window=test_fr_error) 
+        st.win.after(5000, lambda:st.canvas.delete(error_message)) #delete warning message after 5 seconds
+        return
+  save_value() #save value because we're sure its type is good.
+           
 #===============================================================================
 def save_value():
     """save all value in dic (in settings). Called  by start_stop button and the three button of the left_band. Exception:colors values are saved 
@@ -149,7 +60,7 @@ def save_value():
         }
     #--------------------------------------------------
     elif st.bot_band_indic == "bot_band_fixe":
-        #test_error("error_xC")
+        #type_checker("error_xC")
         st.fixe_dic = { #values of all bot_band_fixe's entries 
         "xC":int(st.xC_entry.state), 
         "yC":int(st.yC_entry.state),
@@ -157,7 +68,7 @@ def save_value():
          
         "fixe_width":int(st.fixe_width_entry.state)
         }
-      
+
 #==================================================================================
 def on_language(key_but):
   """callback function for all menu radiobuttons"""
@@ -314,7 +225,6 @@ def on_case(key_but2):
   if key_but2=="Epi":
       st.troco_type_butt.state+=1
 
-    
 #===================================================================================
 def main_bot_band(key_butt):
     """callback fuction for buttons in left_band <forme fixe> <cercle mobile> <trait trocho>
@@ -332,30 +242,28 @@ def main_bot_band(key_butt):
     else: bot_band_trocho()
 
 def bot_band_welcome():
-    st.bot_band_indic = "welcome" #update st.bot_band_indic in settings
+    #st.bot_band_indic = "welcome" #update st.bot_band_indic in settings
     Label(st.big_band, text='Salamaalekum.')
         
 def bot_band_fixe():
-    save_value() #save value of the current bot_band before delete it and set the bot_band_fixe
     st.bot_band_indic = "bot_band_fixe" #update st.bot_band_indic in settings
-    del st.big_band[1]
+    st.entry_dic["bot_band_fixe"]=[] #if not done, st.entry_dic["bot_band_xxx"].append(st.YYY_entry) would make st.entry_dic bigger and bigger
+    del st.big_band[1] #del previous bot_band
     st.bot_band_fixe = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=3, grow=True)
     #2 frame to aligne different widgets
     fr1 = Frame(st.bot_band_fixe); fr2 = Frame(st.bot_band_fixe) ;fr3 = Frame(st.bot_band_fixe)
     #-------------------------xC value-----------------------------
     st.xC_label = Label(fr1, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
-    st.xC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_xC") ))
+    st.xC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker() )) ; st.entry_dic["bot_band_fixe"].append(st.xC_entry) #add entry to entry_dic
     st.xC_entry.insert(0, st.fixe_dic['xC']) #default xC value
     #-------------------------yC value-----------------------------
     st.yC_label = Label(fr1, text=('Choisir coords de y C','choice the y C coords','Elige coordenadas de y C','y C の座標を選択'))
-    st.yC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_yC")))
+    st.yC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_fixe"].append(st.yC_entry) #add entry to entry_dic
     st.yC_entry.insert(0, st.fixe_dic['yC']) #default yC value
     #-------------------------R value------------------------------
     st.R_label = Label(fr1, text=('Choisir valeur R','choice the R value','Elige valor R','値を選択 R'))
-    st.R_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_R")))
-    st.R_entry.insert(0,st.fixe_dic['R']) #default R value
-    #-------------------------fixe_type value------------------------------
-    
+    st.R_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_fixe"].append(st.R_entry) #add entry to entry_dic
+    st.R_entry.insert(0,st.fixe_dic['R']) #default R value    
     #-------------------------fixe_color------------------------------
     st.fixe_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
     #____________Couleurs avec RGB_____________________________________________________
@@ -368,9 +276,9 @@ def bot_band_fixe():
     st.win.Label, st.win.brick = fr3[0], fr2[3] 
     #-------------------------fixe_width------------------------------
     st.fixe_width_label = Label(fr1,text="Largeur")
-    st.fixe_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_fix_width"))) 
+    st.fixe_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())) ; st.entry_dic["bot_band_fixe"].append(st.fixe_width_entry) #add entry to entry_dic
     st.fixe_width_entry.insert(0,st.fixe_dic["fixe_width"])
-    
+    #-------------------------------------------------------------------------
     #Permet d'afficher la zone sur laquelle l'utlisateur est à un moment "t" en mettant en blanc la chaine de caractéres du dit boutton activé et en mettant en noir les autres
     del st.frButt_fixe[0]
     st.change1 = Button(st.frButt_fixe,fg='white', text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))
@@ -380,14 +288,15 @@ def bot_band_fixe():
     st.change3=Button(st.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
     
 def bot_band_rond():
-    save_value() #save value of the current bot_band before delete it and set the bot_band_rond
+    #save_value() #save value of the current bot_band before delete it and set the bot_band_rond
     st.bot_band_indic = "bot_band_rond" #update st.bot_band_indic in settings
+    st.entry_dic["bot_band_rond"]=[] #if not done, st.entry_dic["bot_band_xxx"].append(st.YYY_entry) would make st.entry_dic bigger and bigger
     del st.big_band[1] #del the current bot_band
     st.bot_band_rond = Frame(st.big_band,bg='yellow', width=900, height=300, flow='ES', fold=3, grow=True) #main frame
     fr1 = Frame(st.bot_band_rond); fr2 = Frame(st.bot_band_rond);fr3 = Frame(st.bot_band_rond)#2 frame to aligne different widgets # 
     #-------------------------  r  ------------------------------
     st.r_label = Label(fr1, text=('Choix de la taille du cercle mobile','Choice of the size of the moving circle','Elección del tamaño del círculo móvil','動く円のサイズの選択')) 
-    st.r_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_r")))
+    st.r_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_rond"].append(st.r_entry) #add entry to entry_dic
     st.r_entry.insert(0,st.rond_dic['r']) #default r value
     #-------------------------trocho_type-----------------------------
     st.troco_type_label = Label(fr1, text=('Choix de la position du cercle mobile','Choice of the position of the moving circle','Elección de la posición del círculo móvil','動く円の位置の選択'))
@@ -404,8 +313,9 @@ def bot_band_rond():
     #st.rond_color_entry.insert(0, st.rond_dic['rond_color']) #default color value
     #--------------------------rond_width----------------------------
     st.rond_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
-    st.rond_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_rond_width")))
+    st.rond_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_rond"].append(st.rond_width_entry) #add entry to entry_dic
     st.rond_width_entry.insert(0, st.rond_dic['rond_width']) #default width value
+    #---------------------------------------------------------------------------------------------------------
     #Permet d'afficher la zone sur laquelle l'utlisateur est à un moment "t" en mettant en blanc la chaine de caractéres du dit boutton activé et en mettant en noir les autres 
     del st.frButt_rond[0]
     st.change2 = Button(st.frButt_rond,fg='white', text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))
@@ -417,15 +327,16 @@ def bot_band_rond():
 def bot_band_trocho():
     """DOCSTRING
     """
-    save_value() #save value of the current bot_band before delete it and set the bot_band_rond
+    #save_value() #save value of the current bot_band before delete it and set the bot_band_rond
     st.bot_band_indic = "bot_band_trocho" #update st.bot_band_indic in settings
+    st.entry_dic["bot_band_trocho"]=[] #if not done, st.entry_dic["bot_band_xxx"].append(st.YYY_entry) would make st.entry_dic bigger and bigger
     del st.big_band[1]
     st.bot_band_trocho = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=5, grow=True)
     #4 frame to aligne differents widgets
     fr1 = Frame(st.bot_band_trocho); fr2 = Frame(st.bot_band_trocho); fr3 = Frame(st.bot_band_trocho)
     #-------------------------h value------------------------------
     st.h_label = Label(fr1, text=('Choisir valeur h','choice the h value','Elige valor h','値を選択 h'))
-    st.h_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_h")))
+    st.h_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_trocho"].append(st.h_entry) #add entry to entry_dic
     st.h_entry.insert(0, st.hypo_dic['h']) #default h value
     #--------------------------troco_color----------------------------
     st.troco_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
@@ -441,7 +352,7 @@ def bot_band_trocho():
     #st.troco_color_entry.insert(0, st.hypo_dic['troco_color']) #default color value
     #--------------------------width----------------------------
     st.troco_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
-    st.troco_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), test_error("error_width")))
+    st.troco_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_trocho"].append(st.troco_width_entry) #add entry to entry_dic
     st.troco_width_entry.insert(0, st.hypo_dic['width']) #default width value 
     
     #Permet d'afficher la zone sur laquelle l'utlisateur est à un moment "t" en mettant en blanc la chaine de caractéres du dit boutton activé et en mettant en noir les autres
@@ -508,7 +419,8 @@ def main():
     st.left_band = Frame(st.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=False)#On garde la même hauteur
   #=======================================(parent: st.big_band)===================================================
     st.prince_band = Frame(st.big_band, bg='red', width=(width)*3/4, height=(height)*7/10,op=0,flow='W', grow=True) #On garde la largeur de la frame parent
-    main_bot_band("welcome")
+    bot_band_welcome()
+#    bot_band_fixe()
   #=======================================(parent: st.prince_band)================================================
     #frame at right containing button for starting and drast.wing control while playing 
     st.right_band = Frame(st.prince_band, bg='#FFAEC9', width=(width)*1/12, height=(height)*7/10, grow=True, flow='W')
@@ -518,16 +430,16 @@ def main():
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
     st.frButt_fixe = Frame(st.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
-    st.change1 = Button(st.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))# Trois choix possibles 1 par state
+    st.change1 = Button(st.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(type_checker(), save_value(), main_bot_band("fixe"), on_language("fixe")))# Trois choix possibles 1 par state
   #-----------------
     st.frButt_rond = Frame(st.left_band, bg='cyan', width=(width)*1/4, height=(height)*1/3, grow=True)
-    st.change2 = Button(st.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))# Trois choix possibles 1 par state
+    st.change2 = Button(st.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(type_checker(), save_value(), main_bot_band("rond"),on_language("rond")))# Trois choix possibles 1 par state
   #-----------------
     st.frButt_trocho = Frame(st.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
-    st.change3 = Button(st.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
+    st.change3 = Button(st.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(type_checker(), save_value(), main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
   #=======================================(prent: st.right_band)===============================================
     fr1 = Frame(st.right_band, flow='N'); fr2 = Frame(st.right_band, flow='N', grow=False)#; fr3 = Frame(st.right_band); fr4 = Frame(st.right_band,border=0,width=width,height=0,bd=0) ;fr5 = Frame(st.right_band,border=0,grow=True) 
-    st.start_stop = Button(fr1, text=('start', 'stop'), grow=True, command=lambda:(save_value(), on_change(), bd.on_start()))
+    st.start_stop = Button(fr1, text=('start', 'stop'), grow=True, command=lambda:(type_checker(), on_change(), bd.on_start()))
     st.timer = Label(fr1, text=0, bd=1, grow=True)
     st.reset = Button(fr1, text='reset', grow=True, command=bd.on_reset)
     #speed 

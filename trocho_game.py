@@ -21,7 +21,17 @@ def test():
         sep='\n',end='\n\n'
         )
     #st.TEST['state']='disabled'
+#=====================================================================    
+def test_error(error):
+    save_value()
+    if error == "error_xC":
+        try :
+            
 
+           xC= int(st.xC_entry.state)
+        except ValueError:
+            print("erreur de conversion")
+    
 #===============================================================================
 def save_value():
     """save all value in dic (in settings). Called  by start_stop button and the three button of the left_band. Exception:colors values are saved 
@@ -33,14 +43,14 @@ def save_value():
         "h":int(st.h_entry.state), 
         "width":int(st.troco_width_entry.state), 
         }
-    #-----------------
+    #---------------------------------------------
     elif st.bot_band_indic == "bot_band_rond":
         st.rond_dic = {# update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band
         "r":int(st.r_entry.state), 
         "trocho_type":st.troco_type_butt.state, 
         "rond_width":int(st.rond_width_entry.state)
         }
-    #-----------------
+    #--------------------------------------------------
     elif st.bot_band_indic == "bot_band_fixe":
         st.fixe_dic = { #values of all bot_band_fixe's entries 
         "xC":int(st.xC_entry.state), 
@@ -205,7 +215,8 @@ def on_case(key_but2):
   """
   if key_but2=="Epi":
       st.troco_type_butt.state+=1
-         
+
+    
 #===================================================================================
 def main_bot_band(key_butt):
     """callback fuction for buttons in left_band <forme fixe> <cercle mobile> <trait trocho>
@@ -230,12 +241,12 @@ def bot_band_fixe():
     save_value() #save value of the current bot_band before delete it and set the bot_band_fixe
     st.bot_band_indic = "bot_band_fixe" #update st.bot_band_indic in settings
     del st.big_band[1]
-    st.bot_band_fixe = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=2, grow=True)
+    st.bot_band_fixe = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=3, grow=True)
     #2 frame to aligne different widgets
     fr1 = Frame(st.bot_band_fixe); fr2 = Frame(st.bot_band_fixe) ;fr3 = Frame(st.bot_band_fixe)
     #-------------------------xC value-----------------------------
     st.xC_label = Label(fr1, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
-    st.xC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
+    st.xC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value(), test_error("error_xC") ))
     st.xC_entry.insert(0, st.fixe_dic['xC']) #default xC value
     #-------------------------yC value-----------------------------
     st.yC_label = Label(fr1, text=('Choisir coords de y C','choice the y C coords','Elige coordenadas de y C','y C の座標を選択'))
@@ -275,7 +286,7 @@ def bot_band_rond():
     save_value() #save value of the current bot_band before delete it and set the bot_band_rond
     st.bot_band_indic = "bot_band_rond" #update st.bot_band_indic in settings
     del st.big_band[1] #del the current bot_band
-    st.bot_band_rond = Frame(st.big_band,bg='yellow', width=900, height=300, flow='ES', fold=2, grow=True) #main frame
+    st.bot_band_rond = Frame(st.big_band,bg='yellow', width=900, height=300, flow='ES', fold=3, grow=True) #main frame
     fr1 = Frame(st.bot_band_rond); fr2 = Frame(st.bot_band_rond);fr3 = Frame(st.bot_band_rond)#2 frame to aligne different widgets # 
     #-------------------------  r  ------------------------------
     st.r_label = Label(fr1, text=('Choix de la taille du cercle mobile','Choice of the size of the moving circle','Elección del tamaño del círculo móvil','動く円のサイズの選択')) 

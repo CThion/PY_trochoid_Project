@@ -50,7 +50,7 @@ def save_value():
         "fixe_width":int(st.fixe_width_entry.state)
         }
       
-#===============================================================================
+#==================================================================================
 def on_language(key_but):
   """callback function for all menu radiobuttons"""
   
@@ -190,7 +190,7 @@ def on_language(key_but):
 
       st.troco_type_label.state=3
 
-#===============================================================================
+#==================================================================================
 def on_scale():
   """callback function for all three RGB scales"""
   x = '0123456789ABCDEF'
@@ -418,7 +418,7 @@ def main():
     st.change3 = Button(st.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
   #=======================================(prent: st.right_band)===============================================
     fr1 = Frame(st.right_band, flow='N'); fr2 = Frame(st.right_band, flow='N')#; fr3 = Frame(st.right_band); fr4 = Frame(st.right_band,border=0,width=width,height=0,bd=0) ;fr5 = Frame(st.right_band,border=0,grow=True) 
-    st.start_stop = Button(fr1, text=('start', 'stop'), grow=True, command=lambda:(bd.on_start(), on_change()))
+    st.start_stop = Button(fr1, text=('start', 'stop'), grow=True, command=lambda:(save_value(), on_change(), bd.on_start()))
     st.timer = Label(fr1, text=0, bd=1, grow=True)
     st.reset = Button(fr1, text='reset', grow=True, command=bd.on_reset)
     #speed 

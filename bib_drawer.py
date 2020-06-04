@@ -1,6 +1,7 @@
 from ezTK import *
 from math import *
 import settings as st
+import trocho_game as tg
 
 
 #============================================================================================================================= 
@@ -64,6 +65,7 @@ def on_start():
       st.start_stop.state = 1 - st.start_stop.state 
         # if st.button.state == 1: tick() # start 'tick' when button state is 1
       if st.start_stop.state == 1: 
+            #tg.save_value()
             tick() # start the recusive 
 
 #=================================================================================          

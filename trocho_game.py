@@ -28,28 +28,28 @@ def save_value():
     """
     if st.bot_band_indic == "bot_band_trocho":
         st.hypo_dic = { # update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band 
-        "h":st.h_entry.state, 
+        "h":int(st.h_entry.state), 
         "troco_color":st.troco_color_entry.state, 
-        "width":st.troco_width_entry.state, 
-        "troco_speed":st.troco_speed.state
+        "width":int(st.troco_width_entry.state), 
+        "troco_speed":int(st.troco_speed.state)
         }
     #-----------------
     elif st.bot_band_indic == "bot_band_rond":
         st.rond_dic = {# update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band
-        "r":st.r_entry.state, 
+        "r":int(st.r_entry.state), 
         "trocho_type":st.troco_type_butt.state, 
         "rond_color":st.rond_color_entry.state, 
-        "rond_width":st.rond_width_entry.state
+        "rond_width":int(st.rond_width_entry.state)
         }
     #-----------------
     elif st.bot_band_indic == "bot_band_fixe":
         st.fixe_dic = { #values of all bot_band_fixe's entries 
-        "xC":st.xC_entry.state, 
-        "yC":st.yC_entry.state,
-        "R":st.R_entry.state,
+        "xC":int(st.xC_entry.state), 
+        "yC":int(st.yC_entry.state),
+        "R":int(st.R_entry.state),
         "fixe_type":st.fixe_type_entry.state, 
         "fixe_color":st.fixe_color_entry.state, 
-        "fixe_width":st.fixe_width_entry.state
+        "fixe_width":int(st.fixe_width_entry.state)
         }
       
 
@@ -217,7 +217,6 @@ def main_bot_band(key_butt):
     else: bot_band_trocho()
 
 def bot_band_welcome():
-    save_value() #save value of the current bot_band before delete it and set the bot_band_welcome
     st.bot_band_indic = "welcome" #update st.bot_band_indic in settings
     Label(st.big_band, text='Salamaalekum.')
         
@@ -348,8 +347,8 @@ def on_return():
 def on_change():
     """fonction to switch from the parameting display (with left_band and bot_band) to the drawing display
     """
-    save_value() #save value before deling the bot_band
     if st.display_indic == "parameting": #means "if we are currently with the parameting display"
+        save_value() #save value before deling the bot_band
         del st.left_band[0] #delete all widgets exept right_band and canvas
         del st.left_band[1]
         del st.frameking[1]

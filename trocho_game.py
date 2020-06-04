@@ -29,7 +29,7 @@ def save_value():
     if st.bot_band_indic == "bot_band_trocho":
         st.hypo_dic = { # update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band 
         "h":int(st.h_entry.state), 
-        "troco_color":st.troco_color_entry.state, 
+        #"troco_color":st.troco_color_entry.state, 
         "width":int(st.troco_width_entry.state), 
         "troco_speed":int(st.troco_speed.state)
         }
@@ -38,7 +38,7 @@ def save_value():
         st.rond_dic = {# update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band
         "r":int(st.r_entry.state), 
         "trocho_type":st.troco_type_butt.state, 
-        "rond_color":st.rond_color_entry.state, 
+        #"rond_color":st.rond_color_entry.state, 
         "rond_width":int(st.rond_width_entry.state)
         }
     #-----------------
@@ -48,11 +48,10 @@ def save_value():
         "yC":int(st.yC_entry.state),
         "R":int(st.R_entry.state),
         "fixe_type":st.fixe_type_entry.state, 
-        "fixe_color":st.fixe_color_entry.state, 
+        #"fixe_color":st.fixe_color_entry.state, 
         "fixe_width":int(st.fixe_width_entry.state)
         }
       
-
 #===================================================================================
 def on_language(key_but):
   """callback function for all menu radiobuttons"""
@@ -192,28 +191,16 @@ def on_language(key_but):
       st.change3.state=3
 
       st.troco_type_label.state=3
+
 #==================================================================================
 def on_scale():
   """callback function for all three RGB scales"""
   x = '0123456789ABCDEF'
   r, g, b = st.win.R.state, st.win.G.state, st.win.B.state
   color = '#' + x[r//16] + x[r%16] + x[g//16] + x[g//16] + x[b//16] + x[b//16]
-  st.win.brick['bg']= st.win.Label['text']= color
+  st.win.brick['bg']= st.win.Label['text'] = color #update color on the display and in dictionnaries
+  st.bot_band_dic[st.bot_band_indic]["color"] = color
 
-#===================================================================================
-def on_scale2():
-  """callback function for all three RGB scales"""
-  x = '0123456789ABCDEF'
-  r, g, b = st.win.R.state, st.win.G.state, st.win.B.state
-  color = '#' + x[r//16] + x[r%16] + x[g//16] + x[g//16] + x[b//16] + x[b//16]
-  st.win.brick['bg']= st.win.Label['text']= color
-#===================================================================================
-def on_scale3():
-  """callback function for all three RGB scales"""
-  x = '0123456789ABCDEF'
-  r, g, b = st.win.R.state, st.win.G.state, st.win.B.state
-  color = '#' + x[r//16] + x[r%16] + x[g//16] + x[g//16] + x[b//16] + x[b//16]
-  st.win.brick['bg']= st.win.Label['text']= color
 #===================================================================================
 def on_case(key_but2):
   """fonction to make switch the trocho_type button's text in bot_band_rond. Called by bot_band_rond
@@ -267,25 +254,18 @@ def bot_band_fixe():
     #-------------------------fixe_color------------------------------
     st.fixe_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
     #____________Couleurs avec RGB_____________________________________________________
-    
     Label(fr3, text='#000000', border=1)
     Scale(fr3, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
     Scale(fr3, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
     Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
     Brick(fr2, width=10, height=5, bg='#000000')
     st.win.R, st.win.G, st.win.B = fr3[1], fr3[2], fr3[3]
-    st.win.Label, st.win.brick = fr3[0], fr2[4]
-    
-
-
-    
-    
+    st.win.Label, st.win.brick = fr3[0], fr2[4] 
     #-------------------------fixe_width------------------------------
     st.fixe_width_label = Label(fr1,text="Largeur")
     st.fixe_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value())) 
     st.fixe_width_entry.insert(0,st.fixe_dic["fixe_width"])
     #Permet d'afficher la zone sur laquelle l'utlisateur est à un moment "t" en mettant en blanc la chaine de caractéres du dit boutton activé et en mettant en noir les autres
-    
     del st.frButt_fixe[0]
     st.change1 = Button(st.frButt_fixe,fg='white', text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))
     del st.frButt_rond[0]
@@ -307,27 +287,19 @@ def bot_band_rond():
     st.troco_type_label = Label(fr1, text=('Choix de la position du cercle mobile','Choice of the position of the moving circle','Elección de la posición del círculo móvil','動く円の位置の選択'))
     st.troco_type_butt = Button(fr2,text=('Hypotrochoides','Epitrochoides'),command=lambda : (on_case("Epi"), save_value()))  
     #--------------------------rond_color----------------------------
-
-    
     st.rond_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
     Label(fr3, text='#000000', border=1)
-    Scale(fr3, scale=(0,255), troughcolor='#F00', show=False, command=on_scale2)
-    Scale(fr3, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale2)
-    Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale2)
+    Scale(fr3, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
+    Scale(fr3, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
+    Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
     Brick(fr2, width=10, height=5, bg='#000000')
     st.win.R, st.win.G, st.win.B = fr3[1], fr3[2], fr3[3]
     st.win.Label, st.win.brick = fr3[0], fr2[2]
-
-    
     #st.rond_color_entry.insert(0, st.rond_dic['rond_color']) #default color value
-
-
-    
     #--------------------------rond_width----------------------------
     st.rond_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
     st.rond_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), save_value()))
     st.rond_width_entry.insert(0, st.rond_dic['rond_width']) #default width value
-
     #Permet d'afficher la zone sur laquelle l'utlisateur est à un moment "t" en mettant en blanc la chaine de caractéres du dit boutton activé et en mettant en noir les autres 
     del st.frButt_rond[0]
     st.change2 = Button(st.frButt_rond,fg='white', text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))
@@ -353,13 +325,13 @@ def bot_band_trocho():
     st.troco_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
     
     Label(fr3, text='#000000', border=1)
-    Scale(fr3, scale=(0,255), troughcolor='#F00', show=False, command=on_scale3)
-    Scale(fr3, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale3)
-    Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale3)
+    Scale(fr3, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
+    Scale(fr3, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
+    Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
     Brick(fr2, width=10, height=5, bg='#000000')
     st.win.R, st.win.G, st.win.B = fr3[1], fr3[2], fr3[3]
     st.win.Label, st.win.brick = fr3[0], fr2[1]
-    
+
     #st.troco_color_entry.insert(0, st.hypo_dic['troco_color']) #default color value
     #--------------------------width----------------------------
     st.troco_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
@@ -369,7 +341,6 @@ def bot_band_trocho():
     #Permet d'afficher la zone sur laquelle l'utlisateur est à un moment "t" en mettant en blanc la chaine de caractéres du dit boutton activé et en mettant en noir les autres
     st.change3 = Button(st.frButt_trocho,bg='purple',fg='white',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
     del st.frButt_trocho[0]
-
     del st.frButt_rond[0]
     st.change2 = Button(st.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(main_bot_band("rond"),on_language("rond")))
     del st.frButt_fixe[0]

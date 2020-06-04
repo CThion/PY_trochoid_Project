@@ -20,7 +20,7 @@ bot_band_indic ="welcome" #used by on_save(), to know which bot_band is active
     #xC yC coordonnées du centre du cercle fixe.
 hypo_dic = { #values of all bot_band_trocho's entries
     "h":30, 
-    "troco_color":"cyan", 
+    "color":"cyan", 
     "width":2, 
     "troco_speed":250
     } 
@@ -30,16 +30,17 @@ fixe_dic = { #values of all bot_band_fixe's entries
     "yC":200,
     "R":30,
     "fixe_type":"oval", 
-    "fixe_color":"blue", 
+    "color":"blue", 
     "fixe_width":4
     } 
 #-------------------
 rond_dic = { #values of all bot_band_rond's entries
     "r":30, 
     "trocho_type":"hypo", 
-    "rond_color":"red", 
+    "color":"red", 
     "rond_width":2
     } 
 
+bot_band_dic = {"bot_band_trocho":hypo_dic, "bot_band_fixe":fixe_dic, "bot_band_rond":rond_dic} #bibli of three bot_band bibli
 #==============================================================================================================================================
 

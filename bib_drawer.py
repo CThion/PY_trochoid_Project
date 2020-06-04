@@ -32,7 +32,7 @@ def hypo_trocho(t):
   st.points_coords_list[0] = hypo_cord_calculator(0)  #first point of the trocho, initialised by 0 in settings
   st.points_coords_list.append(hypo_cord_calculator(t)) #add the new point's coords tuple
     #create line with upadted point_coords_list     st.troco_color_entry.state    st.troco_width_entry.state
-  st.canvas_item.append(st.canvas.create_line(st.points_coords_list, fill=st.hypo_dic["troco_color"], width=st.hypo_dic["width"]))
+  st.canvas_item.append(st.canvas.create_line(st.points_coords_list, fill=st.bot_band_dic["bot_band_trocho"]["color"], width=st.hypo_dic["width"]))
     #delete all the previous canvas_line.  
   if len(st.canvas_item) > 1 : #if there is only one canvas_line, do not delete it.
     for item in st.canvas_item[0:len(st.canvas_item)-1]: st.canvas.delete(item)

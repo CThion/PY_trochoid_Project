@@ -11,7 +11,7 @@ t = 0 #global time used in parametrics equations
 canvas_item = [] #  containers for all created canvas item
 points_coords_list = [0]  #  list of points used to draw the trochoide curve, initialised with first point in 0
 display_indic ="parameting" #used by on_change() & on_return(). Default is "parameting", can also be "runing". Indicate which display is activ
-bot_band_indic ="bot_band_fixe" #used by on_save(), to know which bot_band is active
+bot_band_indic ="welcome" #used by on_save(), to know which bot_band is active. Initialised with bot_band_welcome
 
 entry_dic={"bot_band_trocho":[], "bot_band_fixe":[],"bot_band_rond":[]} #each list will contain the widget of referent bot_band (used for test_error)
 

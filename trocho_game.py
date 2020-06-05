@@ -29,11 +29,12 @@ def test():
 def type_checker():
   """DOCKSTRING
   """
-  for value in st.entry_dic[st.bot_band_indic]:
+  if st.bot_band_indic == "welcome": return #there is no value to check in bot_band_welcome
+  for value in st.entry_dic[st.bot_band_indic]: #try every intry.state of the current bot_band
     try: int(value.state)
     except ValueError:
-        test_fr_error = Frame(st.win,bg='red')
-        Label(test_fr_error, text="vous devez impérativement entrer un unique nombre")
+        test_fr_error = Frame(st.win,bg='red')  #display a label on the canvas to warn the user about the mistake
+        Label(test_fr_error, text="attention, vous devez impérativement entrer un unique nombre")
         error_message = st.canvas.create_window(100, 100, window=test_fr_error) 
         st.win.after(5000, lambda:st.canvas.delete(error_message)) #delete warning message after 5 seconds
         return
@@ -242,7 +243,7 @@ def main_bot_band(key_butt):
     else: bot_band_trocho()
 
 def bot_band_welcome():
-    #st.bot_band_indic = "welcome" #update st.bot_band_indic in settings
+    st.bot_band_indic = "welcome" #update st.bot_band_indic in settings
     Label(st.big_band, text='Salamaalekum.')
         
 def bot_band_fixe():
@@ -439,7 +440,7 @@ def main():
     st.change3 = Button(st.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(type_checker(), save_value(), main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
   #=======================================(prent: st.right_band)===============================================
     fr1 = Frame(st.right_band, flow='N'); fr2 = Frame(st.right_band, flow='N', grow=False)#; fr3 = Frame(st.right_band); fr4 = Frame(st.right_band,border=0,width=width,height=0,bd=0) ;fr5 = Frame(st.right_band,border=0,grow=True) 
-    st.start_stop = Button(fr1, text=('start', 'stop'), grow=True, command=lambda:(type_checker(), on_change(), bd.on_start()))
+    st.start_stop = Button(fr1, text=('start', 'stop'), grow=True, command=lambda:(on_change(), bd.on_start()))
     st.timer = Label(fr1, text=0, bd=1, grow=True)
     st.reset = Button(fr1, text='reset', grow=True, command=bd.on_reset)
     #speed 

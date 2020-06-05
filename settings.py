@@ -22,27 +22,6 @@ type_error_indic = False #indicator manage by type_error(), used by other fontio
     #h= distance entre point de tracé et centre cercle mobile
     #xC yC coordonnées du centre du cercle fixe.
 
-hypo_dic = { #bot_band_dic["bot_band_trocho"]
-    "h":30, 
-    "color":"cyan", 
-    "width":2, 
-    } 
-#-------------------
-fixe_dic = { #bot_band_dic["bot_band_fixe"] 
-    "xC":200, 
-    "yC":200,
-    "R":30,
-    "fixe_type":"oval", 
-    "color":"blue", 
-    "fixe_width":4
-    } 
-#-------------------
-rond_dic = { #bot_band_dic["bot_band_rond"]
-    "r":30, 
-    "trocho_type":"hypo", 
-    "color":"red", 
-    "rond_width":2
-    } 
 
 #bot_band_dic = {"bot_band_trocho":hypo_dic, "bot_band_fixe":fixe_dic, "bot_band_rond":rond_dic, "speed":100} #bibli of three bot_band bibli
 bot_band_dic = { #bibli of default values thare are used to intialise every onglet

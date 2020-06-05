@@ -37,7 +37,9 @@ def type_checker():
         Label(test_fr_error, text="attention, vous devez impérativement entrer un unique nombre")
         error_message = st.canvas.create_window(100, 100, window=test_fr_error) 
         st.win.after(4000, lambda:st.canvas.delete(error_message)) #delete warning message after 5 seconds
+        st.type_error_indic = True #indic that currently there is an error somewhere
         return
+  st.type_error_indic = False  #if try have went well, indic there is no wrong value anymore
   save_value() #save value because we're sure its type is good now.
            
 #===============================================================================
@@ -247,12 +249,13 @@ def bot_band_welcome():
     Label(st.big_band, text='Salamaalekum.')
         
 def bot_band_fixe():
+    type_checker()
+    if st.type_error_indic : return #if there is an error in the current bot_band, don't set up the next bot_band til the problem is not solved
     st.bot_band_indic = "bot_band_fixe" #update st.bot_band_indic in settings
     st.entry_dic["bot_band_fixe"]=[] #if not done, st.entry_dic["bot_band_xxx"].append(st.YYY_entry) would make st.entry_dic bigger and bigger
     del st.big_band[1] #del previous bot_band
     st.bot_band_fixe = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=3, grow=True)
-    #2 frame to aligne different widgets
-    fr1 = Frame(st.bot_band_fixe); fr2 = Frame(st.bot_band_fixe) ;fr3 = Frame(st.bot_band_fixe)
+    fr1 = Frame(st.bot_band_fixe); fr2 = Frame(st.bot_band_fixe) ;fr3 = Frame(st.bot_band_fixe) #2 frame to aligne different widgets
     #-------------------------xC value-----------------------------
     st.xC_label = Label(fr1, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
     st.xC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker() )) ; st.entry_dic["bot_band_fixe"].append(st.xC_entry) #add entry to entry_dic
@@ -289,6 +292,8 @@ def bot_band_fixe():
     st.change3=Button(st.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
     
 def bot_band_rond():
+    type_checker()
+    if st.type_error_indic : return #if there is an error in the current bot_band, don't set up the next bot_band til the problem is not solved
     #save_value() #save value of the current bot_band before delete it and set the bot_band_rond
     st.bot_band_indic = "bot_band_rond" #update st.bot_band_indic in settings
     st.entry_dic["bot_band_rond"]=[] #if not done, st.entry_dic["bot_band_xxx"].append(st.YYY_entry) would make st.entry_dic bigger and bigger
@@ -328,7 +333,8 @@ def bot_band_rond():
 def bot_band_trocho():
     """DOCSTRING
     """
-    #save_value() #save value of the current bot_band before delete it and set the bot_band_rond
+    type_checker()
+    if st.type_error_indic : return #if there is an error in the current bot_band, don't set up the next bot_band til the problem is not solved
     st.bot_band_indic = "bot_band_trocho" #update st.bot_band_indic in settings
     st.entry_dic["bot_band_trocho"]=[] #if not done, st.entry_dic["bot_band_xxx"].append(st.YYY_entry) would make st.entry_dic bigger and bigger
     del st.big_band[1]
@@ -389,17 +395,21 @@ def on_return():
 
 #------------------------------------------------------------------------------
 def on_change():
-    """fonction to switch from the parameting display (with left_band and bot_band) to the drawing display
+    """fonction to switch from the parameting display (with left_band and bot_band) to the drawing display. Called by start_stop button
     """
     if st.display_indic == "parameting": #means "if we are currently with the parameting display"
-        save_value() #save value before deling the bot_band
+        type_checker()
+        if st.type_error_indic: return
+        #save_value() #save value before deling the bot_band
         del st.left_band[0] #delete all widgets exept right_band and canvas
         del st.left_band[1]
         del st.frameking[1]
         del st.big_band[1]
         st.change_return = Button(st.top_band,text="Return",command=lambda:on_return()) #button to come back on the previous diplay
         st.display_indic="running" #update st.display_indic
-        st.bot_band_indic="" #in order not to get in the if condition in on_save() also called by start_stop
+        st.bot_band_indic="welcome" #in order not to get in the if condition in on_save() also called by start_stop
+        bd.on_start() #now can start to draw
+    else: bd.on_start()
 
 #==============================================================================  
 def main():
@@ -431,16 +441,16 @@ def main():
     #confining buttons into individul frame to better control their dimentions
   #-----------------  
     st.frButt_fixe = Frame(st.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
-    st.change1 = Button(st.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(type_checker(), save_value(), main_bot_band("fixe"), on_language("fixe")))# Trois choix possibles 1 par state
+    st.change1 = Button(st.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(type_checker(), main_bot_band("fixe"), on_language("fixe")))# Trois choix possibles 1 par state
   #-----------------
     st.frButt_rond = Frame(st.left_band, bg='cyan', width=(width)*1/4, height=(height)*1/3, grow=True)
-    st.change2 = Button(st.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(type_checker(), save_value(), main_bot_band("rond"),on_language("rond")))# Trois choix possibles 1 par state
+    st.change2 = Button(st.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(type_checker(), main_bot_band("rond"),on_language("rond")))# Trois choix possibles 1 par state
   #-----------------
     st.frButt_trocho = Frame(st.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
-    st.change3 = Button(st.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(type_checker(), save_value(), main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
+    st.change3 = Button(st.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(type_checker(), main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
   #=======================================(prent: st.right_band)===============================================
     fr1 = Frame(st.right_band, flow='N'); fr2 = Frame(st.right_band, flow='N', grow=False)#; fr3 = Frame(st.right_band); fr4 = Frame(st.right_band,border=0,width=width,height=0,bd=0) ;fr5 = Frame(st.right_band,border=0,grow=True) 
-    st.start_stop = Button(fr1, text=('start', 'stop'), grow=True, command=lambda:(on_change(), bd.on_start()))
+    st.start_stop = Button(fr1, text=('start', 'stop'), grow=True, command=lambda:(on_change()))
     st.timer = Label(fr1, text=0, bd=1, grow=True)
     st.reset = Button(fr1, text='reset', grow=True, command=bd.on_reset)
     #speed 

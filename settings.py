@@ -14,7 +14,7 @@ display_indic ="parameting" #used by on_change() & on_return(). Default is "para
 bot_band_indic ="welcome" #used by on_save(), to know which bot_band is active. Initialised with bot_band_welcome
 
 entry_dic={"bot_band_trocho":[], "bot_band_fixe":[],"bot_band_rond":[]} #each list will contain the widget of referent bot_band (used for test_error)
-
+type_error_indic = False #indicator manage by type_error(), used by other fontion as a condition tu run or not. Get True when there is an error. False by default
 #==============================================================================================================================================
             #dictionnary for values of differents bot_band 
     #R=rayon cercle fixe

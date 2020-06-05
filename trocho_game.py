@@ -1,11 +1,12 @@
-﻿# ==============================================================================
+﻿
+  
 """Our display screen for trochoid game"""
 # ==============================================================================
 __author__  = "Plantey--veux Axel & Thion Clement"
 __version__ = "1.0" # draw lines, rectangles, ovals, strings and images
 __date__    = "2020-04-"
 # ==============================================================================
-#from PIL import ImageGrab
+from PIL import ImageGrab
 from ezTK import *
 from math import *
 import settings as st
@@ -23,7 +24,7 @@ def test():
     #for value in st.entry_dic[st.bot_band_indic]: print(value.state)
     #st.TEST['state']='disabled'
 
-"""
+
 #=====================================================================# la fonction suivante a été inspiré d'un auteur du forum trouvable ci dessous
 #https://www.developpez.net/forums/d122973/autres-langages/python/gui/tkinter/tkinter-recuperer-contenu-d-canvas-sous-format-image/ inspiré de ce forum
 def on_save_image():
@@ -33,7 +34,7 @@ def on_save_image():
     w = Canvas.winfo_width(st.canvas)
     h = Canvas.winfo_height(st.canvas)
     img= ImageGrab.grab((x, y, x+w, y+h)).save("IMAGE.png")   
-"""
+    MessageDialog.showinfo('INFO SAUVEGARDE', message='Votre fichier va etre sauvegarder dans le répertoire du fichier trocho')
 #=====================================================================
 def new_onglet():
     return
@@ -98,135 +99,84 @@ def on_language(key_but):
       
   if st.min == "Francais" and key_but == "trocho" :
       
-      st.change1.state=0
-      st.change2.state=0
-      st.change3.state=0
+      st.change1.state=0;st.change2.state=0;st.change3.state=0      
+      st.h_label.state=0 ; st.troco_color_label.state=0
       st.troco_width_label.state=0
-      st.troco_color_label.state=0
-      st.h_label.state=0
-      st.r_label.state=0
-      st.R_label.state=0
-      st.yC_label.state=0
-      st.xC_label.state=0
       
   elif st.min == "Francais" and key_but == "fixe" :
 
-      
-      st.change1.state=0
-      st.change2.state=0
-      st.change3.state=0
-
-      
-      st.fixe_type_label.state=0
+    
+      st.change1.state=0;st.change2.state=0;st.change3.state=0
+      st.yC_label.state=0 ; st.xC_label.state=0 ;st.R_label.state=0
+      st.fixe_width_label.state=0 ;st.fixe_color_label.state=0
 
   elif st.min == "Francais" and key_but == "rond" :
 
-      st.change1.state=0
-      st.change2.state=0
-      st.change3.state=0
-
-      
-      st.troco_type_label.state=0
+      st.change1.state=0;st.change2.state=0;st.change3.state=0  
+      st.r_label.state=0 ;st.troco_type_label.state=0
+      st.rond_color_label.state = 0 ;st.rond_width_label.state=0
 
  #--------------------------Anglais-----------------------------------------------
       
 
   elif st.min == "Anglais" and key_but == "trocho" :
       
-      st.change1.state=1
-      st.change2.state=1
-      st.change3.state=1
-      
+      st.change1.state=1;st.change2.state=1;st.change3.state=1       
+      st.h_label.state=1 ; st.troco_color_label.state=1
       st.troco_width_label.state=1
-      st.troco_color_label.state=1
-      st.h_label.state=1
-      st.r_label.state=1
-      st.R_label.state=1
-      st.yC_label.state=1
-      st.xC_label.state=1
-
       
   elif st.min == "Anglais" and key_but == "fixe" :
       
-      st.change1.state=1
-      st.change2.state=1
-      st.change3.state=1
-      
-      st.fixe_type_label.state=1
+      st.change1.state=1;st.change2.state=1;st.change3.state=1 
+      st.yC_label.state=1; st.xC_label.state=1 ;st.R_label.state=1
+      st.fixe_width_label.state=1;st.fixe_color_label.state=1
       
   elif st.min == "Anglais" and key_but == "rond" :
 
-      st.change1.state=1
-      st.change2.state=1
-      st.change3.state=1
-
-      st.troco_type_label.state=1
+      st.change1.state=1;st.change2.state=1;st.change3.state=1      
+      st.r_label.state=1 ;st.troco_type_label.state=1
+      st.rond_color_label.state = 1 ;st.rond_width_label.state=1
       
  #--------------------------Espagnol-----------------------------------------------         
   elif st.min == "Espagnol" and key_but == "trocho" :
       
-      st.change1.state=2
-      st.change2.state=2
-      st.change3.state=2
-     
+      st.change1.state=2;st.change2.state=2;st.change3.state=2
+      
+      st.h_label.state=2 ; st.troco_color_label.state=2
       st.troco_width_label.state=2
-      st.troco_color_label.state=2
-      st.h_label.state=2
-      st.r_label.state=2
-      st.R_label.state=2
-      st.yC_label.state=2
-      st.xC_label.state=2
       
   elif st.min == "Espagnol" and key_but == "fixe" :
       
-      st.change1.state=2
-      st.change2.state=2
-      st.change3.state=2
-
-      
-      st.fixe_type_label.state=2
+      st.change1.state=2;st.change2.state=2;st.change3.state=2
+      st.yC_label.state=2; st.xC_label.state=2 ;st.R_label.state=2
+      st.fixe_width_label.state=2;st.fixe_color_label.state=2
 
   elif st.min == "Espagnol" and key_but == "rond" :
       
-      st.change1.state=2
-      st.change2.state=2
-      st.change3.state=2
-
-      st.troco_type_label.state=2
-
+      st.change1.state=2;st.change2.state=2;st.change3.state=2
+      st.r_label.state=2 ;st.troco_type_label.state=2
+      st.rond_color_label.state = 2;st.rond_width_label.state=2
 
  #--------------------------Japonais-----------------------------------------------      
 
   elif st.min == "Japonais" and key_but == "trocho" :
       
-      st.change1.state=3
-      st.change2.state=3
-      st.change3.state=3
-
+      st.change1.state=3;st.change2.state=3;st.change3.state=3
+      
+      st.h_label.state=3 ; st.troco_color_label.state=3
       st.troco_width_label.state=3
-      st.troco_color_label.state=3
-      st.h_label.state=3
-      st.r_label.state=3
-      st.R_label.state=3
-      st.yC_label.state=3
-      st.xC_label.state=3
       
   elif st.min == "Japonais" and key_but == "fixe" :
       
-      st.change1.state=3
-      st.change2.state=3
-      st.change3.state=3
-
-      st.fixe_type_label.state=3
-
+      st.change1.state=3;st.change2.state=3;st.change3.state=3
+      st.yC_label.state=3; st.xC_label.state=3 ;st.R_label.state=3
+      st.fixe_width_label.state=3;st.fixe_color_label.state=3
+      
   elif st.min == "Japonais" and key_but == "rond" :
       
-      st.change1.state=3
-      st.change2.state=3
-      st.change3.state=3
-
-      st.troco_type_label.state=3
-
+      st.change1.state=3;st.change2.state=3;st.change3.state=3      
+      st.r_label.state=3 ;st.troco_type_label.state=3
+      st.rond_color_label.state = 3;st.rond_width_label.state=3
 #==================================================================================
 def on_scale():
   """callback function for all three RGB scales"""
@@ -270,8 +220,8 @@ def bot_band_fixe():
     st.bot_band_indic = "bot_band_fixe" #update st.bot_band_indic in settings
     st.entry_dic["bot_band_fixe"]=[] #if not done, st.entry_dic["bot_band_xxx"].append(st.YYY_entry) would make st.entry_dic bigger and bigger
     del st.big_band[1] #del previous bot_band
-    st.bot_band_fixe = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=3, grow=True)
-    fr1 = Frame(st.bot_band_fixe); fr2 = Frame(st.bot_band_fixe) ;fr3 = Frame(st.bot_band_fixe) #2 frame to aligne different widgets
+    st.bot_band_fixe = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=5, grow=True)
+    fr1 = Frame(st.bot_band_fixe); fr2 = Frame(st.bot_band_fixe) ;fr3 = Frame(st.bot_band_fixe); fr4 = Frame(st.bot_band_fixe) #2 frame to aligne different widgets
     #-------------------------xC value-----------------------------
     st.xC_label = Label(fr1, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
     st.xC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker() )) ; st.entry_dic["bot_band_fixe"].append(st.xC_entry) #add entry to entry_dic
@@ -285,15 +235,17 @@ def bot_band_fixe():
     st.R_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_fixe"].append(st.R_entry) #add entry to entry_dic
     st.R_entry.insert(0,st.bot_band_dic["bot_band_fixe"]['R']) #default R value    
     #-------------------------fixe_color------------------------------
-    st.fixe_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
+    st.fixe_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
     #____________Couleurs avec RGB_____________________________________________________
-    Label(fr3, text='#000000', border=1)
-    Scale(fr3, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
-    Brick(fr2, width=10, height=5, bg='#000000')
-    st.win.R, st.win.G, st.win.B = fr3[1], fr3[2], fr3[3]
-    st.win.Label, st.win.brick = fr3[0], fr2[3] 
+    
+    Label(fr3)
+    Label(fr3)
+    Scale(fr4, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
+    
+    st.win.R, st.win.G, st.win.B = fr4[0], fr4[1], fr4[2]
+    st.win.Label, st.win.brick = fr3[1], fr3[2] 
     #-------------------------fixe_width------------------------------
     st.fixe_width_label = Label(fr1,text="Largeur")
     st.fixe_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())) ; st.entry_dic["bot_band_fixe"].append(st.fixe_width_entry) #add entry to entry_dic
@@ -314,8 +266,8 @@ def bot_band_rond():
     st.bot_band_indic = "bot_band_rond" #update st.bot_band_indic in settings
     st.entry_dic["bot_band_rond"]=[] #if not done, st.entry_dic["bot_band_xxx"].append(st.YYY_entry) would make st.entry_dic bigger and bigger
     del st.big_band[1] #del the current bot_band
-    st.bot_band_rond = Frame(st.big_band,bg='yellow', width=900, height=300, flow='ES', fold=3, grow=True) #main frame
-    fr1 = Frame(st.bot_band_rond); fr2 = Frame(st.bot_band_rond);fr3 = Frame(st.bot_band_rond)#2 frame to aligne different widgets # 
+    st.bot_band_rond = Frame(st.big_band,bg='yellow', width=900, height=300, flow='ES', fold=4, grow=True) #main frame
+    fr1 = Frame(st.bot_band_rond); fr2 = Frame(st.bot_band_rond);fr3 = Frame(st.bot_band_rond);fr4 = Frame(st.bot_band_rond)#2 frame to aligne different widgets # 
     #-------------------------  r  ------------------------------
     st.r_label = Label(fr1, text=('Choix de la taille du cercle mobile','Choice of the size of the moving circle','Elección del tamaño del círculo móvil','動く円のサイズの選択')) 
     st.r_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_rond"].append(st.r_entry) #add entry to entry_dic
@@ -324,14 +276,15 @@ def bot_band_rond():
     st.troco_type_label = Label(fr1, text=('Choix de la position du cercle mobile','Choice of the position of the moving circle','Elección de la posición del círculo móvil','動く円の位置の選択'))
     st.troco_type_butt = Button(fr2, text=st.trocho_type_list[st.i%2], command=lambda : (on_case()))  #st.bot_band_dic["bot_band_rond"]["trocho_type"]
     #--------------------------rond_color----------------------------
-    st.rond_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    Label(fr3, text='#000000', border=1)
-    Scale(fr3, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
-    Brick(fr2, width=10, height=5, bg='#000000')
-    st.win.R, st.win.G, st.win.B = fr3[1], fr3[2], fr3[3]
-    st.win.Label, st.win.brick = fr3[0], fr2[2]
+    st.rond_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
+    Label(fr3)
+    Label(fr3)
+    Scale(fr4, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
+    
+    st.win.R, st.win.G, st.win.B = fr4[0], fr4[1], fr4[2]
+    st.win.Label, st.win.brick = fr3[1], fr3[2] 
     #--------------------------rond_width----------------------------
     st.rond_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
     st.rond_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_rond"].append(st.rond_width_entry) #add entry to entry_dic
@@ -355,20 +308,22 @@ def bot_band_trocho():
     del st.big_band[1]
     st.bot_band_trocho = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=5, grow=True)
     #4 frame to aligne differents widgets
-    fr1 = Frame(st.bot_band_trocho); fr2 = Frame(st.bot_band_trocho); fr3 = Frame(st.bot_band_trocho)
+    fr1 = Frame(st.bot_band_trocho); fr2 = Frame(st.bot_band_trocho); fr3 = Frame(st.bot_band_trocho) ;fr4 = Frame(st.bot_band_trocho)
     #-------------------------h value------------------------------
     st.h_label = Label(fr1, text=('Choisir valeur h','choice the h value','Elige valor h','値を選択 h'))
     st.h_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_trocho"].append(st.h_entry) #add entry to entry_dic
     st.h_entry.insert(0, st.bot_band_dic["bot_band_trocho"]['h']) #default h value
     #--------------------------troco_color----------------------------
-    st.troco_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    Label(fr3, text='#000000', border=1)
-    Scale(fr3, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
-    Brick(fr2, width=10, height=5, bg='#000000')
-    st.win.R, st.win.G, st.win.B = fr3[1], fr3[2], fr3[3]
-    st.win.Label, st.win.brick = fr3[0], fr2[1]
+    st.troco_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
+     
+    Label(fr3)
+    Label(fr3)
+    Scale(fr4, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
+    
+    st.win.R, st.win.G, st.win.B = fr4[0], fr4[1], fr4[2]
+    st.win.Label, st.win.brick = fr3[1], fr3[2] 
     #--------------------------width----------------------------
     st.troco_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
     st.troco_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_trocho"].append(st.troco_width_entry) #add entry to entry_dic
@@ -392,7 +347,7 @@ def on_return():
         #st.start_stop.state = 0
          #delete st.change_return button
           #now recreate all widgets of the parameting display
-        #Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
+        Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
         main_bot_band("welcome")
         st.left_band = Frame(st.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=True)
         st.frButt_fixe = Frame(st.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
@@ -404,7 +359,7 @@ def on_return():
         st.frButt_trocho = Frame(st.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
         st.change3 = Button(st.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
         st.display_indic = "parameting" #update st.display_indic
-        #del st.top_band[1]
+        del st.top_band[1]
         del st.top_band[0]
 #------------------------------------------------------------------------------
 def on_change():
@@ -431,7 +386,7 @@ def main():
   #=======================================(parent: st.win)=======================================================
     st.top_band= Frame(st.win, bg='red', width=width, height=height//40, grow=False) #frame for general options (language...)
 
-    #Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
+    Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
       #language début
     st.win.master['menu'] = menu = Menu(st.win.master)
     st.minmenu = Menu(menu, tearoff=False); st.minmenu.state = StringVar()
@@ -471,9 +426,9 @@ def main():
     #speed 
     lapin = Image(file='lapin.gif')
     tortue = Image(file='tortue.gif')
-    Label(fr2, image=lapin, grow=True)                                                                                                                                                                                                                                                           
-    st.speed = Scale(fr2, orient='VERTICAL', showvalue=0, bd=0, scale=(10, 1000), grow=True, command=lambda:save_value()) ; st.speed.set(st.bot_band_dic['speed']) #default speed
     Label(fr2, image=tortue, grow=True)                                                                                                                                                                                                                                                           
+    st.speed = Scale(fr2, flow="N", showvalue=0, bd=0, scale=(10, 1000), grow=True, command=lambda:save_value()) ; st.speed.set(st.bot_band_dic['speed']) #default speed
+    Label(fr2, image=lapin, grow=True)                                                                                                                                                                                                                                                           
   #===================================================================================
     #widgets temporaire, seulement pour tester le programme graphiquement
     test_frame = Frame(st.win, bg="yellow")

@@ -26,20 +26,20 @@ entry_dic={"bot_band_trocho":[], "bot_band_fixe":[],"bot_band_rond":[]} #each li
     #xC yC coordonnées du centre du cercle fixe.
 bot_band_dic = { #bibli of default values thare are used to intialise every onglet
     "bot_band_trocho":{#bot_band_trocho's values
-            "h":30, 
+            "h":100, 
             "color":"cyan", 
             "width":2, 
             }, 
     "bot_band_fixe":{ #bot_band_fixe's values
-            "xC":200, 
-            "yC":200,
-            "R":30,
+            "xC":300, 
+            "yC":300,
+            "R":100,
             "fixe_type":"oval", 
             "color":"blue", 
             "fixe_width":4
             }, 
     "bot_band_rond":{ #bot_band_rond's values
-            "r":30, 
+            "r":60, 
             "trocho_type":'Hypotrochoides', 
             "color":"red", 
             "rond_width":2

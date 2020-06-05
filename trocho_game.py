@@ -33,11 +33,12 @@ def type_checker():
   for value in st.entry_dic[st.bot_band_indic]: #try every intry.state of the current bot_band
     try: int(value.state)
     except ValueError:#display a label on the canvas to warn the user about the mistake, and replace the wrong value by the latest good one.
-        test_fr_error = Frame(st.win,bg='red') 
-        Label(test_fr_error, text="attention, vous devez impérativement entrer un unique nombre")
-        error_message = st.canvas.create_window(100, 100, window=test_fr_error) 
-        st.win.after(4000, lambda:st.canvas.delete(error_message)) #delete warning message after 5 seconds
         st.type_error_indic = True #indic that currently there is an error somewhere
+        MessageDialog.showwarning('WARN', message='Attention, vous devez impérativement entrer un unique nombre')
+        #test_fr_error = Frame(st.win,bg='red') 
+        #Label(test_fr_error, text="attention, vous devez impérativement entrer un unique nombre")
+        #error_message = st.canvas.create_window(100, 100, window=test_fr_error) 
+        #st.win.after(4000, lambda:st.canvas.delete(error_message)) #delete warning message after 5 seconds
         return
   st.type_error_indic = False  #if try have went well, indic there is no wrong value anymore
   save_value() #save value because we're sure its type is good now.

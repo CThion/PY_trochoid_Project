@@ -27,22 +27,31 @@ entry_dic={"bot_band_trocho":[], "bot_band_fixe":[],"bot_band_rond":[]} #each li
 bot_band_dic = { #bibli of default values thare are used to intialise every onglet
     "bot_band_trocho":{#bot_band_trocho's values
             "h":100, 
-            "color":"cyan", 
+            "color":"#000000", 
             "width":2, 
+            "R_":0,
+            "G_":0,
+            "B_":0
             }, 
     "bot_band_fixe":{ #bot_band_fixe's values
             "xC":300, 
             "yC":300,
             "R":100,
             "fixe_type":"oval", 
-            "color":"blue", 
-            "fixe_width":4
+            "color":"#000000", 
+            "fixe_width":4,
+            "R_":0,
+            "G_":0,
+            "B_":0
             }, 
     "bot_band_rond":{ #bot_band_rond's values
             "r":60, 
             "trocho_type":'Hypotrochoides', 
-            "color":"red", 
-            "rond_width":2
+            "color":"#000000", 
+            "rond_width":2,
+            "R_":0,
+            "G_":0,
+            "B_":0
             }, 
     "speed":100} 
 

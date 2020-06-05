@@ -36,8 +36,6 @@ def on_save_image():
     img= ImageGrab.grab((x, y, x+w, y+h)).save("IMAGE.png")   
     MessageDialog.showinfo('INFO SAUVEGARDE', message='Votre fichier va etre sauvegarder dans le répertoire du fichier trocho')
 #=====================================================================
-def new_onglet():
-    return
       
 #===============================================================================    
 def type_checker():
@@ -68,14 +66,22 @@ def save_value():
     if st.bot_band_indic == "bot_band_trocho":
         st.bot_band_dic["bot_band_trocho"] = { # update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band 
         "h":int(st.h_entry.state), 
-        "width":int(st.troco_width_entry.state), 
+        "width":int(st.troco_width_entry.state),
+        "color":st.bot_band_dic["bot_band_trocho"]["color"],
+        "R_":0,
+        "G_":0,
+        "B_":0
         }
     #---------------------------------------------
     elif st.bot_band_indic == "bot_band_rond":
         st.bot_band_dic["bot_band_rond"] = {# update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band
         "r":int(st.r_entry.state), 
         "trocho_type":st.troco_type_butt.state, 
-        "rond_width":int(st.rond_width_entry.state)
+        "rond_width":int(st.rond_width_entry.state),
+        "color":st.bot_band_dic["bot_band_rond"]["color"],
+        "R_":0,
+        "G_":0,
+        "B_":0
         }
     #--------------------------------------------------
     elif st.bot_band_indic == "bot_band_fixe":
@@ -84,8 +90,11 @@ def save_value():
         "xC":int(st.xC_entry.state), 
         "yC":int(st.yC_entry.state),
         "R":int(st.R_entry.state),
-         
-        "fixe_width":int(st.fixe_width_entry.state)
+        "fixe_width":int(st.fixe_width_entry.state),
+        "color":st.bot_band_dic["bot_band_fixe"]["color"],
+        "R_":0,
+        "G_":0,
+        "B_":0
         }
 
 #==================================================================================
@@ -182,6 +191,7 @@ def on_scale():
   """callback function for all three RGB scales"""
   x = '0123456789ABCDEF'
   r, g, b = st.win.R.state, st.win.G.state, st.win.B.state
+  st.bot_band_dic[st.bot_band_indic]["R_"], st.bot_band_dic[st.bot_band_indic]["G_"], st.bot_band_dic[st.bot_band_indic]["B_"] = r,g,b
   color = '#' + x[r//16] + x[r%16] + x[g//16] + x[g//16] + x[b//16] + x[b//16]
   st.win.brick['bg']= st.win.Label['text'] = color #update color on the display and in dictionnaries
   st.bot_band_dic[st.bot_band_indic]["color"] = color
@@ -238,13 +248,16 @@ def bot_band_fixe():
     st.fixe_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
     #____________Couleurs avec RGB_____________________________________________________
     
-    Label(fr3)
-    Label(fr3)
+    Label(fr3, text=st.bot_band_dic["bot_band_fixe"]["color"])
+    Label(fr3, bg=st.bot_band_dic["bot_band_fixe"]["color"])
     Scale(fr4, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
     Scale(fr4, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
     Scale(fr4, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
     
     st.win.R, st.win.G, st.win.B = fr4[0], fr4[1], fr4[2]
+    st.win.R.set(st.bot_band_dic["bot_band_fixe"]["R_"])
+    st.win.G.set(st.bot_band_dic["bot_band_fixe"]["G_"])
+    st.win.B.set(st.bot_band_dic["bot_band_fixe"]["B_"])
     st.win.Label, st.win.brick = fr3[1], fr3[2] 
     #-------------------------fixe_width------------------------------
     st.fixe_width_label = Label(fr1,text="Largeur")
@@ -277,13 +290,16 @@ def bot_band_rond():
     st.troco_type_butt = Button(fr2, text=st.trocho_type_list[st.i%2], command=lambda : (on_case()))  #st.bot_band_dic["bot_band_rond"]["trocho_type"]
     #--------------------------rond_color----------------------------
     st.rond_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    Label(fr3)
-    Label(fr3)
+    Label(fr3, text=st.bot_band_dic["bot_band_rond"]["color"])
+    Label(fr3, bg=st.bot_band_dic["bot_band_rond"]["color"])
     Scale(fr4, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
     Scale(fr4, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
     Scale(fr4, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
     
     st.win.R, st.win.G, st.win.B = fr4[0], fr4[1], fr4[2]
+    st.win.R.set(st.bot_band_dic["bot_band_rond"]["R_"])
+    st.win.G.set(st.bot_band_dic["bot_band_rond"]["G_"])
+    st.win.B.set(st.bot_band_dic["bot_band_rond"]["B_"])
     st.win.Label, st.win.brick = fr3[1], fr3[2] 
     #--------------------------rond_width----------------------------
     st.rond_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
@@ -316,13 +332,15 @@ def bot_band_trocho():
     #--------------------------troco_color----------------------------
     st.troco_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
      
-    Label(fr3)
-    Label(fr3)
+    Label(fr3, text=st.bot_band_dic["bot_band_trocho"]["color"])
+    Label(fr3, bg=st.bot_band_dic["bot_band_trocho"]["color"])
     Scale(fr4, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
     Scale(fr4, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
     Scale(fr4, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
-    
     st.win.R, st.win.G, st.win.B = fr4[0], fr4[1], fr4[2]
+    st.win.R.set(st.bot_band_dic["bot_band_trocho"]["R_"])
+    st.win.G.set(st.bot_band_dic["bot_band_trocho"]["G_"])
+    st.win.B.set(st.bot_band_dic["bot_band_trocho"]["B_"])
     st.win.Label, st.win.brick = fr3[1], fr3[2] 
     #--------------------------width----------------------------
     st.troco_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
@@ -368,7 +386,6 @@ def on_change():
     if st.display_indic == "parameting": #means "if we are currently with the parameting display"
         type_checker()
         if st.type_error_indic: return
-        #save_value() #save value before deling the bot_band
         del st.left_band[0] #delete all widgets exept right_band and canvas
         del st.left_band[1]
         del st.frameking[1]

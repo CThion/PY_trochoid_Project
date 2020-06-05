@@ -99,29 +99,20 @@ def on_language(key_but):
       
   if st.min == "Francais" and key_but == "trocho" :
       
-      st.change1.state=0
-      st.change2.state=0
-      st.change3.state=0
-      
+      st.change1.state=0;st.change2.state=0;st.change3.state=0      
       st.h_label.state=0 ; st.troco_color_label.state=0
       st.troco_width_label.state=0
       
   elif st.min == "Francais" and key_but == "fixe" :
 
     
-      st.change1.state=0
-      st.change2.state=0
-      st.change3.state=0
-
-
+      st.change1.state=0;st.change2.state=0;st.change3.state=0
       st.yC_label.state=0 ; st.xC_label.state=0 ;st.R_label.state=0
       st.fixe_width_label.state=0 ;st.fixe_color_label.state=0
 
   elif st.min == "Francais" and key_but == "rond" :
 
-      st.change1.state=0
-      st.change2.state=0
-      st.change3.state=0  
+      st.change1.state=0;st.change2.state=0;st.change3.state=0  
       st.r_label.state=0 ;st.troco_type_label.state=0
       st.rond_color_label.state = 0 ;st.rond_width_label.state=0
 
@@ -130,62 +121,39 @@ def on_language(key_but):
 
   elif st.min == "Anglais" and key_but == "trocho" :
       
-      st.change1.state=1
-      st.change2.state=1
-      st.change3.state=1
-      
+      st.change1.state=1;st.change2.state=1;st.change3.state=1       
       st.h_label.state=1 ; st.troco_color_label.state=1
       st.troco_width_label.state=1
       
   elif st.min == "Anglais" and key_but == "fixe" :
       
-      st.change1.state=1
-      st.change2.state=1
-      st.change3.state=1
-
-
+      st.change1.state=1;st.change2.state=1;st.change3.state=1 
       st.yC_label.state=1; st.xC_label.state=1 ;st.R_label.state=1
       st.fixe_width_label.state=1;st.fixe_color_label.state=1
       
   elif st.min == "Anglais" and key_but == "rond" :
 
-      st.change1.state=1
-      st.change2.state=1
-      st.change3.state=1
-
-      
-
+      st.change1.state=1;st.change2.state=1;st.change3.state=1      
       st.r_label.state=1 ;st.troco_type_label.state=1
       st.rond_color_label.state = 1 ;st.rond_width_label.state=1
       
  #--------------------------Espagnol-----------------------------------------------         
   elif st.min == "Espagnol" and key_but == "trocho" :
       
-      st.change1.state=2
-      st.change2.state=2
-      st.change3.state=2
+      st.change1.state=2;st.change2.state=2;st.change3.state=2
       
       st.h_label.state=2 ; st.troco_color_label.state=2
       st.troco_width_label.state=2
       
   elif st.min == "Espagnol" and key_but == "fixe" :
       
-      st.change1.state=2
-      st.change2.state=2
-      st.change3.state=2
-
-
+      st.change1.state=2;st.change2.state=2;st.change3.state=2
       st.yC_label.state=2; st.xC_label.state=2 ;st.R_label.state=2
       st.fixe_width_label.state=2;st.fixe_color_label.state=2
 
   elif st.min == "Espagnol" and key_but == "rond" :
       
-      st.change1.state=2
-      st.change2.state=2
-      st.change3.state=2
-
-      
-
+      st.change1.state=2;st.change2.state=2;st.change3.state=2
       st.r_label.state=2 ;st.troco_type_label.state=2
       st.rond_color_label.state = 2;st.rond_width_label.state=2
 
@@ -193,43 +161,22 @@ def on_language(key_but):
 
   elif st.min == "Japonais" and key_but == "trocho" :
       
-      st.change1.state=3
-      st.change2.state=3
-      st.change3.state=3
+      st.change1.state=3;st.change2.state=3;st.change3.state=3
       
       st.h_label.state=3 ; st.troco_color_label.state=3
       st.troco_width_label.state=3
       
   elif st.min == "Japonais" and key_but == "fixe" :
       
-      st.change1.state=3
-      st.change2.state=3
-      st.change3.state=3
-
-
+      st.change1.state=3;st.change2.state=3;st.change3.state=3
       st.yC_label.state=3; st.xC_label.state=3 ;st.R_label.state=3
       st.fixe_width_label.state=3;st.fixe_color_label.state=3
       
-      
-      
-      
-
-      #st.fixe_type_label.state=3
-
   elif st.min == "Japonais" and key_but == "rond" :
       
-      st.change1.state=3
-      st.change2.state=3
-      st.change3.state=3
-
-      
-
+      st.change1.state=3;st.change2.state=3;st.change3.state=3      
       st.r_label.state=3 ;st.troco_type_label.state=3
       st.rond_color_label.state = 3;st.rond_width_label.state=3
-      
-      
-      #st.troco_type_label.state=3
-
 #==================================================================================
 def on_scale():
   """callback function for all three RGB scales"""

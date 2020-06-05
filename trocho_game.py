@@ -1,11 +1,12 @@
-﻿# ==============================================================================
+﻿
+  
 """Our display screen for trochoid game"""
 # ==============================================================================
 __author__  = "Plantey--veux Axel & Thion Clement"
 __version__ = "1.0" # draw lines, rectangles, ovals, strings and images
 __date__    = "2020-04-"
 # ==============================================================================
-#from PIL import ImageGrab
+from PIL import ImageGrab
 from ezTK import *
 from math import *
 import settings as st
@@ -26,7 +27,7 @@ def test():
     for value in st.entry_dic[st.bot_band_indic]: print(value.state)
     #st.TEST['state']='disabled'
 
-"""
+
 #=====================================================================# la fonction suivante a été inspiré d'un auteur du forum trouvable ci dessous
 #https://www.developpez.net/forums/d122973/autres-langages/python/gui/tkinter/tkinter-recuperer-contenu-d-canvas-sous-format-image/ inspiré de ce forum
 def on_save_image():
@@ -36,7 +37,7 @@ def on_save_image():
     w = Canvas.winfo_width(st.canvas)
     h = Canvas.winfo_height(st.canvas)
     img= ImageGrab.grab((x, y, x+w, y+h)).save("IMAGE.png")   
-"""
+    MessageDialog.showinfo('INFO', message='Votre fichier va etre sauvegarder dans le répertoire du fichier trocho')
 #=====================================================================
 
 #===============================================================================    
@@ -101,32 +102,28 @@ def on_language(key_but):
       st.change1.state=0
       st.change2.state=0
       st.change3.state=0
+      
+      st.h_label.state=0 ; st.troco_color_label.state=0
       st.troco_width_label.state=0
-      st.troco_color_label.state=0
-      st.h_label.state=0
-      st.r_label.state=0
-      st.R_label.state=0
-      st.yC_label.state=0
-      st.xC_label.state=0
       
   elif st.min == "Francais" and key_but == "fixe" :
 
-      
+    
       st.change1.state=0
       st.change2.state=0
       st.change3.state=0
 
-      
-      st.fixe_type_label.state=0
+
+      st.yC_label.state=0 ; st.xC_label.state=0 ;st.R_label.state=0
+      st.fixe_width_label.state=0 ;st.fixe_color_label.state=0
 
   elif st.min == "Francais" and key_but == "rond" :
 
       st.change1.state=0
       st.change2.state=0
-      st.change3.state=0
-
-      
-      st.troco_type_label.state=0
+      st.change3.state=0  
+      st.r_label.state=0 ;st.troco_type_label.state=0
+      st.rond_color_label.state = 0 ;st.rond_width_label.state=0
 
  #--------------------------Anglais-----------------------------------------------
       
@@ -137,22 +134,18 @@ def on_language(key_but):
       st.change2.state=1
       st.change3.state=1
       
+      st.h_label.state=1 ; st.troco_color_label.state=1
       st.troco_width_label.state=1
-      st.troco_color_label.state=1
-      st.h_label.state=1
-      st.r_label.state=1
-      st.R_label.state=1
-      st.yC_label.state=1
-      st.xC_label.state=1
-
       
   elif st.min == "Anglais" and key_but == "fixe" :
       
       st.change1.state=1
       st.change2.state=1
       st.change3.state=1
-      
-      st.fixe_type_label.state=1
+
+
+      st.yC_label.state=1; st.xC_label.state=1 ;st.R_label.state=1
+      st.fixe_width_label.state=1;st.fixe_color_label.state=1
       
   elif st.min == "Anglais" and key_but == "rond" :
 
@@ -160,7 +153,10 @@ def on_language(key_but):
       st.change2.state=1
       st.change3.state=1
 
-      st.troco_type_label.state=1
+      
+
+      st.r_label.state=1 ;st.troco_type_label.state=1
+      st.rond_color_label.state = 1 ;st.rond_width_label.state=1
       
  #--------------------------Espagnol-----------------------------------------------         
   elif st.min == "Espagnol" and key_but == "trocho" :
@@ -168,14 +164,9 @@ def on_language(key_but):
       st.change1.state=2
       st.change2.state=2
       st.change3.state=2
-     
+      
+      st.h_label.state=2 ; st.troco_color_label.state=2
       st.troco_width_label.state=2
-      st.troco_color_label.state=2
-      st.h_label.state=2
-      st.r_label.state=2
-      st.R_label.state=2
-      st.yC_label.state=2
-      st.xC_label.state=2
       
   elif st.min == "Espagnol" and key_but == "fixe" :
       
@@ -183,8 +174,9 @@ def on_language(key_but):
       st.change2.state=2
       st.change3.state=2
 
-      
-      st.fixe_type_label.state=2
+
+      st.yC_label.state=2; st.xC_label.state=2 ;st.R_label.state=2
+      st.fixe_width_label.state=2;st.fixe_color_label.state=2
 
   elif st.min == "Espagnol" and key_but == "rond" :
       
@@ -192,8 +184,10 @@ def on_language(key_but):
       st.change2.state=2
       st.change3.state=2
 
-      st.troco_type_label.state=2
+      
 
+      st.r_label.state=2 ;st.troco_type_label.state=2
+      st.rond_color_label.state = 2;st.rond_width_label.state=2
 
  #--------------------------Japonais-----------------------------------------------      
 
@@ -202,14 +196,9 @@ def on_language(key_but):
       st.change1.state=3
       st.change2.state=3
       st.change3.state=3
-
+      
+      st.h_label.state=3 ; st.troco_color_label.state=3
       st.troco_width_label.state=3
-      st.troco_color_label.state=3
-      st.h_label.state=3
-      st.r_label.state=3
-      st.R_label.state=3
-      st.yC_label.state=3
-      st.xC_label.state=3
       
   elif st.min == "Japonais" and key_but == "fixe" :
       
@@ -217,7 +206,15 @@ def on_language(key_but):
       st.change2.state=3
       st.change3.state=3
 
-      st.fixe_type_label.state=3
+
+      st.yC_label.state=3; st.xC_label.state=3 ;st.R_label.state=3
+      st.fixe_width_label.state=3;st.fixe_color_label.state=3
+      
+      
+      
+      
+
+      #st.fixe_type_label.state=3
 
   elif st.min == "Japonais" and key_but == "rond" :
       
@@ -225,7 +222,13 @@ def on_language(key_but):
       st.change2.state=3
       st.change3.state=3
 
-      st.troco_type_label.state=3
+      
+
+      st.r_label.state=3 ;st.troco_type_label.state=3
+      st.rond_color_label.state = 3;st.rond_width_label.state=3
+      
+      
+      #st.troco_type_label.state=3
 
 #==================================================================================
 def on_scale():
@@ -391,7 +394,7 @@ def on_return():
         #st.start_stop.state = 0
          #delete st.change_return button
           #now recreate all widgets of the parameting display
-        #Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
+        Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
         main_bot_band("welcome")
         st.left_band = Frame(st.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=True)
         st.frButt_fixe = Frame(st.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
@@ -403,7 +406,7 @@ def on_return():
         st.frButt_trocho = Frame(st.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
         st.change3 = Button(st.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
         st.display_indic = "parameting" #update st.display_indic
-        #del st.top_band[1]
+        del st.top_band[1]
         del st.top_band[0]
 #------------------------------------------------------------------------------
 def on_change():
@@ -430,7 +433,7 @@ def main():
   #=======================================(parent: st.win)=======================================================
     st.top_band= Frame(st.win, bg='red', width=width, height=height//40, grow=False) #frame for general options (language...)
 
-    #Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
+    Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
       #language début
     st.win.master['menu'] = menu = Menu(st.win.master)
     st.minmenu = Menu(menu, tearoff=False); st.minmenu.state = StringVar()
@@ -470,9 +473,9 @@ def main():
     #speed 
     lapin = Image(file='lapin.gif')
     tortue = Image(file='tortue.gif')
-    Label(fr2, image=lapin, grow=True)                                                                                                                                                                                                                                                           
-    st.speed = Scale(fr2, orient='VERTICAL', showvalue=0, bd=0, scale=(10, 1000), grow=True, command=lambda:save_value()) ; st.speed.set(st.bot_band_dic['speed']) #default speed
     Label(fr2, image=tortue, grow=True)                                                                                                                                                                                                                                                           
+    st.speed = Scale(fr2, flow="N", showvalue=0, bd=0, scale=(10, 1000), grow=True, command=lambda:save_value()) ; st.speed.set(st.bot_band_dic['speed']) #default speed
+    Label(fr2, image=lapin, grow=True)                                                                                                                                                                                                                                                           
   #===================================================================================
     #widgets temporaire, seulement pour tester le programme graphiquement
     test_frame = Frame(st.win, bg="yellow")

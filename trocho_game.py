@@ -18,13 +18,10 @@ def test():
     print(
         'st.canvas_item = ', st.canvas_item,
         'st.points_coords_list = ', st.points_coords_list,
-        'plage normalement supprimée: ', st.canvas_item[0:len(st.canvas_item)-1],
-        'nombre ditem de canvas', len(st.canvas_item),
-        'entry_dic', st.entry_dic,
-        'entry_dic_bo_zejfoeriuhg', st.entry_dic["bot_band_trocho"],
+        'entry_dic_bo_zejfoeriuhg', st.bot_band_dic["bot_band_rond"]["trocho_type"],
         sep='\n',end='\n\n'
         )
-    for value in st.entry_dic[st.bot_band_indic]: print(value.state)
+    #for value in st.entry_dic[st.bot_band_indic]: print(value.state)
     #st.TEST['state']='disabled'
 
 
@@ -39,7 +36,9 @@ def on_save_image():
     img= ImageGrab.grab((x, y, x+w, y+h)).save("IMAGE.png")   
     MessageDialog.showinfo('INFO SAUVEGARDE', message='Votre fichier va etre sauvegarder dans le répertoire du fichier trocho')
 #=====================================================================
-
+def new_onglet():
+    return
+      
 #===============================================================================    
 def type_checker():
   """fonction to check type of the value write by the user in the intries. Called by every bot_band_xxx(), and by every commmand's entry.
@@ -65,6 +64,7 @@ def save_value():
     """
     
     st.bot_band_dic["speed"] = st.speed.state
+    #st.bot_band_dic["bot_band_rond"]["trocho_type"] = st.bot_band_dic["bot_band_rond"]["trocho_type"]-1
     if st.bot_band_indic == "bot_band_trocho":
         st.bot_band_dic["bot_band_trocho"] = { # update all value in st.bot_band_indic with the curent states of all widgets conserned in the current bot_band 
         "h":int(st.h_entry.state), 
@@ -187,11 +187,12 @@ def on_scale():
   st.bot_band_dic[st.bot_band_indic]["color"] = color
 
 #===================================================================================
-def on_case(key_but2):
-  """fonction to make switch the trocho_type button's text in bot_band_rond. Called by bot_band_rond
-  """
-  if key_but2=="Epi":
-      st.troco_type_butt.state+=1
+def on_case():
+    """fonction to make switch the trocho_type button's text in bot_band_rond. Called by bot_band_rond
+    """
+    st.i+=1 #increment trocho_type_list indice
+    st.troco_type_butt["text"]=st.trocho_type_list[st.i%2] #change trocho_type_butt text
+    st.bot_band_dic["bot_band_rond"]["trocho_type"] =  st.trocho_type_list[st.i%2] #save value dans bot_band_dic
 
 #===================================================================================
 def main_bot_band(key_butt):
@@ -273,7 +274,7 @@ def bot_band_rond():
     st.r_entry.insert(0,st.bot_band_dic["bot_band_rond"]['r']) #default r value
     #-------------------------trocho_type-----------------------------
     st.troco_type_label = Label(fr1, text=('Choix de la position du cercle mobile','Choice of the position of the moving circle','Elección de la posición del círculo móvil','動く円の位置の選択'))
-    st.troco_type_butt = Button(fr2,text=('Hypotrochoides','Epitrochoides'),command=lambda : (on_case("Epi"), save_value()))  
+    st.troco_type_butt = Button(fr2, text=st.trocho_type_list[st.i%2], command=lambda : (on_case()))  #st.bot_band_dic["bot_band_rond"]["trocho_type"]
     #--------------------------rond_color----------------------------
     st.rond_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
     Label(fr3)

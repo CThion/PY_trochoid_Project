@@ -5,7 +5,7 @@ __author__  = "Plantey--veux Axel & Thion Clement"
 __version__ = "1.0" # draw lines, rectangles, ovals, strings and images
 __date__    = "2020-04-"
 # ==============================================================================
-from PIL import ImageGrab
+#from PIL import ImageGrab
 from ezTK import *
 from math import *
 import settings as st
@@ -30,7 +30,7 @@ def test():
 
 #https://www.developpez.net/forums/d122973/autres-langages/python/gui/tkinter/tkinter-recuperer-contenu-d-canvas-sous-format-image/ inspiré de ce forum
     
-def on_save_image():
+#def on_save_image():
     """DOCKSTRING
     """
 
@@ -399,7 +399,7 @@ def on_return():
         #st.start_stop.state = 0
          #delete st.change_return button
           #now recreate all widgets of the parameting display
-        Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
+        #Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
         main_bot_band("welcome")
         st.left_band = Frame(st.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=True)
         st.frButt_fixe = Frame(st.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
@@ -440,7 +440,7 @@ def main():
   #=======================================(parent: st.win)=======================================================
     st.top_band= Frame(st.win, bg='red', width=width, height=height//40, grow=False) #frame for general options (language...)
 
-    Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
+    #Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
       #language début
     st.win.master['menu'] = menu = Menu(st.win.master)
     st.minmenu = Menu(menu, tearoff=False); st.minmenu.state = StringVar()

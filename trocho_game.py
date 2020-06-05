@@ -6,7 +6,7 @@ __author__  = "Plantey--veux Axel & Thion Clement"
 __version__ = "1.0" # draw lines, rectangles, ovals, strings and images
 __date__    = "2020-04-"
 # ==============================================================================
-from PIL import ImageGrab
+#from PIL import ImageGrab
 from ezTK import *
 from math import *
 import settings as st
@@ -30,7 +30,7 @@ def test():
 
 #=====================================================================# la fonction suivante a été inspiré d'un auteur du forum trouvable ci dessous
 #https://www.developpez.net/forums/d122973/autres-langages/python/gui/tkinter/tkinter-recuperer-contenu-d-canvas-sous-format-image/ inspiré de ce forum
-def on_save_image():
+#def on_save_image():
     st.canvas.pack()
     x = Canvas.winfo_rootx(st.canvas)
     y = Canvas.winfo_rooty(st.canvas)
@@ -399,7 +399,7 @@ def on_return():
         #st.start_stop.state = 0
          #delete st.change_return button
           #now recreate all widgets of the parameting display
-        Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
+        #Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
         main_bot_band("welcome")
         st.left_band = Frame(st.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=True)
         st.frButt_fixe = Frame(st.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
@@ -434,31 +434,11 @@ def on_change():
 #==============================================================================  
 def main():
     """our graphic interface"""
-    global win
-    width, height = 1200, 1000
-    win = Win(title='trochoïde', grow=True, flow='SE', op=2)
-#=======================================(parent: win)=======================================================
-    #frame for general options (language...)
-    win.top_band= Frame(win, bg='red', width=width, height=height//40, grow=False)  
-    #principal frame
-    win.frameking= Frame(win, width=1200, height=1000, bg='black', flow='W')#frame principale 
+    width, height = 900, 500
+  #=======================================(parent: st.win)=======================================================
+    st.top_band= Frame(st.win, bg='red', width=width, height=height//40, grow=False) #frame for general options (language...)
 
-#=======================================(parent: win.frameking)===============================================
-    win.big_band = Frame(win.frameking, bg='yellow', width=900, height=1000,op=0, flow='S', grow=True) #La largeur est égale à 1200 en sommant les deux largeurs
-    win.left_band = Frame(win.frameking, bg='white', width=300, height=1000,op=0, flow='S', grow=True)#On garde la même hauteur
-
-#=======================================(parent: win.big_band)===================================================
-    win.prince_band= Frame(win.big_band, bg='red', width=900, height=700,op=0,flow='W', grow=True) #On garde la largeur de la frame parent
-    #win.bot_band=Frame(win.big_band,bg='blue', width=900, height=300, border=4, grow=True) #Somme des hauteurs = 1000 
-      #welcome message
-    win.welcomeDisplay = Label(win.big_band, text='TExt welcome to do, with a text widget')
-#=======================================(parent: win.prince_band)==================================================
-    #frame at right containing button for starting and drawing control while playing 
-    win.right_band=Frame(win.prince_band, bg='cyan', width=100, height=700, grow=True)
-    #canvas to display the trocho
-    win.canvas=Canvas(win.prince_band, bg='white', width=800, height=700, grow=True)
-
-    Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
+    #Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
       #language début
     st.win.master['menu'] = menu = Menu(st.win.master)
     st.minmenu = Menu(menu, tearoff=False); st.minmenu.state = StringVar()
@@ -473,7 +453,7 @@ def main():
   #=======================================(parent: st.big_band)===================================================
     st.prince_band = Frame(st.big_band, bg='red', width=(width)*3/4, height=(height)*7/10,op=0,flow='W', grow=True) #On garde la largeur de la frame parent
     bot_band_welcome()
-#    bot_band_fixe()
+  #    bot_band_fixe()
   #=======================================(parent: st.prince_band)================================================
     #frame at right containing button for starting and drast.wing control while playing 
     st.right_band = Frame(st.prince_band, bg='#FFAEC9', width=(width)*1/12, height=(height)*7/10, grow=True, flow='W')

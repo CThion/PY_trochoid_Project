@@ -5,6 +5,7 @@ __author__  = "Plantey--veux Axel & Thion Clement"
 __version__ = "1.0" # draw lines, rectangles, ovals, strings and images
 __date__    = "2020-04-"
 # ==============================================================================
+from PIL import ImageGrab
 from ezTK import *
 from math import *
 import settings as st
@@ -24,6 +25,50 @@ def test():
         )
     for value in st.entry_dic[st.bot_band_indic]: print(value.state)
     #st.TEST['state']='disabled'
+<<<<<<< HEAD
+=======
+
+#=====================================================================# la fonction suivante a été inspiré d'un auteur du forum trouvable ci dessous
+
+#https://www.developpez.net/forums/d122973/autres-langages/python/gui/tkinter/tkinter-recuperer-contenu-d-canvas-sous-format-image/ inspiré de ce forum
+    
+def on_save_image():
+
+    st.canvas.pack()
+    x = Canvas.winfo_rootx(st.canvas)
+    y = Canvas.winfo_rooty(st.canvas)
+    w = Canvas.winfo_width(st.canvas)
+    h = Canvas.winfo_height(st.canvas)
+    img= ImageGrab.grab((x, y, x+w, y+h)).save("IMAGE.png")   
+#=====================================================================
+  
+def test_error(error):
+    """Check value have the good atribute (int,string,float)"""
+
+#------------------------------Check xC its an int--------------------------
+    if error == "error_xC":
+        try :
+            
+
+           xC= int(st.xC_entry.state)
+        except ValueError:
+            test_fr_error=Frame(st.win,bg='yellow')
+            Button(test_fr_error, text="Erreur")
+            st.canvas.create_window(50, 50, window=test_fr_error)
+            return
+        save_value()
+#------------------------Check yC its an int-------------------------
+        
+    elif error == "error_yC":
+        try :
+            
+
+           yC= int(st.yC_entry.state)
+        except ValueError:
+            print("erreur de conversion")
+            return
+        save_value()
+>>>>>>> c4d2dcfd3b456542c5535de28465a45621d78f94
 
 #===============================================================================    
 def type_checker():
@@ -380,8 +425,9 @@ def on_return():
 
     if st.display_indic == "running":
         #st.start_stop.state = 0
-        del st.top_band[0] #delete st.change_return button
+         #delete st.change_return button
           #now recreate all widgets of the parameting display
+        Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
         main_bot_band("welcome")
         st.left_band = Frame(st.frameking, bg='green', width=(width)*1/4, height=height,op=0, flow='S', grow=True)
         st.frButt_fixe = Frame(st.left_band, bg='gray', width=(width)*1/4, height=(height)*1/3, grow=True)
@@ -394,6 +440,9 @@ def on_return():
         st.change3 = Button(st.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
         st.display_indic = "parameting" #update st.display_indic
 
+        
+        del st.top_band[1]
+        del st.top_band[0]
 #------------------------------------------------------------------------------
 def on_change():
     """fonction to switch from the parameting display (with left_band and bot_band) to the drawing display. Called by start_stop button
@@ -408,9 +457,13 @@ def on_change():
         del st.big_band[1]
         st.change_return = Button(st.top_band,text="Return",command=lambda:on_return()) #button to come back on the previous diplay
         st.display_indic="running" #update st.display_indic
+<<<<<<< HEAD
         st.bot_band_indic="welcome" #in order not to get in the if condition in on_save() also called by start_stop
         bd.on_start() #now can start to draw
     else: bd.on_start()
+=======
+        st.bot_band_indic="" #in order not to get in the if condition in () also called by start_stop
+>>>>>>> c4d2dcfd3b456542c5535de28465a45621d78f94
 
 #==============================================================================  
 def main():
@@ -418,6 +471,8 @@ def main():
     width, height = 900, 500
   #=======================================(parent: st.win)=======================================================
     st.top_band= Frame(st.win, bg='red', width=width, height=height//40, grow=False) #frame for general options (language...)
+
+    Button(st.top_band,text="Sauvegarder l'image",command=on_save_image)
       #language début
     st.win.master['menu'] = menu = Menu(st.win.master)
     st.minmenu = Menu(menu, tearoff=False); st.minmenu.state = StringVar()
@@ -448,8 +503,13 @@ def main():
     st.change2 = Button(st.frButt_rond, text=('Choix du rond mobile','Choose of mobile circle','Elección de la ronda móvil','移動ラウンドの選択'), command=lambda:(type_checker(), main_bot_band("rond"),on_language("rond")))# Trois choix possibles 1 par state
   #-----------------
     st.frButt_trocho = Frame(st.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
+<<<<<<< HEAD
     st.change3 = Button(st.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(type_checker(), main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
   #=======================================(prent: st.right_band)===============================================
+=======
+    st.change3 = Button(st.frButt_trocho,bg='purple',fg='black',  text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho"))) # Trois choix possibles 1 par state
+  #=======================================(parent: st.right_band)===============================================
+>>>>>>> c4d2dcfd3b456542c5535de28465a45621d78f94
     fr1 = Frame(st.right_band, flow='N'); fr2 = Frame(st.right_band, flow='N', grow=False)#; fr3 = Frame(st.right_band); fr4 = Frame(st.right_band,border=0,width=width,height=0,bd=0) ;fr5 = Frame(st.right_band,border=0,grow=True) 
     st.start_stop = Button(fr1, text=('start', 'stop'), grow=True, command=lambda:(on_change()))
     st.timer = Label(fr1, text=0, bd=1, grow=True)
@@ -465,6 +525,7 @@ def main():
     test_frame = Frame(st.win, bg="yellow")
     Button(test_frame, text="TEST", command=test)
     st.canvas.create_window(50, 50, window=test_frame)
+
   #===================================================================================
     st.win.loop()
 

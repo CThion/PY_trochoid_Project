@@ -99,7 +99,7 @@ def save_value():
 
 #==================================================================================
 def on_language(key_but):
-  """callback function for all menu radiobuttons"""
+  """callback function for all menu radiobuttons pour avoir chaque language qui s'éxecute à l'aide du menu déroulant"""
   
   
     # Dont need to convert its str
@@ -221,10 +221,14 @@ def main_bot_band(key_butt):
     else: bot_band_trocho()
 
 def bot_band_welcome():
+    """Fonction qui permet d'afficher l'affichage de base
+    """
     st.bot_band_indic = "welcome" #update st.bot_band_indic in settings
-    Label(st.big_band, text='Salamaalekum.')
+    Label(st.big_band, text='Bienvenue.')
         
 def bot_band_fixe():
+    """Fonction qui permet d'afficher les bons paramétres si on clique sur le boutton choix de la forme fixe
+    """
     type_checker()
     if st.type_error_indic : return #if there is an error in the current bot_band, don't set up the next bot_band til the problem is not solved
     st.bot_band_indic = "bot_band_fixe" #update st.bot_band_indic in settings
@@ -260,7 +264,7 @@ def bot_band_fixe():
     st.win.B.set(st.bot_band_dic["bot_band_fixe"]["B_"])
     st.win.Label, st.win.brick = fr3[1], fr3[2] 
     #-------------------------fixe_width------------------------------
-    st.fixe_width_label = Label(fr1,text="Largeur")
+    st.fixe_width_label = Label(fr1,text=("Largeur","Width","Anchura","幅"))
     st.fixe_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())) ; st.entry_dic["bot_band_fixe"].append(st.fixe_width_entry) #add entry to entry_dic
     st.fixe_width_entry.insert(0,st.bot_band_dic["bot_band_fixe"]["fixe_width"])
     #-------------------------------------------------------------------------
@@ -273,6 +277,8 @@ def bot_band_fixe():
     st.change3=Button(st.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
     
 def bot_band_rond():
+    """Fonction qui permet d'afficher les bons paramétres si on clique sur le boutton choix du cercle mobile
+    """
     type_checker()
     if st.type_error_indic : return #if there is an error in the current bot_band, don't set up the next bot_band til the problem is not solved
     #save_value() #save value of the current bot_band before delete it and set the bot_band_rond
@@ -315,7 +321,7 @@ def bot_band_rond():
     st.change1 = Button(st.frButt_fixe, text=('Choix de la forme fixe','Choose of fix form','Elección de forma fija','固定形状の選択'),command=lambda:(main_bot_band("fixe"), on_language("fixe")))
 
 def bot_band_trocho():
-    """DOCSTRING
+    """Fonction qui permet d'afficher les bons paramétres si on clique sur le boutton paramétres trochoides
     """
     type_checker()
     if st.type_error_indic : return #if there is an error in the current bot_band, don't set up the next bot_band til the problem is not solved

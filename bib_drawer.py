@@ -57,6 +57,15 @@ def trocho(trocho_type, t):
   if len(st.canvas_item) > 1 : #if there is only one canvas_line, do not delete it.
     for item in st.canvas_item[0:len(st.canvas_item)-1]: st.canvas.delete(item)
 
+def rond_fixe():
+  """fonction to draw the fixe circle 
+  """
+  xa = st.bot_band_dic["bot_band_fixe"]["xC"]-st.bot_band_dic["bot_band_fixe"]["R"]
+  ya = st.bot_band_dic["bot_band_fixe"]["yC"]-st.bot_band_dic["bot_band_fixe"]["R"]
+  xb = st.bot_band_dic["bot_band_fixe"]["xC"]+st.bot_band_dic["bot_band_fixe"]["R"]
+  yb = st.bot_band_dic["bot_band_fixe"]["yC"]+st.bot_band_dic["bot_band_fixe"]["R"]
+  st.rond_fixe = st.canvas.create_oval(xa,ya,xb,yb, outline=st.bot_band_dic["bot_band_fixe"]["color"], width=st.bot_band_dic["bot_band_fixe"]["fixe_width"])
+
 #===============================================================================
 #===============================================================================
 #===============================================================================
@@ -69,6 +78,7 @@ def on_start():
         # if st.button.state == 1: tick() # start 'tick' when button state is 1
       if st.start_stop.state == 1: 
             #tg.save_value()
+            rond_fixe()
             tick() # start the recusive 
 
 #===============================================================================      
@@ -78,6 +88,7 @@ def on_reset(): #exeption
     last created. If execption = 0, st.cavas_item is fully cleared. 
     """ 
     for item in st.canvas_item: st.canvas.delete(item) #  supress all created canvas_line except the last ones
+    st.canvas.delete(st.rond_fixe) #delete rond fixe
     st.canvas_item = []#  actualise the liste of canvas lines
     st.points_coords_list = [0] #  supress all created points
     st.t = 0 #  reinitialise time

@@ -27,18 +27,18 @@ def test():
 
 #===============================================================================    
 def type_checker():
-  """DOCKSTRING
+  """fonction to check type of the value write by the user in the intries. Called by every bot_band_xxx(), and by every commmand's entry.
   """
   if st.bot_band_indic == "welcome": return #there is no value to check in bot_band_welcome
   for value in st.entry_dic[st.bot_band_indic]: #try every intry.state of the current bot_band
     try: int(value.state)
-    except ValueError:
-        test_fr_error = Frame(st.win,bg='red')  #display a label on the canvas to warn the user about the mistake
+    except ValueError:#display a label on the canvas to warn the user about the mistake, and replace the wrong value by the latest good one.
+        test_fr_error = Frame(st.win,bg='red') 
         Label(test_fr_error, text="attention, vous devez impérativement entrer un unique nombre")
         error_message = st.canvas.create_window(100, 100, window=test_fr_error) 
-        st.win.after(5000, lambda:st.canvas.delete(error_message)) #delete warning message after 5 seconds
+        st.win.after(4000, lambda:st.canvas.delete(error_message)) #delete warning message after 5 seconds
         return
-  save_value() #save value because we're sure its type is good.
+  save_value() #save value because we're sure its type is good now.
            
 #===============================================================================
 def save_value():

@@ -52,7 +52,7 @@ display_indic ="parameting" #used by on_change() & on_return(). Default is "para
 bot_band_indic ="welcome" #used by on_save(), to know which bot_band is active. Initialised with bot_band_welcome
 type_error_indic = False #indicator manage by type_error(), used by other fontion as a condition tu run or not. Get True when there is an error. False by default
 
-#=======================================onglet===========================================
+
 
 
 

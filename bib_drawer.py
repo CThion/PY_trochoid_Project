@@ -18,14 +18,14 @@ def hypo_cord_calculator(t):
   """fonction to compute the point coordinates of a trochoide at t time
   """
   #VARIABLES----------------------------------------
-  R = st.fixe_dic["R"] #R = radius of the fixed circle
-  r = st.rond_dic["r"] #r = radius of the rolling circle
-  h = st.hypo_dic["h"] #h = distance from the tracing point to the centre of the rolling circle
+  R = st.bot_band_dic["bot_band_fixe"]["R"] #R = radius of the fixed circle
+  r = st.bot_band_dic["bot_band_rond"]["r"] #r = radius of the rolling circle
+  h = st.bot_band_dic["bot_band_trocho"]["h"] #h = distance from the tracing point to the centre of the rolling circle
   m = R/r                    # m=R/r is the modulus of the trochoid
   #FONCTION-----------------------------------------
     #new point coords = begin point coord + parametric fonction
-  xi = st.fixe_dic["xC"] + (R+m*R)*cos(m*t)-h*cos(t+m*t) 
-  yi = st.fixe_dic["yC"] + -(R+m*R)*sin(m*t)+h*sin(t+m*t) 
+  xi = st.bot_band_dic["bot_band_fixe"]["xC"] + (R+m*R)*cos(m*t)-h*cos(t+m*t) 
+  yi = st.bot_band_dic["bot_band_fixe"]["yC"] + -(R+m*R)*sin(m*t)+h*sin(t+m*t) 
   return (xi, yi)
 
   #-----------------------------------------------------------------------------
@@ -33,7 +33,7 @@ def hypo_trocho(t):
   st.points_coords_list[0] = hypo_cord_calculator(0)  #first point of the trocho, initialised by 0 in settings
   st.points_coords_list.append(hypo_cord_calculator(t)) #add the new point's coords tuple
     #create line with upadted point_coords_list     st.troco_color_entry.state    st.troco_width_entry.state
-  st.canvas_item.append(st.canvas.create_line(st.points_coords_list, fill=st.bot_band_dic["bot_band_trocho"]["color"], width=st.hypo_dic["width"]))
+  st.canvas_item.append(st.canvas.create_line(st.points_coords_list, fill=st.bot_band_dic["bot_band_trocho"]["color"], width=st.bot_band_dic["bot_band_trocho"]["width"]))
     #delete all the previous canvas_line.  
   if len(st.canvas_item) > 1 : #if there is only one canvas_line, do not delete it.
     for item in st.canvas_item[0:len(st.canvas_item)-1]: st.canvas.delete(item)

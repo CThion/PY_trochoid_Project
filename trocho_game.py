@@ -383,6 +383,7 @@ def on_return():
         st.frButt_trocho = Frame(st.left_band, bg='purple', width=(width)*1/4, height=(height)*1/3, grow=True)
         st.change3 = Button(st.frButt_trocho,bg='purple',fg='black', text=('Paramétres trochoides','Trochoids parameters','Parámetros trocoides','トロコイドパラメータ'),command=lambda:(main_bot_band("trocho"),on_language("trocho")))
         st.display_indic = "parameting" #update st.display_indic
+        st.start_stop.state=0
         del st.top_band[1]
         del st.top_band[0]
 #------------------------------------------------------------------------------
@@ -452,12 +453,7 @@ def main():
     Label(fr2, image=tortue, grow=True)                                                                                                                                                                                                                                                           
     st.speed = Scale(fr2, flow="N", showvalue=0, bd=0, scale=(10, 1000), grow=True, command=lambda:save_value()) ; st.speed.set(st.bot_band_dic['speed']) #default speed
     Label(fr2, image=lapin, grow=True)                                                                                                                                                                                                                                                           
-  #===================================================================================
-    #widgets temporaire, seulement pour tester le programme graphiquement
-    test_frame = Frame(st.win, bg="yellow")
-    Button(test_frame, text="TEST", command=test)
-    st.canvas.create_window(50, 50, window=test_frame)
-
+  
   #===================================================================================
     st.win.loop()
 

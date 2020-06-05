@@ -37,7 +37,7 @@ def on_save_image():
     w = Canvas.winfo_width(st.canvas)
     h = Canvas.winfo_height(st.canvas)
     img= ImageGrab.grab((x, y, x+w, y+h)).save("IMAGE.png")   
-    MessageDialog.showinfo('INFO', message='Votre fichier va etre sauvegarder dans le répertoire du fichier trocho')
+    MessageDialog.showinfo('INFO SAUVEGARDE', message='Votre fichier va etre sauvegarder dans le répertoire du fichier trocho')
 #=====================================================================
 
 #===============================================================================    
@@ -272,8 +272,8 @@ def bot_band_fixe():
     st.bot_band_indic = "bot_band_fixe" #update st.bot_band_indic in settings
     st.entry_dic["bot_band_fixe"]=[] #if not done, st.entry_dic["bot_band_xxx"].append(st.YYY_entry) would make st.entry_dic bigger and bigger
     del st.big_band[1] #del previous bot_band
-    st.bot_band_fixe = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=3, grow=True)
-    fr1 = Frame(st.bot_band_fixe); fr2 = Frame(st.bot_band_fixe) ;fr3 = Frame(st.bot_band_fixe) #2 frame to aligne different widgets
+    st.bot_band_fixe = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=5, grow=True)
+    fr1 = Frame(st.bot_band_fixe); fr2 = Frame(st.bot_band_fixe) ;fr3 = Frame(st.bot_band_fixe); fr4 = Frame(st.bot_band_fixe) #2 frame to aligne different widgets
     #-------------------------xC value-----------------------------
     st.xC_label = Label(fr1, text=('Choisir coords de x C','choice the x C coords','Elige coordenadas de x C','x C の座標を選択'))
     st.xC_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker() )) ; st.entry_dic["bot_band_fixe"].append(st.xC_entry) #add entry to entry_dic
@@ -287,15 +287,17 @@ def bot_band_fixe():
     st.R_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_fixe"].append(st.R_entry) #add entry to entry_dic
     st.R_entry.insert(0,st.bot_band_dic["bot_band_fixe"]['R']) #default R value    
     #-------------------------fixe_color------------------------------
-    st.fixe_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
+    st.fixe_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
     #____________Couleurs avec RGB_____________________________________________________
-    Label(fr3, text='#000000', border=1)
-    Scale(fr3, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
-    Brick(fr2, width=10, height=5, bg='#000000')
-    st.win.R, st.win.G, st.win.B = fr3[1], fr3[2], fr3[3]
-    st.win.Label, st.win.brick = fr3[0], fr2[3] 
+    
+    Label(fr3)
+    Label(fr3)
+    Scale(fr4, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
+    
+    st.win.R, st.win.G, st.win.B = fr4[0], fr4[1], fr4[2]
+    st.win.Label, st.win.brick = fr3[1], fr3[2] 
     #-------------------------fixe_width------------------------------
     st.fixe_width_label = Label(fr1,text="Largeur")
     st.fixe_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())) ; st.entry_dic["bot_band_fixe"].append(st.fixe_width_entry) #add entry to entry_dic
@@ -316,8 +318,8 @@ def bot_band_rond():
     st.bot_band_indic = "bot_band_rond" #update st.bot_band_indic in settings
     st.entry_dic["bot_band_rond"]=[] #if not done, st.entry_dic["bot_band_xxx"].append(st.YYY_entry) would make st.entry_dic bigger and bigger
     del st.big_band[1] #del the current bot_band
-    st.bot_band_rond = Frame(st.big_band,bg='yellow', width=900, height=300, flow='ES', fold=3, grow=True) #main frame
-    fr1 = Frame(st.bot_band_rond); fr2 = Frame(st.bot_band_rond);fr3 = Frame(st.bot_band_rond)#2 frame to aligne different widgets # 
+    st.bot_band_rond = Frame(st.big_band,bg='yellow', width=900, height=300, flow='ES', fold=4, grow=True) #main frame
+    fr1 = Frame(st.bot_band_rond); fr2 = Frame(st.bot_band_rond);fr3 = Frame(st.bot_band_rond);fr4 = Frame(st.bot_band_rond)#2 frame to aligne different widgets # 
     #-------------------------  r  ------------------------------
     st.r_label = Label(fr1, text=('Choix de la taille du cercle mobile','Choice of the size of the moving circle','Elección del tamaño del círculo móvil','動く円のサイズの選択')) 
     st.r_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_rond"].append(st.r_entry) #add entry to entry_dic
@@ -326,14 +328,15 @@ def bot_band_rond():
     st.troco_type_label = Label(fr1, text=('Choix de la position du cercle mobile','Choice of the position of the moving circle','Elección de la posición del círculo móvil','動く円の位置の選択'))
     st.troco_type_butt = Button(fr2,text=('Hypotrochoides','Epitrochoides'),command=lambda : (on_case("Epi"), save_value()))  
     #--------------------------rond_color----------------------------
-    st.rond_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    Label(fr3, text='#000000', border=1)
-    Scale(fr3, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
-    Brick(fr2, width=10, height=5, bg='#000000')
-    st.win.R, st.win.G, st.win.B = fr3[1], fr3[2], fr3[3]
-    st.win.Label, st.win.brick = fr3[0], fr2[2]
+    st.rond_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
+    Label(fr3)
+    Label(fr3)
+    Scale(fr4, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
+    
+    st.win.R, st.win.G, st.win.B = fr4[0], fr4[1], fr4[2]
+    st.win.Label, st.win.brick = fr3[1], fr3[2] 
     #--------------------------rond_width----------------------------
     st.rond_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
     st.rond_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_rond"].append(st.rond_width_entry) #add entry to entry_dic
@@ -357,20 +360,22 @@ def bot_band_trocho():
     del st.big_band[1]
     st.bot_band_trocho = Frame(st.big_band,bg='yellow', width=900, height=300,flow='ES',fold=5, grow=True)
     #4 frame to aligne differents widgets
-    fr1 = Frame(st.bot_band_trocho); fr2 = Frame(st.bot_band_trocho); fr3 = Frame(st.bot_band_trocho)
+    fr1 = Frame(st.bot_band_trocho); fr2 = Frame(st.bot_band_trocho); fr3 = Frame(st.bot_band_trocho) ;fr4 = Frame(st.bot_band_trocho)
     #-------------------------h value------------------------------
     st.h_label = Label(fr1, text=('Choisir valeur h','choice the h value','Elige valor h','値を選択 h'))
     st.h_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_trocho"].append(st.h_entry) #add entry to entry_dic
     st.h_entry.insert(0, st.bot_band_dic["bot_band_trocho"]['h']) #default h value
     #--------------------------troco_color----------------------------
-    st.troco_color_label = Label(fr1, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
-    Label(fr3, text='#000000', border=1)
-    Scale(fr3, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
-    Scale(fr3, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
-    Brick(fr2, width=10, height=5, bg='#000000')
-    st.win.R, st.win.G, st.win.B = fr3[1], fr3[2], fr3[3]
-    st.win.Label, st.win.brick = fr3[0], fr2[1]
+    st.troco_color_label = Label(fr3, text=('Choisir la couleur','Choose color','Elegir colores','色を選ぶ'))
+     
+    Label(fr3)
+    Label(fr3)
+    Scale(fr4, scale=(0,255), troughcolor='#F00', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#0F0', show=False, command=on_scale)
+    Scale(fr4, scale=(0,255), troughcolor='#00F', show=False, command=on_scale)
+    
+    st.win.R, st.win.G, st.win.B = fr4[0], fr4[1], fr4[2]
+    st.win.Label, st.win.brick = fr3[1], fr3[2] 
     #--------------------------width----------------------------
     st.troco_width_label = Label(fr1, text=('Choisir largeur trocho','choice the trocho width','Elegir ancho','幅を選択してください'))
     st.troco_width_entry = Entry(fr2, command=lambda:(bd.pre_disp(), type_checker())); st.entry_dic["bot_band_trocho"].append(st.troco_width_entry) #add entry to entry_dic
